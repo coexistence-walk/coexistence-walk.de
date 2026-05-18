@@ -2,20 +2,62 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Blog Manager - Coexistence Walk</title>
+  <title>Blog Admin</title>
 </head>
 <body>
 
-<script>
-  window.CMS_CONFIG_PATH = "config.yml";
-  window.CMS_MANUAL_INIT = true;
-</script>
+<h2>Blog Editor</h2>
 
-<script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+<input id="token" placeholder="GitHub Token" style="width:300px;"><br><br>
+<input id="title" placeholder="Titel"><br><br>
+<textarea id="content" placeholder="Inhalt" rows="10" cols="50"></textarea><br><br>
+
+<button onclick="savePost()">Speichern</button>
 
 <script>
-  CMS.init();
+async function savePost() {
+  const token = document.getElementById("token").value;
+  const title = document.getElementById("title").value;
+  const content = document.getElementById("content").value;
+
+  const repo = "coexistence-walk/coexistence-walk.de";
+  const path = "blog-data.json";
+
+  // 1. Datei laden
+  const getFile = await fetch(`https://api.github.com/repos/${repo}/contents/${path}`, {
+    headers: {
+      Authorization: "Bearer " + token
+    }
+  });
+
+  const fileData = await getFile.json();
+  const sha = fileData.sha;
+
+  let json = JSON.parse(atob(fileData.content));
+
+  // 2. neuen Beitrag hinzufügen
+  json.items.push({
+    title: title,
+    date: new Date().toISOString(),
+    body: content
+  });
+
+  // 3. speichern
+  await fetch(`https://api.github.com/repos/${repo}/contents/${path}`, {
+    method: "PUT",
+    headers: {
+      Authorization: "Bearer " + token,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      message: "Neuer Blogpost",
+      content: btoa(JSON.stringify(json, null, 2)),
+      sha: sha
+    })
+  });
+
+  alert("Gespeichert!");
+}
 </script>
 
 </body>
