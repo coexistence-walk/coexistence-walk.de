@@ -1,14 +1,38 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Blog Manager - Coexistence Walk</title>
-</head>
-
-<body>
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-</body>
-
-</html>
+<script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+<script>
+  window.CMS_MANUAL_INIT = true;
+</script>
+<script>
+  CMS.init({
+    config: {
+      backend: {
+        name: "github",
+        repo: "coexistence-walk/coexistence-walk.de",
+        branch: "main"
+      },
+      media_folder: "images/uploads",
+      public_folder: "/images/uploads",
+      collections: [
+        {
+          name: "blog",
+          label: "Blog Verwaltung",
+          files: [
+            {
+              label: "Alle Blog Beiträge",
+              name: "posts",
+              file: "blog-data.json",
+              fields: [
+                { label: "Beiträge", name: "items", widget: "list", fields: [
+                  { label: "Titel", name: "title", widget: "string" },
+                  { label: "Veröffentlichungsdatum", name: "date", widget: "datetime" },
+                  { label: "Vorschaubild (optional)", name: "thumbnail", widget: "image", required: false },
+                  { label: "Inhalt", name: "body", widget: "markdown" }
+                ]}
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  });
+</script>
