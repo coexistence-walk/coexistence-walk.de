@@ -45,24 +45,26 @@ export async function onRequest(context) {
       return new Response(html, { headers: { ...corsHeaders, "Content-Type": "text/html" } });
     }
 
-    // Erfolg: Token an das CMS senden
+    // Erfolg: Handshake mit dem CMS durchführen, dann Token senden
     const html = `<!DOCTYPE html>
 <html>
 <body>
   <p>Login erfolgreich, weiterleitung...</p>
   <script>
     (function() {
-      var token = ${JSON.stringify(token)};
-      var provider = 'github';
-      var payload = JSON.stringify({ token: token, provider: provider });
-      var message = 'authorization:' + provider + ':success:' + payload;
-
-      if (window.opener) {
-        window.opener.postMessage(message, '*');
-        setTimeout(function() { window.close(); }, 1500);
-      } else {
-        document.body.innerHTML = '<h2>Fehler</h2><p>Kein Opener-Fenster gefunden. Bitte schliesse dieses Fenster und versuche es erneut.</p>';
+      function receiveMessage(e) {
+        console.log("receiveMessage", e);
+        window.opener.postMessage(
+          'authorization:github:success:' + JSON.stringify({
+            token: ${JSON.stringify(token)},
+            provider: 'github'
+          }),
+          e.origin
+        );
       }
+      window.addEventListener("message", receiveMessage, false);
+      // Handshake starten: CMS mitteilen dass die Autorisierung läuft
+      window.opener.postMessage("authorizing:github", "*");
     })();
   </script>
 </body>
