@@ -1,6 +1,9 @@
 backend:
-  name: git-gateway
-  branch: main # Branch deines Repositories (oft main oder master)
+  name: github
+  repo: coexistence-walk/coexistence-walk.de
+  branch: main
+  base_url: https://coexistence-walk-de.pages.dev
+  auth_endpoint: /functions/auth
 
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
