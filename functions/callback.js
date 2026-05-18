@@ -13,47 +13,70 @@ export async function onRequest(context) {
   }
 
   const code = url.searchParams.get("code");
-  if (!code) return new Response("Missing code", { status: 400, headers: corsHeaders });
+  if (!code) {
+    return new Response("Fehler: Kein Code von GitHub erhalten.", { status: 400, headers: corsHeaders });
+  }
 
-  const response = await fetch("https://github.com/login/oauth/access_token", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "Accept": "application/json",
-      "User-Agent": "Cloudflare-Pages-Function"
-    },
-    body: JSON.stringify({
-      client_id: env.GITHUB_CLIENT_ID,
-      client_secret: env.GITHUB_CLIENT_SECRET,
-      code: code
-    })
-  });
+  try {
+    const response = await fetch("https://github.com/login/oauth/access_token", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "User-Agent": "Cloudflare-Pages-Function"
+      },
+      body: JSON.stringify({
+        client_id: env.GITHUB_CLIENT_ID,
+        client_secret: env.GITHUB_CLIENT_SECRET,
+        code: code
+      })
+    });
 
-  const data = await response.json();
-  const token = data.access_token;
+    const data = await response.json();
+    const token = data.access_token;
+    const error = data.error;
 
-  if (!token) return new Response("Fehler beim Abrufen des Tokens von GitHub", { status: 500, headers: corsHeaders });
+    if (!token) {
+      const html = `<!DOCTYPE html><html><body>
+        <h2>Login fehlgeschlagen</h2>
+        <p>GitHub Fehler: ${error || 'Kein Token erhalten'}</p>
+        <p>Details: ${JSON.stringify(data)}</p>
+      </body></html>`;
+      return new Response(html, { headers: { ...corsHeaders, "Content-Type": "text/html" } });
+    }
 
-  const html = `
-    <!DOCTYPE html>
-    <html>
-    <body>
-      <script>
-        const message = {
-          token: '${token}',
-          provider: 'github'
-        };
-        window.opener.postMessage(
-          'authorization:github:success:' + JSON.stringify(message),
-          '*'
-        );
-        window.close();
-      </script>
-    </body>
-    </html>
-  `;
+    // Erfolg: Token an das CMS senden
+    const html = `<!DOCTYPE html>
+<html>
+<body>
+  <p>Login erfolgreich, weiterleitung...</p>
+  <script>
+    (function() {
+      var token = ${JSON.stringify(token)};
+      var provider = 'github';
+      var payload = JSON.stringify({ token: token, provider: provider });
+      var message = 'authorization:' + provider + ':success:' + payload;
 
-  return new Response(html, {
-    headers: { ...corsHeaders, "Content-Type": "text/html" }
-  });
+      if (window.opener) {
+        window.opener.postMessage(message, '*');
+        setTimeout(function() { window.close(); }, 1500);
+      } else {
+        document.body.innerHTML = '<h2>Fehler</h2><p>Kein Opener-Fenster gefunden. Bitte schliesse dieses Fenster und versuche es erneut.</p>';
+      }
+    })();
+  </script>
+</body>
+</html>`;
+
+    return new Response(html, {
+      headers: { ...corsHeaders, "Content-Type": "text/html" }
+    });
+
+  } catch (err) {
+    const html = `<!DOCTYPE html><html><body>
+      <h2>Serverfehler</h2>
+      <p>${err.message}</p>
+    </body></html>`;
+    return new Response(html, { status: 500, headers: { ...corsHeaders, "Content-Type": "text/html" } });
+  }
 }
