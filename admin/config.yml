@@ -2,8 +2,6 @@ backend:
   name: github
   repo: coexistence-walk/coexistence-walk.de
   branch: main
-  base_url: https://coexistence-walk.ancient-credit-1d24.workers.dev
-  auth_endpoint: auth
 
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
