@@ -3,21 +3,20 @@ backend:
   repo: coexistence-walk/coexistence-walk.de
   branch: main
   auth_type: implicit
-  app_id: ""
 
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
 collections:
-  - name: "blog_posts"   # ✅ geändert
+  - name: "blog_posts"
     label: "Blog Verwaltung"
     files:
       - label: "Alle Blog Beiträge"
-        name: "posts_file"   # ✅ geändert
+        name: "posts_file"
         file: "blog-data.json"
         fields:
           - label: "Beiträge"
-            name: "entries"   # ✅ geändert
+            name: "entries"
             widget: "list"
             fields:
               - { label: "Titel", name: "title", widget: "string" }
