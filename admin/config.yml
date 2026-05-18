@@ -2,7 +2,7 @@ backend:
   name: github
   repo: coexistence-walk/coexistence-walk.de
   branch: main # Branch deines Repositories (oft main oder master)
-  base_url: https://coexistence-wale.ancient-credit-1d24.workers.dev
+  base_url: https://coexistence-walk.ancient-credit-1d24.workers.dev
   auth_endpoint: auth
 
 media_folder: "images/uploads"
