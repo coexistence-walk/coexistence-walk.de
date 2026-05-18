@@ -1,24 +1,23 @@
 backend:
-  name: github
-  repo: coexistence-walk/coexistence-walk.de
-  branch: main
+  name: git-gateway
+  branch: main # Branch deines Repositories (oft main oder master)
 
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
 collections:
-  - name: "blog_posts"
+  - name: "blog"
     label: "Blog Verwaltung"
     files:
       - label: "Alle Blog Beiträge"
-        name: "posts_file"
+        name: "posts"
         file: "blog-data.json"
         fields:
           - label: "Beiträge"
-            name: "entries"
+            name: "items"
             widget: "list"
             fields:
-              - { label: "Titel", name: "title", widget: "string" }
-              - { label: "Veröffentlichungsdatum", name: "date", widget: "datetime" }
-              - { label: "Vorschaubild", name: "thumbnail", widget: "image", required: false }
-              - { label: "Inhalt", name: "body", widget: "markdown" }
+              - {label: "Titel", name: "title", widget: "string"}
+              - {label: "Veröffentlichungsdatum", name: "date", widget: "datetime"}
+              - {label: "Vorschaubild (optional)", name: "thumbnail", widget: "image", required: false}
+              - {label: "Inhalt", name: "body", widget: "markdown"}
