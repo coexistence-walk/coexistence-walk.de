@@ -1,0 +1,1999 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>COEXISTENCE WALK 2026 – Gemeinsam Gehen für den Wolf</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap"
+    rel="stylesheet" />
+
+  <style>
+    /* ─── TOKENS ─────────────────────────────────────────────── */
+    :root {
+      --ink: #1a1a14;
+      --bark: #2d2416;
+      --moss: #3d4c2e;
+      --fern: #546b3a;
+      --sage: #8ea870;
+      --sand: #c9b88a;
+      --linen: #f4efe4;
+      --cream: #faf8f2;
+      --parchment: #ede8dc;
+      --amber: #c08a2e;
+      --rust: #8b4a2a;
+
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'DM Sans', sans-serif;
+
+      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+      --section-pad: clamp(4rem, 8vw, 8rem);
+    }
+
+    /* ─── RESET ───────────────────────────────────────────────── */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-size: clamp(15px, 1.6vw, 17px);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ─── SCROLLBAR ───────────────────────────────────────────── */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--parchment);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--fern);
+      border-radius: 3px;
+    }
+
+    /* ─── Fix 6: PROGRESS BAR ────────────────────────────────── */
+    #progressBar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(to right, var(--sage), var(--sand));
+      width: 0%;
+      z-index: 1001;
+      transition: width 0.1s linear;
+      box-shadow: 0 0 8px rgba(142, 168, 112, 0.6);
+    }
+
+    /* ─── UTILITY ─────────────────────────────────────────────── */
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 clamp(1.25rem, 5vw, 3rem);
+    }
+
+    .section {
+      padding: var(--section-pad) 0;
+    }
+
+    .eyebrow {
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--fern);
+      margin-bottom: 1rem;
+    }
+
+    .display-title {
+      font-family: var(--font-display);
+      font-weight: 300;
+      font-size: clamp(2.6rem, 5.5vw, 5rem);
+      line-height: 1.1;
+      color: var(--bark);
+    }
+
+    .display-title em {
+      font-style: italic;
+      color: var(--fern);
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: clamp(2rem, 3.8vw, 3.4rem);
+      line-height: 1.15;
+      color: var(--bark);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title em {
+      font-style: italic;
+      color: var(--fern);
+    }
+
+    .lead {
+      font-family: var(--font-display);
+      font-size: clamp(1.1rem, 1.8vw, 1.35rem);
+      font-weight: 300;
+      line-height: 1.65;
+      color: var(--bark);
+      max-width: 680px;
+    }
+
+    .divider {
+      width: 60px;
+      height: 2px;
+      background: var(--sand);
+      margin: 1.5rem 0 2.5rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.9rem 2.2rem;
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: all 0.3s var(--ease-out);
+    }
+
+    .btn-primary {
+      background: var(--moss);
+      color: var(--linen);
+    }
+
+    .btn-primary:hover {
+      background: var(--bark);
+      transform: translateY(-2px) scale(1.02);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--moss);
+      border: 1.5px solid var(--fern);
+      border-radius: 4px;
+    }
+
+    .btn-outline:hover {
+      background: var(--fern);
+      color: var(--linen);
+      transform: translateY(-2px) scale(1.02);
+    }
+
+    /* ─── IMAGE PLACEHOLDER ───────────────────────────────────── */
+    .img-placeholder {
+      background: var(--parchment);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      color: var(--sage);
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-family: var(--font-body);
+      border: 1.5px dashed var(--sand);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .img-placeholder::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(45deg,
+          transparent,
+          transparent 20px,
+          rgba(0, 0, 0, 0.025) 20px,
+          rgba(0, 0, 0, 0.025) 21px);
+    }
+
+    .img-placeholder svg {
+      width: 36px;
+      height: 36px;
+      opacity: 0.45;
+      position: relative;
+      z-index: 1;
+    }
+
+    .img-placeholder span {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ─── NAVBAR ──────────────────────────────────────────────── */
+    #navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+      padding: 1.1rem 0;
+      transition: all 0.4s var(--ease-out);
+    }
+
+    #navbar.scrolled {
+      background: rgba(250, 248, 242, 0.95);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--linen);
+      transition: color 0.4s;
+    }
+
+    #navbar.scrolled .nav-logo {
+      color: var(--bark);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(244, 239, 228, 0.85);
+      transition: color 0.3s;
+    }
+
+    #navbar.scrolled .nav-links a {
+      color: var(--ink);
+    }
+
+    .nav-links a:hover {
+      color: var(--sage);
+    }
+
+    .nav-cta {
+      background: var(--moss);
+      color: var(--linen) !important;
+      padding: 0.5rem 1.4rem;
+      font-size: 0.75rem !important;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: background 0.3s !important;
+    }
+
+    .nav-cta:hover {
+      background: var(--bark) !important;
+      color: var(--linen) !important;
+    }
+
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    /* ─── HERO ────────────────────────────────────────────────── */
+    #hero {
+      min-height: 100svh;
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      padding-bottom: clamp(3rem, 7vw, 6rem);
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(160deg, #1c2414 0%, #2d3820 40%, #3a4a28 100%);
+    }
+
+    /* Photo placeholder for hero background */
+    .hero-bg-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.45;
+      mix-blend-mode: multiply;
+    }
+
+    .hero-bg-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255, 255, 255, 0.12);
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-family: var(--font-body);
+      gap: 0.5rem;
+    }
+
+    .hero-bg-placeholder svg {
+      width: 48px;
+      opacity: 0.3;
+    }
+
+    .hero-grain {
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+      background-size: 200px;
+      pointer-events: none;
+      opacity: 0.6;
+    }
+
+    .hero-vignette {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, 0.5) 100%);
+    }
+
+    .hero-bottom {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 220px;
+      background: linear-gradient(to top, var(--cream) 0%, transparent 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 820px;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(4px);
+      padding: 0.45rem 1.1rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(244, 239, 228, 0.9);
+      margin-bottom: 2rem;
+      font-family: var(--font-body);
+    }
+
+    .hero-tag .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--sage);
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 7vw, 7rem);
+      font-weight: 300;
+      line-height: 1.0;
+      color: var(--linen);
+      margin-bottom: 0.4rem;
+    }
+
+    .hero-title strong {
+      display: block;
+      font-weight: 700;
+      font-size: 0.42em;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 0.2em;
+    }
+
+    .hero-subtitle {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: clamp(1.1rem, 2vw, 1.6rem);
+      color: rgba(244, 239, 228, 0.7);
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .hero-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .hero-meta-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--sage);
+      font-weight: 500;
+    }
+
+    .hero-meta-value {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      color: rgba(244, 239, 228, 0.9);
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    /* ─── HERO INLINE FORM ────────────────────────────────────── */
+    .hero-form {
+      display: flex;
+      gap: 0;
+      margin-top: 1.6rem;
+      flex-wrap: wrap;
+      max-width: 500px;
+    }
+
+    .hero-form input[type="email"] {
+      flex: 1 1 220px;
+      padding: 0.85rem 1.2rem;
+      border: none;
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(8px);
+      color: var(--linen);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      outline: none;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-right: none;
+      transition: background 0.3s;
+    }
+
+    .hero-form input[type="email"]::placeholder {
+      color: rgba(244, 239, 228, 0.5);
+    }
+
+    .hero-form input[type="email"]:focus {
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    .hero-form .btn-primary {
+      flex-shrink: 0;
+      border-left: none;
+      padding: 0.85rem 1.6rem;
+      font-size: 0.78rem;
+      background: var(--sage);
+      color: var(--bark);
+      font-weight: 700;
+    }
+
+    .hero-form .btn-primary:hover {
+      background: var(--sand);
+      transform: none;
+    }
+
+    .hero-scarcity {
+      margin-top: 0.9rem;
+      font-size: 0.82rem;
+      color: rgba(255, 255, 255, 0.65);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .hero-scarcity::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #e8a838;
+      flex-shrink: 0;
+      box-shadow: 0 0 0 3px rgba(232, 168, 56, 0.25);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        box-shadow: 0 0 0 3px rgba(232, 168, 56, 0.25);
+      }
+
+      50% {
+        box-shadow: 0 0 0 6px rgba(232, 168, 56, 0.1);
+      }
+    }
+
+    /* ─── STICKY CTA ──────────────────────────────────────────── */
+    .sticky-btn {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--moss);
+      color: var(--linen);
+      padding: 0.95rem 1.6rem;
+      border-radius: 50px;
+      z-index: 998;
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+      transition: all 0.3s var(--ease-out);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      opacity: 0;
+      transform: translateY(12px);
+      pointer-events: none;
+    }
+
+    .sticky-btn.show {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: all;
+    }
+
+    .sticky-btn:hover {
+      background: var(--bark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    @media (max-width: 600px) {
+      .sticky-btn {
+        bottom: 16px;
+        right: 16px;
+        padding: 0.8rem 1.3rem;
+        font-size: 0.72rem;
+      }
+    }
+
+    .hero-scroll {
+      position: absolute;
+      right: 3rem;
+      bottom: 3rem;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(244, 239, 228, 0.4);
+    }
+
+    .hero-scroll .scroll-line {
+      width: 1px;
+      height: 60px;
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), transparent);
+      animation: scrollPulse 2.5s ease-in-out infinite;
+    }
+
+    @keyframes scrollPulse {
+
+      0%,
+      100% {
+        opacity: 0.3;
+        transform: scaleY(1);
+      }
+
+      50% {
+        opacity: 0.8;
+        transform: scaleY(1.15);
+      }
+    }
+
+    /* ─── INTRO BAND ──────────────────────────────────────────── */
+    #intro-band {
+      background: var(--moss);
+      color: var(--linen);
+      padding: 2.5rem 0;
+    }
+
+    .band-inner {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.5rem;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .band-fact {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .band-fact-num {
+      font-family: var(--font-display);
+      font-size: 2.8rem;
+      font-weight: 300;
+      color: var(--sand);
+      line-height: 1;
+    }
+
+    .band-fact-label {
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(244, 239, 228, 0.65);
+      margin-top: 0.3rem;
+    }
+
+    .band-divider {
+      width: 1px;
+      height: 60px;
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    /* ─── ABOUT ───────────────────────────────────────────────── */
+    #about {
+      background: var(--cream);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .about-img-wrap {
+      position: relative;
+    }
+
+    .about-img-wrap .main-img {
+      height: 540px;
+    }
+
+    .about-img-wrap .accent-img {
+      position: absolute;
+      right: -2.5rem;
+      bottom: -2.5rem;
+      width: 220px;
+      height: 180px;
+      border: 6px solid var(--cream);
+      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12);
+    }
+
+    .about-text p {
+      margin-bottom: 1.25rem;
+      color: #3a3a30;
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+
+    .about-highlight {
+      background: var(--parchment);
+      border-left: 3px solid var(--sage);
+      padding: 1.25rem 1.5rem;
+      margin: 2rem 0;
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 1.2rem;
+      color: var(--bark);
+      line-height: 1.55;
+    }
+
+    /* ─── ROUTE ───────────────────────────────────────────────── */
+    #route {
+      background: var(--parchment);
+    }
+
+    .route-header {
+      margin-bottom: 4rem;
+    }
+
+    .route-map {
+      height: 380px;
+      margin-bottom: 4rem;
+    }
+
+    .stages-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5px;
+      background: var(--sand);
+    }
+
+    .stage {
+      background: var(--cream);
+      padding: 2rem;
+      position: relative;
+    }
+
+    .stage-num {
+      font-family: var(--font-display);
+      font-size: 3.5rem;
+      font-weight: 300;
+      color: var(--parchment);
+      position: absolute;
+      top: 1rem;
+      right: 1.5rem;
+      line-height: 1;
+    }
+
+    .stage-date {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--fern);
+      margin-bottom: 0.5rem;
+    }
+
+    .stage-title {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--bark);
+      margin-bottom: 0.5rem;
+    }
+
+    .stage-detail {
+      font-size: 0.88rem;
+      color: #555548;
+      line-height: 1.6;
+    }
+
+    .stage-icon {
+      width: 28px;
+      height: 28px;
+      background: var(--fern);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+
+    .stage-icon svg {
+      width: 14px;
+      fill: var(--linen);
+    }
+
+    /* ─── PROGRAM ─────────────────────────────────────────────── */
+    #programm {
+      background: var(--bark);
+      color: var(--linen);
+    }
+
+    #programm .eyebrow {
+      color: var(--sage);
+    }
+
+    #programm .section-title {
+      color: var(--linen);
+    }
+
+    #programm .section-title em {
+      color: var(--sage);
+    }
+
+    #programm .divider {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .program-grid {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 0;
+    }
+
+    .program-days {
+      border-right: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .day-tab {
+      padding: 1.2rem 2rem;
+      cursor: pointer;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+      transition: all 0.3s;
+      position: relative;
+    }
+
+    .day-tab::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: var(--sage);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s var(--ease-out);
+    }
+
+    .day-tab.active::before {
+      transform: scaleX(1);
+    }
+
+    .day-tab.active {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .day-tab-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 0.3rem;
+      font-weight: 500;
+    }
+
+    .day-tab-title {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      color: var(--linen);
+      line-height: 1.3;
+    }
+
+    .day-tab-sub {
+      font-size: 0.78rem;
+      color: rgba(244, 239, 228, 0.45);
+      margin-top: 0.25rem;
+    }
+
+    .program-content {
+      padding: 2.5rem 3rem;
+    }
+
+    .prog-panel {
+      display: none;
+      animation: fadeIn 0.4s var(--ease-out);
+    }
+
+    .prog-panel.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateX(16px);
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    .prog-location {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      background: rgba(255, 255, 255, 0.04);
+      padding: 1.25rem 1.5rem;
+      border-left: 2px solid var(--sage);
+      margin-bottom: 2rem;
+    }
+
+    .prog-location-icon {
+      color: var(--sage);
+      margin-top: 0.1rem;
+      flex-shrink: 0;
+    }
+
+    .prog-location-name {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      color: var(--linen);
+      margin-bottom: 0.2rem;
+    }
+
+    .prog-location-addr {
+      font-size: 0.82rem;
+      color: rgba(244, 239, 228, 0.5);
+    }
+
+    .prog-section-title {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+
+    .prog-item {
+      display: flex;
+      gap: 1.5rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .prog-item:last-child {
+      border-bottom: none;
+    }
+
+    .prog-item-type {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--sand);
+      background: rgba(201, 184, 138, 0.12);
+      padding: 0.2rem 0.6rem;
+      height: fit-content;
+      flex-shrink: 0;
+      margin-top: 0.15rem;
+    }
+
+    .prog-item-name {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      color: var(--linen);
+      margin-bottom: 0.2rem;
+    }
+
+    .prog-item-detail {
+      font-size: 0.85rem;
+      color: rgba(244, 239, 228, 0.5);
+    }
+
+    /* ─── SPEAKERS ────────────────────────────────────────────── */
+    #referenten {
+      background: var(--linen);
+    }
+
+    .speakers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .speaker-card {
+      background: var(--cream);
+      border: 1px solid var(--parchment);
+      overflow: hidden;
+      transition: transform 0.3s var(--ease-out), box-shadow 0.3s;
+    }
+
+    .speaker-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.1);
+    }
+
+    .speaker-img {
+      height: 220px;
+    }
+
+    .speaker-info {
+      padding: 1.5rem;
+    }
+
+    .speaker-name {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--bark);
+      margin-bottom: 0.2rem;
+    }
+
+    .speaker-role {
+      font-size: 0.78rem;
+      color: var(--fern);
+      letter-spacing: 0.06em;
+      margin-bottom: 0.8rem;
+    }
+
+    .speaker-bio {
+      font-size: 0.88rem;
+      color: #555548;
+      line-height: 1.65;
+    }
+
+    /* ─── MITMACHEN ───────────────────────────────────────────── */
+    #mitmachen {
+      background: var(--cream);
+    }
+
+    .mitmachen-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 2px;
+      background: var(--parchment);
+      margin-top: 3.5rem;
+    }
+
+    .mitmachen-card {
+      background: var(--cream);
+      padding: 3rem 2.5rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .mitmachen-icon {
+      width: 64px;
+      height: 64px;
+      background: var(--moss);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .mitmachen-icon svg {
+      width: 28px;
+      fill: var(--linen);
+    }
+
+    .mitmachen-title {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--bark);
+    }
+
+    .mitmachen-text {
+      font-size: 0.9rem;
+      color: #555548;
+      line-height: 1.7;
+    }
+
+    /* ─── SPENDEN ─────────────────────────────────────────────── */
+    #spenden {
+      background: var(--moss);
+      color: var(--linen);
+      padding: var(--section-pad) 0;
+      text-align: center;
+    }
+
+    .spenden-inner {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    #spenden .section-title {
+      color: var(--linen);
+      margin-bottom: 1rem;
+    }
+
+    #spenden .section-title em {
+      color: var(--sand);
+    }
+
+    #spenden .lead {
+      color: rgba(244, 239, 228, 0.8);
+      margin: 0 auto 3rem;
+    }
+
+    .iban-box {
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 2rem 2.5rem;
+      margin: 0 auto 2.5rem;
+      text-align: left;
+    }
+
+    .iban-row {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .iban-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .iban-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--sage);
+      font-weight: 500;
+    }
+
+    .iban-value {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      color: var(--linen);
+      word-break: break-all;
+    }
+
+    .iban-notice {
+      font-size: 0.82rem;
+      color: rgba(244, 239, 228, 0.5);
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    /* ─── GALERIE ─────────────────────────────────────────────── */
+    #galerie {
+      background: var(--parchment);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-rows: 260px 260px;
+      gap: 6px;
+      margin-top: 3rem;
+    }
+
+    .gallery-item:first-child {
+      grid-row: 1 / 3;
+    }
+
+    .gallery-item {
+      overflow: hidden;
+    }
+
+    .gallery-item .img-placeholder {
+      height: 100%;
+    }
+
+    /* ─── KONTAKT ─────────────────────────────────────────────── */
+    #kontakt {
+      background: var(--cream);
+    }
+
+    .kontakt-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      margin-top: 3rem;
+    }
+
+    .kontakt-info h3 {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--bark);
+      margin-bottom: 1.2rem;
+    }
+
+    .kontakt-info p {
+      font-size: 0.9rem;
+      color: #555548;
+      line-height: 1.8;
+    }
+
+    .kontakt-detail {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .kontakt-detail-icon {
+      width: 38px;
+      height: 38px;
+      background: var(--parchment);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .kontakt-detail-icon svg {
+      width: 16px;
+      fill: var(--fern);
+    }
+
+    .kontakt-detail-text {
+      font-size: 0.9rem;
+      color: #555548;
+      line-height: 1.6;
+    }
+
+    .kontakt-detail-text strong {
+      color: var(--bark);
+      display: block;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.2rem;
+    }
+
+    .anmeldung-box {
+      background: var(--parchment);
+      padding: 3rem;
+    }
+
+    .anmeldung-box h3 {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--bark);
+      margin-bottom: 0.5rem;
+    }
+
+    .anmeldung-box p {
+      font-size: 0.9rem;
+      color: #555548;
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--fern);
+      font-weight: 500;
+      margin-bottom: 0.4rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      background: var(--cream);
+      border: 1.5px solid var(--sand);
+      padding: 0.75rem 1rem;
+      font-family: var(--font-body);
+      font-size: 0.92rem;
+      color: var(--ink);
+      outline: none;
+      transition: border-color 0.3s;
+      resize: vertical;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--fern);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    /* ─── PARTNER ─────────────────────────────────────────────── */
+    #partner {
+      background: var(--bark);
+      padding: 3.5rem 0;
+    }
+
+    .partner-inner {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 3rem;
+    }
+
+    .partner-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(244, 239, 228, 0.4);
+      white-space: nowrap;
+    }
+
+    .partner-logos {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .partner-logo-placeholder {
+      height: 40px;
+      width: 120px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px dashed rgba(255, 255, 255, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(244, 239, 228, 0.25);
+    }
+
+    /* ─── FOOTER ──────────────────────────────────────────────── */
+    footer {
+      background: var(--ink);
+      color: rgba(244, 239, 228, 0.5);
+      padding: 3rem 0 2rem;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 2rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .footer-brand .nav-logo {
+      color: var(--linen);
+      font-size: 1.1rem;
+    }
+
+    .footer-brand p {
+      font-size: 0.82rem;
+      margin-top: 0.75rem;
+      max-width: 260px;
+      line-height: 1.7;
+    }
+
+    .footer-links h4 {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+
+    .footer-links ul {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 0.6rem;
+    }
+
+    .footer-links a {
+      font-size: 0.88rem;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--linen);
+    }
+
+    .footer-hashtags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+    }
+
+    .hashtag {
+      font-size: 0.75rem;
+      color: var(--sage);
+      background: rgba(142, 168, 112, 0.12);
+      padding: 0.2rem 0.6rem;
+      border: 1px solid rgba(142, 168, 112, 0.25);
+    }
+
+    .footer-bottom {
+      padding-top: 2rem;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.78rem;
+    }
+
+    /* ─── ANIMATIONS ──────────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    .reveal-delay-1 {
+      transition-delay: 0.1s;
+    }
+
+    .reveal-delay-2 {
+      transition-delay: 0.2s;
+    }
+
+    .reveal-delay-3 {
+      transition-delay: 0.3s;
+    }
+
+    /* ─── WOLF DECO ───────────────────────────────────────────── */
+    .wolf-paw {
+      display: inline-block;
+      font-size: 1.2em;
+    }
+
+    /* ─── RESPONSIVE ──────────────────────────────────────────── */
+    @media (max-width: 900px) {
+
+      .about-grid,
+      .kontakt-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .about-img-wrap .accent-img {
+        display: none;
+      }
+
+      .about-img-wrap .main-img {
+        height: 400px;
+      }
+
+      .stages-grid {
+        grid-template-columns: 1fr;
+        gap: 2px;
+      }
+
+      .program-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .program-days {
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+
+      .program-days::-webkit-scrollbar {
+        display: none;
+      }
+
+      .day-tab {
+        min-width: 140px;
+        padding: 1rem;
+        border-bottom: none;
+        border-right: 1px solid rgba(255, 255, 255, 0.07);
+        flex: 1;
+        text-align: center;
+      }
+
+      .day-tab::before {
+        bottom: 0;
+        top: auto;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 3px;
+        transform: scaleY(0);
+        transform-origin: bottom;
+      }
+
+      .mitmachen-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        gap: 6px;
+      }
+
+      .gallery-item:first-child {
+        grid-row: auto;
+        grid-column: 1;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(250, 248, 242, 0.98);
+        padding: 2rem;
+        gap: 1.5rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        backdrop-filter: blur(12px);
+      }
+
+      .nav-links.nav-open {
+        display: flex;
+        animation: slideDown 0.3s var(--ease-out);
+      }
+
+      @keyframes slideDown {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .nav-links a {
+        color: var(--ink) !important;
+        font-size: 1rem;
+        width: 100%;
+        text-align: center;
+        padding: 0.5rem 0;
+      }
+
+      .hamburger {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--linen);
+        transition: color 0.3s;
+      }
+
+      #navbar.scrolled .hamburger {
+        color: var(--ink);
+      }
+
+      .hero-title {
+        font-size: clamp(2.5rem, 10vw, 4rem);
+      }
+
+      .hero-form {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .hero-form input[type="email"] {
+        border-right: 1px solid rgba(255, 255, 255, 0.22);
+        border-bottom: none;
+        border-radius: 4px 4px 0 0;
+      }
+
+      .hero-form .btn-primary {
+        border-left: 1px solid rgba(255, 255, 255, 0.22);
+        border-radius: 0 0 4px 4px;
+        width: 100%;
+        justify-content: center;
+      }
+
+      .partner-grid-new {
+        gap: 2rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+
+      .hero-scroll,
+      .band-divider {
+        display: none;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .band-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
+      }
+
+      .stage {
+        padding: 1.5rem;
+      }
+
+      .stage-num {
+        font-size: 2.5rem;
+      }
+
+      .iban-box {
+        padding: 1.5rem;
+      }
+
+      .iban-value {
+        font-size: 0.95rem;
+      }
+
+      .sticky-btn {
+        width: calc(100% - 32px);
+        justify-content: center;
+        font-size: 0.85rem;
+        padding: 1rem;
+      }
+
+      .footer-top {
+        flex-direction: column;
+        gap: 2.5rem;
+      }
+    }
+
+    /* ─── TEAM ────────────────────────────────────────────────── */
+    #team {
+      background: var(--cream);
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .team-card {
+      text-align: center;
+      background: var(--linen);
+      border: 1px solid var(--parchment);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: transform 0.3s var(--ease-out), box-shadow 0.3s;
+    }
+
+    .team-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.12);
+    }
+
+    .team-card-img-wrap {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      overflow: hidden;
+    }
+
+    .team-card-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      transition: transform 0.5s var(--ease-out);
+    }
+
+    .team-card:hover .team-card-img-wrap img {
+      transform: scale(1.04);
+    }
+
+    .team-card-name {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--bark);
+      line-height: 1.3;
+      padding: 1rem 1rem 1.2rem;
+    }
+
+    /* ─── PARTNER NEW ─────────────────────────────────────────── */
+    #partner-new {
+      background: var(--linen);
+    }
+
+    .partner-grid-new {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3rem;
+      justify-content: center;
+      align-items: center;
+      margin-top: 3rem;
+    }
+
+    .partner-grid-new a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      transition: transform 0.3s var(--ease-out);
+    }
+
+    .partner-grid-new a:hover {
+      transform: translateY(-4px);
+    }
+
+    .partner-grid-new img {
+      max-height: 120px;
+      width: auto;
+      opacity: 1;
+      transition: all 0.3s var(--ease-out);
+    }
+
+    .partner-grid-new .partner-name {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--fern);
+      font-weight: 500;
+      text-align: center;
+      transition: color 0.3s;
+    }
+
+    .partner-grid-new a:hover .partner-name {
+      color: var(--moss);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Fix 6: Scroll Progress Bar -->
+  <div id="progressBar"></div>
+
+  <!-- ─── NAVBAR ────────────────────────────────────────────── -->
+  <nav id="navbar">
+    <div class="container">
+      <div class="nav-inner">
+        <a class="nav-logo" href="index.html">
+          <img src="wolf_druck.png" alt="Coexistence Walk Logo"
+            style="height:48px; width:auto; display:inline-block; object-fit:contain; vertical-align:middle;" />
+        </a>
+        <ul class="nav-links">
+          <li><a href="index.html#about">Initiative</a></li>
+          <li><a href="index.html#route">Route</a></li>
+          <li><a href="index.html#programm">Programm</a></li>
+          <li><a href="index.html#referenten">Referenten</a></li>
+          <li><a href="index.html#mitmachen">Mitmachen</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="index.html#spenden" class="nav-cta">Spenden</a></li>
+        </ul>
+        <button class="hamburger" id="hambBtn" aria-label="Menü">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <section class="section" style="padding-top: 150px; min-height: 70vh;">
+    <div class="container" style="max-width: 800px;">
+      <p class="eyebrow">Rechtliches</p>
+      <h1 class="section-title">Haftungsausschluss &<br /><em>Teilnahmebedingungen</em></h1>
+      <div class="divider"></div>
+
+      <div style="color: #3a3a30; font-size: 1rem; line-height: 1.8;">
+        <h3
+          style="font-family: var(--font-display); font-size: 1.3rem; font-weight: 600; color: var(--bark); margin-top: 2rem; margin-bottom: 0.5rem;">
+          1. Eigenverantwortung und Teilnahme</h3>
+        <p style="margin-bottom: 1.5rem;">Die Teilnahme am „COEXISTENCE WALK“ (nachfolgend „Projekt“ genannt) erfolgt
+          auf eigene Gefahr und eigenes Risiko. Das Projekt ist eine private Initiative zur Förderung des Dialogs und
+          keine kommerzielle Pauschalreise. Mit der Anmeldung erklärt der Teilnehmer, dass er physisch und psychisch in
+          der Lage ist, die gewählten Wanderetappen eigenständig zu bewältigen.</p>
+
+        <h3
+          style="font-family: var(--font-display); font-size: 1.3rem; font-weight: 600; color: var(--bark); margin-top: 2rem; margin-bottom: 0.5rem;">
+          2. Haftungsausschuss</h3>
+        <p style="margin-bottom: 0.5rem;">Die Organisatoren sowie die projektbeteiligten Partner übernehmen keine
+          Haftung für Schäden jeglicher Art (Personen-, Sach- oder Vermögensschäden), die im Rahmen des Projekts
+          entstehen, sofern diese nicht auf Vorsatz oder grober Fahrlässigkeit der Organisatoren beruhen. Dies gilt
+          insbesondere für:</p>
+        <ul style="margin-bottom: 1.5rem; padding-left: 1.5rem;">
+          <li style="margin-bottom: 0.25rem;">Verletzungen durch Stürze oder Unfälle im Gelände.</li>
+          <li style="margin-bottom: 0.25rem;">Schäden durch Witterungseinflüsse.</li>
+          <li style="margin-bottom: 0.25rem;">Verlust oder Beschädigung von mitgeführtem Gepäck oder Ausrüstung.</li>
+          <li style="margin-bottom: 0.25rem;">Interaktionen mit Wildtieren oder anderen Tieren während der Projektdauer.
+          </li>
+        </ul>
+
+        <h3
+          style="font-family: var(--font-display); font-size: 1.3rem; font-weight: 600; color: var(--bark); margin-top: 2rem; margin-bottom: 0.5rem;">
+          3. Sicherheit und Anweisungen</h3>
+        <p style="margin-bottom: 1.5rem;">Den Anweisungen der Projektleitung und der Wanderführer ist im Interesse der
+          Sicherheit aller Beteiligten Folge zu leisten. Die Einhaltung der geltenden Naturschutzbestimmungen und
+          forstwirtschaftlichen Regeln (z. B. Wegegebot, Leinenpflicht für Hunde) ist für alle Teilnehmer verpflichtend.
+        </p>
+
+        <h3
+          style="font-family: var(--font-display); font-size: 1.3rem; font-weight: 600; color: var(--bark); margin-top: 2rem; margin-bottom: 0.5rem;">
+          4. Mitgeführte Hunde</h3>
+        <p style="margin-bottom: 0.5rem;">Teilnehmer, die Hunde mitführen, sind für deren Verhalten und Sicherheit
+          vollumfänglich selbst verantwortlich. Mit der Anmeldung erklärt der Teilnehmer, dass von ihm mitgeführte Hunde
+          physisch und psychisch in der Lage sind, die mit der Projektteilnahme einhergehenden Belastungen
+          tierschutzkonform auszuhalten. Es besteht während der gesamten Veranstaltung grundsätzlich Leinenpflicht, es
+          sei denn, es finden anderslautende einvernehmliche Absprachen statt.</p>
+        <p style="margin-bottom: 1.5rem;">Eine gültige Hundehalter-Haftpflichtversicherung wird vorausgesetzt. Für
+          Schäden, die durch den Hund verursacht werden, haftet ausschließlich der Halter.</p>
+
+        <h3
+          style="font-family: var(--font-display); font-size: 1.3rem; font-weight: 600; color: var(--bark); margin-top: 2rem; margin-bottom: 0.5rem;">
+          5. Bild- und Tonrechte</h3>
+        <p style="margin-bottom: 1.5rem;">Während des Projekts werden Foto- und Video-/Audioaufnahmen zu Dokumentations-
+          und Öffentlichkeitsarbeitszwecken erstellt. Mit der Teilnahme erklärt sich der Teilnehmer bereit, dass diese
+          Aufnahmen im Rahmen der Berichterstattung (Website, Social Media, Presse, etc.) honorarfrei und zeitlich
+          unbefristet verwendet werden dürfen.</p>
+
+        <h3
+          style="font-family: var(--font-display); font-size: 1.3rem; font-weight: 600; color: var(--bark); margin-top: 2rem; margin-bottom: 0.5rem;">
+          6. Ausfall der Veranstaltung</h3>
+        <p style="margin-bottom: 1.5rem;">Die Organisatoren behalten sich vor, Etappen oder Programmelemente aufgrund
+          von extremer Witterung, Sicherheitsbedenken oder sonstigen unvorhersehbaren Ereignissen kurzfristig zu ändern
+          oder abzusagen. Ein Anspruch auf Entschädigung besteht nicht.</p>
+
+        <h3
+          style="font-family: var(--font-display); font-size: 1.3rem; font-weight: 600; color: var(--bark); margin-top: 2rem; margin-bottom: 0.5rem;">
+          7. Mitwirkungspflicht</h3>
+        <p style="margin-bottom: 1.5rem;">Projektteilnehmer verpflichten sich, durch ihr Verhalten zum Gelingen und zur
+          Vorbildfunktion der Veranstaltung aktiv beizutragen. Dies setzt ein konstruktives und - im Sinne des
+          Gesamtkonzepts - dialogförderndes Verhalten voraus. Bei erkennbaren Zuwiderhandlungen hat die Projektleitung
+          das Recht, Teilnehmer auch gegen ihren Willen von der Gesamtveranstaltung oder Teilen der Veranstaltung
+          auszuschließen. Widerspruchsrechte oder sonstige Ansprüche bestehen nicht.</p>
+      </div>
+    </div>
+  </section>
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="nav-logo">
+            <img src="wolf_druck.png" alt="Coexistence Walk Logo"
+              style="height:152px; width:auto; object-fit:contain;" />
+          </div>
+          <p>Gemeinsam Gehen für den Wolf. Eine Non-Profit-Initiative im deutsch-polnischen Grenzgebiet, 29. Mai – 04.
+            Juni 2026.</p>
+          <div class="footer-hashtags" style="margin-top:1rem;">
+            <span class="hashtag">#CoexistenceWalk</span>
+            <span class="hashtag">#Wolf</span>
+            <span class="hashtag">#Brandenburg</span>
+          </div>
+          <div style="margin-top:0.8rem;">
+            <a href="https://www.facebook.com/coexistencewalk/" target="_blank" rel="noopener noreferrer"
+              class="hashtag"
+              style="text-decoration:none; display:inline-flex; align-items:center; gap:0.4rem; transition:color 0.3s;"
+              onmouseover="this.style.color='#1877F2'" onmouseout="this.style.color=''">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+              </svg>
+              @coexistencewalk
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-links">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="index.html#about">Über die Initiative</a></li>
+            <li><a href="index.html#route">Route & Stationen</a></li>
+            <li><a href="index.html#programm">Programm</a></li>
+            <li><a href="index.html#referenten">Referent:innen</a></li>
+            <li><a href="index.html#mitmachen">Mitmachen</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links">
+          <h4>Unterstützen</h4>
+          <ul>
+            <li><a href="index.html#spenden">Spenden</a></li>
+            <li><a href="index.html#kontakt">Anmeldung</a></li>
+            <li><a href="https://www.coexistence-walk.de" target="_blank">www.coexistence-walk.de</a></li>
+          </ul>
+          <div style="margin-top:1.5rem;">
+            <h4>Spendenkonto</h4>
+            <p style="font-size:0.8rem; margin-top:0.5rem; line-height:1.8;">
+              Naturschutzinitiative e.V.<br />
+              IBAN: DE83 5739 1800 0011 5018 00<br />
+              Stichwort: <em style="color:var(--sage);">Coexistence Walk</em>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 COEXISTENCE WALK – Interessengemeinschaft &amp;</span>
+        <div style="display:flex; gap:1.5rem;">
+          <a href="impressum.html" style="text-decoration: underline; color: rgba(244, 239, 228, 0.7);">Impressum</a>
+          <a href="datenschutz.html"
+            style="text-decoration: underline; color: rgba(244, 239, 228, 0.7);">Datenschutzerklärung</a>
+          <a href="teilnahmebedingungen.html"
+            style="text-decoration: underline; color: rgba(244, 239, 228, 0.7);">Teilnahmebedingungen</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ─── Fix 3: STICKY CTA ─────────────────────────────────── -->
+  <a href="index.html#kontakt" class="sticky-btn" id="stickyBtn">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <path d="M5 12h14M12 5l7 7-7 7" />
+    </svg>
+    Platz reservieren →
+  </a>
+
+  <!-- ─── SCRIPTS ────────────────────────────────────────────── -->
+  <script>
+    // Navbar scroll effect + Sticky CTA + Progress Bar
+    const navbar = document.getElementById('navbar');
+    const stickyBtn = document.getElementById('stickyBtn');
+    const progressBar = document.getElementById('progressBar');
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      navbar.classList.toggle('scrolled', scrollY > 60);
+      stickyBtn.classList.toggle('show', scrollY > window.innerHeight * 0.6);
+      // Fix 6: progress bar
+      const height = document.body.scrollHeight - window.innerHeight;
+      progressBar.style.width = ((scrollY / height) * 100) + '%';
+    }, { passive: true });
+
+    // Program day tabs
+    document.getElementById('programDays').addEventListener('click', e => {
+      const tab = e.target.closest('.day-tab');
+      if (!tab) return;
+      document.querySelectorAll('.day-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.prog-panel').forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById(tab.dataset.panel).classList.add('active');
+    });
+
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Mobile nav
+    document.getElementById('hambBtn').addEventListener('click', () => {
+      document.querySelector('.nav-links').classList.toggle('nav-open');
+    });
+  </script>
+</body>
+
+</html>

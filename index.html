@@ -1,0 +1,3108 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>COEXISTENCE WALK 2026 – Gemeinsam Gehen für den Wolf</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap"
+    rel="stylesheet" />
+
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+  <style>
+    /* ─── TOKENS ─────────────────────────────────────────────── */
+    :root {
+      --ink: #1a1a14;
+      --bark: #2d2416;
+      --moss: #3d4c2e;
+      --fern: #546b3a;
+      --sage: #8ea870;
+      --sand: #c9b88a;
+      --linen: #f4efe4;
+      --cream: #faf8f2;
+      --parchment: #ede8dc;
+      --amber: #c08a2e;
+      --rust: #8b4a2a;
+
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'DM Sans', sans-serif;
+
+      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+      --section-pad: clamp(4rem, 8vw, 8rem);
+    }
+
+    /* ─── RESET ───────────────────────────────────────────────── */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-size: clamp(15px, 1.6vw, 17px);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ─── SCROLLBAR ───────────────────────────────────────────── */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--parchment);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--fern);
+      border-radius: 3px;
+    }
+
+    /* ─── Fix 6: PROGRESS BAR ────────────────────────────────── */
+    #progressBar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(to right, var(--sage), var(--sand));
+      width: 0%;
+      z-index: 1001;
+      transition: width 0.1s linear;
+      box-shadow: 0 0 8px rgba(142, 168, 112, 0.6);
+    }
+
+    /* ─── UTILITY ─────────────────────────────────────────────── */
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 clamp(1.25rem, 5vw, 3rem);
+    }
+
+    .section {
+      padding: var(--section-pad) 0;
+    }
+
+    .eyebrow {
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--fern);
+      margin-bottom: 1rem;
+    }
+
+    .display-title {
+      font-family: var(--font-display);
+      font-weight: 300;
+      font-size: clamp(2.6rem, 5.5vw, 5rem);
+      line-height: 1.1;
+      color: var(--bark);
+    }
+
+    .display-title em {
+      font-style: italic;
+      color: var(--fern);
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: clamp(2rem, 3.8vw, 3.4rem);
+      line-height: 1.15;
+      color: var(--bark);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title em {
+      font-style: italic;
+      color: var(--fern);
+    }
+
+    .lead {
+      font-family: var(--font-display);
+      font-size: clamp(1.1rem, 1.8vw, 1.35rem);
+      font-weight: 300;
+      line-height: 1.65;
+      color: var(--bark);
+      max-width: 680px;
+    }
+
+    .divider {
+      width: 60px;
+      height: 2px;
+      background: var(--sand);
+      margin: 1.5rem 0 2.5rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.9rem 2.2rem;
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: all 0.3s var(--ease-out);
+    }
+
+    .btn-primary {
+      background: var(--moss);
+      color: var(--linen);
+    }
+
+    .btn-primary:hover {
+      background: var(--bark);
+      transform: translateY(-2px) scale(1.02);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--moss);
+      border: 1.5px solid var(--fern);
+      border-radius: 4px;
+    }
+
+    .btn-outline:hover {
+      background: var(--fern);
+      color: var(--linen);
+      transform: translateY(-2px) scale(1.02);
+    }
+
+    /* ─── IMAGE PLACEHOLDER ───────────────────────────────────── */
+    .img-placeholder {
+      background: var(--parchment);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      color: var(--sage);
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-family: var(--font-body);
+      border: 1.5px dashed var(--sand);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .img-placeholder::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(45deg,
+          transparent,
+          transparent 20px,
+          rgba(0, 0, 0, 0.025) 20px,
+          rgba(0, 0, 0, 0.025) 21px);
+    }
+
+    .img-placeholder svg {
+      width: 36px;
+      height: 36px;
+      opacity: 0.45;
+      position: relative;
+      z-index: 1;
+    }
+
+    .img-placeholder span {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ─── NAVBAR ──────────────────────────────────────────────── */
+    #navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+      padding: 1.1rem 0;
+      transition: all 0.4s var(--ease-out);
+    }
+
+    #navbar.scrolled {
+      background: rgba(250, 248, 242, 0.95);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--linen);
+      transition: color 0.4s;
+    }
+
+    #navbar.scrolled .nav-logo {
+      color: var(--bark);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(244, 239, 228, 0.85);
+      transition: color 0.3s;
+    }
+
+    #navbar.scrolled .nav-links a {
+      color: var(--ink);
+    }
+
+    .nav-links a:hover {
+      color: var(--sage);
+    }
+
+    .nav-cta {
+      background: var(--moss);
+      color: var(--linen) !important;
+      padding: 0.5rem 1.4rem;
+      font-size: 0.75rem !important;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: background 0.3s !important;
+    }
+
+    .nav-cta:hover {
+      background: var(--bark) !important;
+      color: var(--linen) !important;
+    }
+
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    /* ─── HERO ────────────────────────────────────────────────── */
+    #hero {
+      min-height: 100svh;
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      padding-bottom: clamp(3rem, 7vw, 6rem);
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(160deg, #1c2414 0%, #2d3820 40%, #3a4a28 100%);
+    }
+
+    /* Photo placeholder for hero background */
+    .hero-bg-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.45;
+      mix-blend-mode: multiply;
+    }
+
+    .hero-bg-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255, 255, 255, 0.12);
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-family: var(--font-body);
+      gap: 0.5rem;
+    }
+
+    .hero-bg-placeholder svg {
+      width: 48px;
+      opacity: 0.3;
+    }
+
+    .hero-grain {
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+      background-size: 200px;
+      pointer-events: none;
+      opacity: 0.6;
+    }
+
+    .hero-vignette {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, 0.5) 100%);
+    }
+
+    .hero-bottom {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 220px;
+      background: linear-gradient(to top, var(--cream) 0%, transparent 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 820px;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(4px);
+      padding: 0.45rem 1.1rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(244, 239, 228, 0.9);
+      margin-bottom: 2rem;
+      font-family: var(--font-body);
+    }
+
+    .hero-tag .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--sage);
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 7vw, 7rem);
+      font-weight: 300;
+      line-height: 1.0;
+      color: var(--linen);
+      margin-bottom: 0.4rem;
+    }
+
+    .hero-title strong {
+      display: block;
+      font-weight: 700;
+      font-size: 0.42em;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 0.2em;
+    }
+
+    .hero-subtitle {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: clamp(1.1rem, 2vw, 1.6rem);
+      color: rgba(244, 239, 228, 0.7);
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .hero-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .hero-meta-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--sage);
+      font-weight: 500;
+    }
+
+    .hero-meta-value {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      color: rgba(244, 239, 228, 0.9);
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    /* ─── HERO INLINE FORM ────────────────────────────────────── */
+    .hero-form {
+      display: flex;
+      gap: 0;
+      margin-top: 1.6rem;
+      flex-wrap: wrap;
+      max-width: 500px;
+    }
+
+    .hero-form input[type="email"] {
+      flex: 1 1 220px;
+      padding: 0.85rem 1.2rem;
+      border: none;
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(8px);
+      color: var(--linen);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      outline: none;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-right: none;
+      transition: background 0.3s;
+    }
+
+    .hero-form input[type="email"]::placeholder {
+      color: rgba(244, 239, 228, 0.5);
+    }
+
+    .hero-form input[type="email"]:focus {
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    .hero-form .btn-primary {
+      flex-shrink: 0;
+      border-left: none;
+      padding: 0.85rem 1.6rem;
+      font-size: 0.78rem;
+      background: var(--sage);
+      color: var(--bark);
+      font-weight: 700;
+    }
+
+    .hero-form .btn-primary:hover {
+      background: var(--sand);
+      transform: none;
+    }
+
+    .hero-scarcity {
+      margin-top: 0.9rem;
+      font-size: 0.82rem;
+      color: rgba(255, 255, 255, 0.65);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .hero-scarcity::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #e8a838;
+      flex-shrink: 0;
+      box-shadow: 0 0 0 3px rgba(232, 168, 56, 0.25);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        box-shadow: 0 0 0 3px rgba(232, 168, 56, 0.25);
+      }
+
+      50% {
+        box-shadow: 0 0 0 6px rgba(232, 168, 56, 0.1);
+      }
+    }
+
+    /* ─── STICKY CTA ──────────────────────────────────────────── */
+    .sticky-btn {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--moss);
+      color: var(--linen);
+      padding: 0.95rem 1.6rem;
+      border-radius: 50px;
+      z-index: 998;
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+      transition: all 0.3s var(--ease-out);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      opacity: 0;
+      transform: translateY(12px);
+      pointer-events: none;
+    }
+
+    .sticky-btn.show {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: all;
+    }
+
+    .sticky-btn:hover {
+      background: var(--bark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    @media (max-width: 600px) {
+      .sticky-btn {
+        bottom: 16px;
+        right: 16px;
+        padding: 0.8rem 1.3rem;
+        font-size: 0.72rem;
+      }
+    }
+
+    .hero-scroll {
+      position: absolute;
+      right: 3rem;
+      bottom: 3rem;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(244, 239, 228, 0.4);
+    }
+
+    .hero-scroll .scroll-line {
+      width: 1px;
+      height: 60px;
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), transparent);
+      animation: scrollPulse 2.5s ease-in-out infinite;
+    }
+
+    @keyframes scrollPulse {
+
+      0%,
+      100% {
+        opacity: 0.3;
+        transform: scaleY(1);
+      }
+
+      50% {
+        opacity: 0.8;
+        transform: scaleY(1.15);
+      }
+    }
+
+    /* ─── INTRO BAND ──────────────────────────────────────────── */
+    #intro-band {
+      background: var(--moss);
+      color: var(--linen);
+      padding: 2.5rem 0;
+    }
+
+    .band-inner {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.5rem;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .band-fact {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .band-fact-num {
+      font-family: var(--font-display);
+      font-size: 2.8rem;
+      font-weight: 300;
+      color: var(--sand);
+      line-height: 1;
+    }
+
+    .band-fact-label {
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(244, 239, 228, 0.65);
+      margin-top: 0.3rem;
+    }
+
+    .band-divider {
+      width: 1px;
+      height: 60px;
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    /* ─── ABOUT ───────────────────────────────────────────────── */
+    #about {
+      background: var(--cream);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .about-img-wrap {
+      position: relative;
+    }
+
+    .about-img-wrap .main-img {
+      height: 540px;
+    }
+
+    .about-img-wrap .accent-img {
+      position: absolute;
+      right: -2.5rem;
+      bottom: -2.5rem;
+      width: 220px;
+      height: 180px;
+      border: 6px solid var(--cream);
+      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12);
+    }
+
+    .about-text p {
+      margin-bottom: 1.25rem;
+      color: #3a3a30;
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+
+    .about-highlight {
+      background: var(--parchment);
+      border-left: 3px solid var(--sage);
+      padding: 1.25rem 1.5rem;
+      margin: 2rem 0;
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 1.2rem;
+      color: var(--bark);
+      line-height: 1.55;
+    }
+
+    /* ─── ROUTE ───────────────────────────────────────────────── */
+    #route {
+      background: var(--parchment);
+    }
+
+    .route-header {
+      margin-bottom: 4rem;
+    }
+
+    .route-map {
+      height: 380px;
+      margin-bottom: 4rem;
+    }
+
+    .stages-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5px;
+      background: var(--sand);
+    }
+
+    .stage {
+      background: var(--cream);
+      padding: 2rem;
+      position: relative;
+    }
+
+    .stage-num {
+      font-family: var(--font-display);
+      font-size: 3.5rem;
+      font-weight: 300;
+      color: var(--parchment);
+      position: absolute;
+      top: 1rem;
+      right: 1.5rem;
+      line-height: 1;
+    }
+
+    .stage-date {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--fern);
+      margin-bottom: 0.5rem;
+    }
+
+    .stage-title {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--bark);
+      margin-bottom: 0.5rem;
+    }
+
+    .stage-detail {
+      font-size: 0.88rem;
+      color: #555548;
+      line-height: 1.6;
+    }
+
+    .stage-icon {
+      width: 28px;
+      height: 28px;
+      background: var(--fern);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+
+    .stage-icon svg {
+      width: 14px;
+      fill: var(--linen);
+    }
+
+    /* ─── PROGRAM ─────────────────────────────────────────────── */
+    #programm {
+      background: var(--bark);
+      color: var(--linen);
+    }
+
+    #programm .eyebrow {
+      color: var(--sage);
+    }
+
+    #programm .section-title {
+      color: var(--linen);
+    }
+
+    #programm .section-title em {
+      color: var(--sage);
+    }
+
+    #programm .divider {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .program-grid {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 0;
+    }
+
+    .program-days {
+      border-right: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .day-tab {
+      padding: 1.2rem 2rem;
+      cursor: pointer;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+      transition: all 0.3s;
+      position: relative;
+    }
+
+    .day-tab::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: var(--sage);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s var(--ease-out);
+    }
+
+    .day-tab.active::before {
+      transform: scaleX(1);
+    }
+
+    .day-tab.active {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .day-tab-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 0.3rem;
+      font-weight: 500;
+    }
+
+    .day-tab-title {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      color: var(--linen);
+      line-height: 1.3;
+    }
+
+    .day-tab-sub {
+      font-size: 0.78rem;
+      color: rgba(244, 239, 228, 0.45);
+      margin-top: 0.25rem;
+    }
+
+    .program-content {
+      padding: 2.5rem 3rem;
+    }
+
+    .prog-panel {
+      display: none;
+      animation: fadeIn 0.4s var(--ease-out);
+    }
+
+    .prog-panel.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateX(16px);
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    .prog-location {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      background: rgba(255, 255, 255, 0.04);
+      padding: 1.25rem 1.5rem;
+      border-left: 2px solid var(--sage);
+      margin-bottom: 2rem;
+    }
+
+    .prog-location-icon {
+      color: var(--sage);
+      margin-top: 0.1rem;
+      flex-shrink: 0;
+    }
+
+    .prog-location-name {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      color: var(--linen);
+      margin-bottom: 0.2rem;
+    }
+
+    .prog-location-addr {
+      font-size: 0.82rem;
+      color: rgba(244, 239, 228, 0.5);
+    }
+
+    .prog-section-title {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+
+    .prog-item {
+      display: flex;
+      gap: 1.5rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .prog-item:last-child {
+      border-bottom: none;
+    }
+
+    .prog-item-type {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--sand);
+      background: rgba(201, 184, 138, 0.12);
+      padding: 0.2rem 0.6rem;
+      height: fit-content;
+      flex-shrink: 0;
+      margin-top: 0.15rem;
+    }
+
+    .prog-item-name {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      color: var(--linen);
+      margin-bottom: 0.2rem;
+    }
+
+    .prog-item-detail {
+      font-size: 0.85rem;
+      color: rgba(244, 239, 228, 0.5);
+    }
+
+    /* ─── SPEAKERS ────────────────────────────────────────────── */
+    #referenten {
+      background: var(--linen);
+    }
+
+    .speakers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .speaker-card {
+      background: var(--cream);
+      border: 1px solid var(--parchment);
+      overflow: hidden;
+      transition: transform 0.3s var(--ease-out), box-shadow 0.3s;
+    }
+
+    .speaker-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.1);
+    }
+
+    .speaker-img {
+      height: 220px;
+    }
+
+    .speaker-info {
+      padding: 1.5rem;
+    }
+
+    .speaker-name {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--bark);
+      margin-bottom: 0.2rem;
+    }
+
+    .speaker-role {
+      font-size: 0.78rem;
+      color: var(--fern);
+      letter-spacing: 0.06em;
+      margin-bottom: 0.8rem;
+    }
+
+    .speaker-bio {
+      font-size: 0.88rem;
+      color: #555548;
+      line-height: 1.65;
+    }
+
+    /* ─── MITMACHEN ───────────────────────────────────────────── */
+    #mitmachen {
+      background: var(--cream);
+    }
+
+    .mitmachen-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 2px;
+      background: var(--parchment);
+      margin-top: 3.5rem;
+    }
+
+    .mitmachen-card {
+      background: var(--cream);
+      padding: 3rem 2.5rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .mitmachen-icon {
+      width: 64px;
+      height: 64px;
+      background: var(--moss);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .mitmachen-icon svg {
+      width: 28px;
+      fill: var(--linen);
+    }
+
+    .mitmachen-title {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--bark);
+    }
+
+    .mitmachen-text {
+      font-size: 0.9rem;
+      color: #555548;
+      line-height: 1.7;
+    }
+
+    /* ─── SPENDEN ─────────────────────────────────────────────── */
+    #spenden {
+      background: var(--moss);
+      color: var(--linen);
+      padding: var(--section-pad) 0;
+      text-align: center;
+    }
+
+    .spenden-inner {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    #spenden .section-title {
+      color: var(--linen);
+      margin-bottom: 1rem;
+    }
+
+    #spenden .section-title em {
+      color: var(--sand);
+    }
+
+    #spenden .lead {
+      color: rgba(244, 239, 228, 0.8);
+      margin: 0 auto 3rem;
+    }
+
+    .iban-box {
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 2rem 2.5rem;
+      margin: 0 auto 2.5rem;
+      text-align: left;
+    }
+
+    .iban-row {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .iban-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .iban-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--sage);
+      font-weight: 500;
+    }
+
+    .iban-value {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      color: var(--linen);
+      word-break: break-all;
+    }
+
+    .iban-notice {
+      font-size: 0.82rem;
+      color: rgba(244, 239, 228, 0.5);
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    /* ─── GALERIE ─────────────────────────────────────────────── */
+    #galerie {
+      background: var(--parchment);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-rows: 260px 260px;
+      gap: 6px;
+      margin-top: 3rem;
+    }
+
+    .gallery-item:first-child {
+      grid-row: 1 / 3;
+    }
+
+    .gallery-item {
+      overflow: hidden;
+    }
+
+    .gallery-item .img-placeholder {
+      height: 100%;
+    }
+
+    /* ─── KONTAKT ─────────────────────────────────────────────── */
+    #kontakt {
+      background: var(--cream);
+    }
+
+    .kontakt-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      margin-top: 3rem;
+    }
+
+    .kontakt-info h3 {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--bark);
+      margin-bottom: 1.2rem;
+    }
+
+    .kontakt-info p {
+      font-size: 0.9rem;
+      color: #555548;
+      line-height: 1.8;
+    }
+
+    .kontakt-detail {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .kontakt-detail-icon {
+      width: 38px;
+      height: 38px;
+      background: var(--parchment);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .kontakt-detail-icon svg {
+      width: 16px;
+      fill: var(--fern);
+    }
+
+    .kontakt-detail-text {
+      font-size: 0.9rem;
+      color: #555548;
+      line-height: 1.6;
+    }
+
+    .kontakt-detail-text strong {
+      color: var(--bark);
+      display: block;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.2rem;
+    }
+
+    .anmeldung-box {
+      background: var(--parchment);
+      padding: 3rem;
+    }
+
+    .anmeldung-box h3 {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--bark);
+      margin-bottom: 0.5rem;
+    }
+
+    .anmeldung-box p {
+      font-size: 0.9rem;
+      color: #555548;
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    /* Only top-level direct label gets the uppercase style */
+    .form-group>label:first-child {
+      display: block;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--fern);
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="email"],
+    .form-group input[type="tel"],
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      box-sizing: border-box;
+      background: var(--cream);
+      border: 1.5px solid var(--sand);
+      border-radius: 4px;
+      padding: 0.75rem 1rem;
+      font-family: var(--font-body);
+      font-size: 0.92rem;
+      color: var(--ink);
+      outline: none;
+      transition: border-color 0.3s;
+      resize: vertical;
+    }
+
+    .form-group input[type="text"]:focus,
+    .form-group input[type="email"]:focus,
+    .form-group input[type="tel"]:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--fern);
+    }
+
+    .form-group input[type="radio"],
+    .form-group input[type="checkbox"] {
+      width: auto;
+      flex-shrink: 0;
+      margin: 0;
+      accent-color: var(--fern);
+      cursor: pointer;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    @media (max-width: 500px) {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ─── PARTNER ─────────────────────────────────────────────── */
+    #partner {
+      background: var(--bark);
+      padding: 3.5rem 0;
+    }
+
+    .partner-inner {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 3rem;
+    }
+
+    .partner-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(244, 239, 228, 0.4);
+      white-space: nowrap;
+    }
+
+    .partner-logos {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .partner-logo-placeholder {
+      height: 40px;
+      width: 120px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px dashed rgba(255, 255, 255, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(244, 239, 228, 0.25);
+    }
+
+    /* ─── FOOTER ──────────────────────────────────────────────── */
+    footer {
+      background: var(--ink);
+      color: rgba(244, 239, 228, 0.5);
+      padding: 3rem 0 2rem;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 2rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .footer-brand .nav-logo {
+      color: var(--linen);
+      font-size: 1.1rem;
+    }
+
+    .footer-brand p {
+      font-size: 0.82rem;
+      margin-top: 0.75rem;
+      max-width: 260px;
+      line-height: 1.7;
+    }
+
+    .footer-links h4 {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+
+    .footer-links ul {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 0.6rem;
+    }
+
+    .footer-links a {
+      font-size: 0.88rem;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--linen);
+    }
+
+    .footer-hashtags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+    }
+
+    .hashtag {
+      font-size: 0.75rem;
+      color: var(--sage);
+      background: rgba(142, 168, 112, 0.12);
+      padding: 0.2rem 0.6rem;
+      border: 1px solid rgba(142, 168, 112, 0.25);
+    }
+
+    .footer-bottom {
+      padding-top: 2rem;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.78rem;
+    }
+
+    /* ─── ANIMATIONS ──────────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    .reveal-delay-1 {
+      transition-delay: 0.1s;
+    }
+
+    .reveal-delay-2 {
+      transition-delay: 0.2s;
+    }
+
+    .reveal-delay-3 {
+      transition-delay: 0.3s;
+    }
+
+    /* ─── WOLF DECO ───────────────────────────────────────────── */
+    .wolf-paw {
+      display: inline-block;
+      font-size: 1.2em;
+    }
+
+    /* ─── RESPONSIVE ──────────────────────────────────────────── */
+    @media (max-width: 900px) {
+
+      .about-grid,
+      .kontakt-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .about-img-wrap .accent-img {
+        display: none;
+      }
+
+      .about-img-wrap .main-img {
+        height: 400px;
+      }
+
+      .stages-grid {
+        grid-template-columns: 1fr;
+        gap: 2px;
+      }
+
+      .program-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .program-days {
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+
+      .program-days::-webkit-scrollbar {
+        display: none;
+      }
+
+      .day-tab {
+        min-width: 140px;
+        padding: 1rem;
+        border-bottom: none;
+        border-right: 1px solid rgba(255, 255, 255, 0.07);
+        flex: 1;
+        text-align: center;
+      }
+
+      .day-tab::before {
+        bottom: 0;
+        top: auto;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 3px;
+        transform: scaleY(0);
+        transform-origin: bottom;
+      }
+
+      .mitmachen-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        gap: 6px;
+      }
+
+      .gallery-item:first-child {
+        grid-row: auto;
+        grid-column: 1;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(250, 248, 242, 0.98);
+        padding: 2rem;
+        gap: 1.5rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        backdrop-filter: blur(12px);
+      }
+
+      .nav-links.nav-open {
+        display: flex;
+        animation: slideDown 0.3s var(--ease-out);
+      }
+
+      @keyframes slideDown {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .nav-links a {
+        color: var(--ink) !important;
+        font-size: 1rem;
+        width: 100%;
+        text-align: center;
+        padding: 0.5rem 0;
+      }
+
+      .hamburger {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--linen);
+        transition: color 0.3s;
+      }
+
+      #navbar.scrolled .hamburger {
+        color: var(--ink);
+      }
+
+      .hero-title {
+        font-size: clamp(2.5rem, 10vw, 4rem);
+      }
+
+      .hero-form {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .hero-form input[type="email"] {
+        border-right: 1px solid rgba(255, 255, 255, 0.22);
+        border-bottom: none;
+        border-radius: 4px 4px 0 0;
+      }
+
+      .hero-form .btn-primary {
+        border-left: 1px solid rgba(255, 255, 255, 0.22);
+        border-radius: 0 0 4px 4px;
+        width: 100%;
+        justify-content: center;
+      }
+
+      .partner-grid-new {
+        gap: 2rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+
+      .hero-scroll,
+      .band-divider {
+        display: none;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .band-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
+      }
+
+      .stage {
+        padding: 1.5rem;
+      }
+
+      .stage-num {
+        font-size: 2.5rem;
+      }
+
+      .iban-box {
+        padding: 1.5rem;
+      }
+
+      .iban-value {
+        font-size: 0.95rem;
+      }
+
+      .sticky-btn {
+        width: calc(100% - 32px);
+        justify-content: center;
+        font-size: 0.85rem;
+        padding: 1rem;
+      }
+
+      .footer-top {
+        flex-direction: column;
+        gap: 2.5rem;
+      }
+    }
+
+    /* ─── TEAM ────────────────────────────────────────────────── */
+    #team {
+      background: var(--cream);
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .team-card {
+      text-align: center;
+      background: var(--linen);
+      border: 1px solid var(--parchment);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: transform 0.3s var(--ease-out), box-shadow 0.3s;
+    }
+
+    .team-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.12);
+    }
+
+    .team-card-img-wrap {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      overflow: hidden;
+    }
+
+    .team-card-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      transition: transform 0.5s var(--ease-out);
+    }
+
+    .team-card:hover .team-card-img-wrap img {
+      transform: scale(1.04);
+    }
+
+    .team-card-name {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--bark);
+      line-height: 1.3;
+      padding: 1rem 1rem 1.2rem;
+    }
+
+    /* ─── PARTNER NEW ─────────────────────────────────────────── */
+    #partner-new {
+      background: var(--linen);
+    }
+
+    .partner-grid-new {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3rem;
+      justify-content: center;
+      align-items: center;
+      margin-top: 3rem;
+    }
+
+    .partner-grid-new a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      transition: transform 0.3s var(--ease-out);
+    }
+
+    .partner-grid-new a:hover {
+      transform: translateY(-4px);
+    }
+
+    .partner-grid-new img {
+      max-height: 120px;
+      width: auto;
+      opacity: 1;
+      transition: all 0.3s var(--ease-out);
+    }
+
+    .partner-grid-new .partner-name {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--fern);
+      font-weight: 500;
+      text-align: center;
+      transition: color 0.3s;
+    }
+
+    .partner-grid-new a:hover .partner-name {
+      color: var(--moss);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Fix 6: Scroll Progress Bar -->
+  <div id="progressBar"></div>
+
+  <!-- ─── NAVBAR ────────────────────────────────────────────── -->
+  <nav id="navbar">
+    <div class="container">
+      <div class="nav-inner">
+        <a class="nav-logo" href="#">
+          <img src="wolf_druck.png" alt="Coexistence Walk Logo"
+            style="height:48px; width:auto; display:inline-block; object-fit:contain; vertical-align:middle;" />
+        </a>
+        <ul class="nav-links">
+          <li><a href="#about">Initiative</a></li>
+          <li><a href="#route">Route</a></li>
+          <li><a href="#programm">Programm</a></li>
+          <li><a href="#referenten">Referenten</a></li>
+          <li><a href="#mitmachen">Mitmachen</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="#spenden" class="nav-cta">Spenden</a></li>
+        </ul>
+        <button class="hamburger" id="hambBtn" aria-label="Menü">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ─── HERO ──────────────────────────────────────────────── -->
+  <section id="hero">
+    <div class="hero-bg">
+      <img class="hero-bg-img" src="https://i.imgur.com/p0XRn1t.jpg" loading="eager" fetchpriority="high"
+        alt="Coexistence Walk – Natur Hintergrundbild" />
+    </div>
+    <div class="hero-grain"></div>
+    <div class="hero-vignette"></div>
+    <div class="hero-bottom"></div>
+
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-tag">
+          <span class="dot"></span>
+          29. Mai – 04. Juni 2026 &nbsp;·&nbsp; Brandenburg / Polen
+        </div>
+        <div style="margin-bottom:1.5rem;">
+          <img src="wolf_druck.png" alt="Coexistence Walk Logo" loading="eager"
+            style="height:160px; width:auto; object-fit:contain; filter:drop-shadow(0 4px 20px rgba(0,0,0,0.6));" />
+        </div>
+        <h1 class="hero-title">
+          <strong>Gemeinsam Gehen <br>für den Wolf</strong>
+          Coexistence<br />Walk
+        </h1>
+        <p class="hero-subtitle">„Neue Wege auf alten Pfaden"</p>
+        <div class="hero-meta">
+          <div class="hero-meta-item">
+            <span class="hero-meta-label">Region</span>
+            <span class="hero-meta-value">Schwedt/Oder → Liepe</span>
+          </div>
+          <div class="hero-meta-item">
+            <span class="hero-meta-label">Format</span>
+            <span class="hero-meta-value">Wandern + Fachevents</span>
+          </div>
+          <div class="hero-meta-item">
+            <span class="hero-meta-label">Träger</span>
+            <span class="hero-meta-value">Non-Profit Initiative</span>
+          </div>
+        </div>
+        <div class="hero-actions">
+          <a href="#kontakt" class="btn btn-primary">Jetzt anmelden</a>
+          <a href="#about" class="btn btn-outline" style="color:var(--linen);border-color:rgba(244,239,228,0.4)">Mehr
+            erfahren</a>
+        </div>
+
+        <!-- Fix 1A+B: Hero Form mit Formspree hidden fields -->
+        <form class="hero-form" action="https://formspree.io/f/mlgakpzb" method="POST">
+          <input type="hidden" name="_subject" value="Neue Anmeldung – Coexistence Walk" />
+          <input type="hidden" name="_redirect" value="https://www.coexistence-walk.de/danke.html" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="email" name="email" placeholder="E-Mail für Updates &amp; Anmeldung" required />
+          <button type="submit" class="btn btn-primary">Platz reservieren →</button>
+        </form>
+
+        <!-- Fix 4B: konkrete Knappheit -->
+
+        <!-- Fix 1C: Vertrauenssignale -->
+        <div
+          style="margin-top:0.6rem; font-size:0.75rem; color:rgba(244,239,228,0.45); display:flex; gap:1rem; flex-wrap:wrap;">
+          <span>✔ Keine Werbung</span>
+          <span>✔ Nur Event-Infos</span>
+          <span>✔ Jederzeit abmeldbar</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- ─── INTRO BAND ─────────────────────────────────────────── -->
+  <div id="intro-band">
+    <div class="container">
+      <div class="band-inner">
+        <div class="band-fact">
+          <div class="band-fact-num">7</div>
+          <div class="band-fact-label">Tage gemeinsam wandern</div>
+        </div>
+        <div class="band-divider"></div>
+        <div class="band-fact">
+          <div class="band-fact-num">~3</div>
+          <div class="band-fact-label">Etappen entlang dem Grünen Band</div>
+        </div>
+        <div class="band-divider"></div>
+        <div class="band-fact">
+          <div class="band-fact-num">100+</div>
+          <div class="band-fact-label">Wolfsrudel in Deutschland</div>
+        </div>
+        <div class="band-divider"></div>
+        <div class="band-fact">
+          <div class="band-fact-num">2026</div>
+          <div class="band-fact-label">1. COEXISTENCE WALK</div>
+        </div>
+        <a href="#kontakt" class="btn btn-outline"
+          style="color:var(--linen);border-color:rgba(244,239,228,0.35);white-space:nowrap;flex-shrink:0">
+          Dabei sein →
+        </a>
+      </div>
+      <!-- Fix 4A: Social Proof -->
+      <div
+        style="margin-top:1.5rem; padding-top:1.5rem; border-top:1px solid rgba(255,255,255,0.1); font-size:0.85rem; color:rgba(244,239,228,0.55); display:flex; align-items:center; gap:0.75rem; flex-wrap:wrap;">
+        <span style="display:inline-flex;">
+          <span
+            style="width:28px;height:28px;border-radius:50%;background:var(--fern);border:2px solid var(--moss);display:inline-flex;align-items:center;justify-content:center;font-size:0.65rem;color:var(--linen);">DE</span>
+          <span
+            style="width:28px;height:28px;border-radius:50%;background:var(--sage);border:2px solid var(--moss);display:inline-flex;align-items:center;justify-content:center;font-size:0.65rem;color:var(--bark);margin-left:-8px;">PL</span>
+          <span
+            style="width:28px;height:28px;border-radius:50%;background:var(--sand);border:2px solid var(--moss);display:inline-flex;align-items:center;justify-content:center;font-size:0.65rem;color:var(--bark);margin-left:-8px;">AT</span>
+        </span>
+        Bereits Interesse von Teilnehmenden aus Deutschland, Polen &amp; Österreich
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── ABOUT ──────────────────────────────────────────────── -->
+  <section id="about" class="section">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-img-wrap reveal">
+          <!-- Wanderer / Natur Foto -->
+          <img class="main-img"
+            src="https://69ef43b5abe5326bdb42135d.imgix.net/ChatGPT%20Image%2027.%20Apr.%202026,%2013_17_59.png?w=900&auto=format&fit=crop&q=80"
+            loading="lazy" alt="Wandergruppe in der Natur" style="height:520px;" />
+        </div>
+        <div class="about-text reveal reveal-delay-1">
+          <p class="eyebrow">Über die Initiative</p>
+          <h2 class="section-title">Herzlich Willkommen<br /><em>beim Projekt</em></h2>
+          <div class="divider"></div>
+          <div class="about-highlight">
+            COEXISTENCE WALK – Gemeinsam Gehen für den Wolf! Neue Wege beginnen mit einem Gespräch.
+          </div>
+          <p>Der Umgang mit dem Wolf wirft Fragen auf, die viele Menschen bewegen. Unser Anliegen ist es,
+            unterschiedliche Sichtweisen zusammenzuführen und über Ansätze für ein langfristiges, naturnahes Miteinander
+            zu sprechen. Bei unserer Veranstaltung stehen die aktuellen Entwicklungen im „Wolfsmanagement“ im
+            Mittelpunkt. Ziel dieses Fachaustauschs ist es, verschiedene Ansätze für ein Nebeneinander von Mensch und
+            Wolf sachlich zu erörtern. Der gemeinsame Austausch dient dazu, bestehende Konzepte zu reflektieren und
+            zukunftsfähige Strategien für den Umgang mit Wildtieren in unserer Kulturlandschaft zu besprechen.</p>
+          <p>Dieses Projekt eröffnet bewusst einen anderen Raum: einen Raum für Dialog statt Konfrontation, für
+            Verständnis statt Polarisierung und für gemeinsame Lösungen, statt vorschneller Entscheidungen.</p>
+          <p>Der „COEXISTENCE WALK – Gemeinsam Gehen für den Wolf“ lädt dazu ein, neue Wege auf alten Pfaden zu gehen.
+            Über mehrere Tage verbinden wir Unterwegssein in der Natur mit Austausch, Wissen und Begegnung.
+            Wissenschaftliche Erkenntnisse, praktische Erfahrungen und unterschiedliche Sichtweisen kommen zusammen –
+            nicht, um Gegensätze zu verhärten, sondern um Brücken zu bauen.</p>
+          <p>Im Mittelpunkt steht eine einfache, aber entscheidende Frage:<br /><strong>Wie kann ein tragfähiges
+              Zusammenleben von Mensch und Wolf gelingen?</strong><br />Wir suchen erweiterte Möglichkeiten zur
+            gesicherten Koexistenz. Darum lebt dieser Weg von den Menschen, die ihn mitgehen. Von Neugierigen,
+            Fachleuten, Interessierten – und auch von kritischen Stimmen, die bereit sind, sich auf einen offenen Dialog
+            einzulassen.</p>
+          <p>Schauen Sie genauer hin. Gehen Sie ein Stück mit uns. Und werden Sie Teil eines Dialogs, der etwas
+            verändern kann.</p>
+          <div style="margin-top:2.5rem; display:flex; gap:1rem; flex-wrap:wrap;">
+            <a href="#programm" class="btn btn-primary">Programm ansehen</a>
+            <a href="#mitmachen" class="btn btn-outline">Mitmachen</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── ROUTE ──────────────────────────────────────────────── -->
+  <section id="route" class="section">
+    <div class="container">
+      <div class="route-header reveal">
+        <p class="eyebrow">Die Route</p>
+        <h2 class="section-title">Entlang dem<br /><em>Grünen Band</em></h2>
+        <div class="divider"></div>
+        <p class="lead">Von Schwedt/Oder nach Liepe – wir folgen den historischen Rückkehrrouten der Wölfe durch die
+          Brandenburg-polnische Grenzregion.</p>
+      </div>
+
+      <!-- Fix 7: Google Maps iframe -->
+      <div style="position:relative; margin-bottom:4rem;" class="reveal reveal-delay-1">
+        <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1cdY2sush3cqZQHjYv3aYtqN90N5G7vY&ehbc=2E312F&noprof=1"
+          style="width:100%;height:380px;border:0;display:block;" loading="lazy" allowfullscreen
+          referrerpolicy="no-referrer-when-downgrade" title="Route Coexistence Walk 2026"></iframe>
+        <div
+          style="position:absolute;inset:0;background:linear-gradient(to right,rgba(45,36,22,0.55) 0%,transparent 50%);display:flex;align-items:flex-end;padding:2rem;pointer-events:none;">
+          <div>
+            <div
+              style="font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--sage);margin-bottom:0.4rem;">
+              Route</div>
+            <div style="font-family:var(--font-display);font-size:1.4rem;color:var(--linen);">Schwedt/Oder →
+              Lunow-Stolzenhagen → Liepe</div>
+            <div style="font-size:0.82rem;color:rgba(244,239,228,0.6);margin-top:0.3rem;">Entlang dem Grünen Band</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stages-grid">
+        <div class="stage reveal">
+          <div class="stage-num">01</div>
+          <div class="stage-icon"><svg viewBox="0 0 24 24">
+              <path d="M12 22s-8-5.5-8-11a8 8 0 0116 0c0 5.5-8 11-8 11z" />
+              <circle cx="12" cy="11" r="3" fill="var(--linen)" />
+            </svg></div>
+          <div class="stage-date">Fr. 29. – Sa. 30. Mai</div>
+          <div class="stage-title">Schwedt/Oder</div>
+          <div class="stage-detail">Startpunkt. Ankunft, Vorstellungsrunde und erste moderierte Fachdiskussion im
+            Turmhotel. Samstag: Tagesprogramm vor Ort mit grenzübergreifenden Perspektiven.</div>
+        </div>
+        <div class="stage reveal reveal-delay-1">
+          <div class="stage-num">02</div>
+          <div class="stage-icon"><svg viewBox="0 0 24 24">
+              <path d="M3 18l9-14 9 14H3z" fill="var(--linen)" />
+            </svg></div>
+          <div class="stage-date">So. 31. Mai – Mo. 01. Jun</div>
+          <div class="stage-title">Lunow-Stolzenhagen</div>
+          <div class="stage-detail">Wanderung ab Schwedt mit Unterkunft im Speicher-Gästehaus auf dem Gut Stolzenhagen. Thema: Wolf-Allianz
+            Brandenburg, KI-gestützter Herdenschutz (Pax Lupus), LUPUS Institut.</div>
+        </div>
+        <div class="stage reveal reveal-delay-2">
+          <div class="stage-num">03</div>
+          <div class="stage-icon"><svg viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="8" fill="none" stroke="var(--linen)" stroke-width="2.5" />
+              <path d="M12 8v4l3 3" stroke="var(--linen)" stroke-width="2.5" />
+            </svg></div>
+          <div class="stage-date">Di. 02. – Do. 04. Jun</div>
+          <div class="stage-title">Liepe</div>
+          <div class="stage-detail">Wanderung nach Liepe. Landhof Liepe als Abschlussquartier. Themen: Tierschutzrecht,
+            Herdenschutz, gemeinsames Fazit. Abreisetag 04. Juni (Fronleichnam).</div>
+        </div>
+      </div>
+
+      <div
+        style="margin-top:2rem; background:var(--cream); padding:1.25rem 2rem; border-left:3px solid var(--sand); font-size:0.88rem; color:#555548;">
+        <strong style="color:var(--bark);">ℹ️ Praktisches:</strong> Shuttle-Service für
+        Gepäck und Zwischentransporte · Unterkunftskosten werden selbst getragen · Alternative Hotels im Umfeld möglich.
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── PROGRAMM ───────────────────────────────────────────── -->
+  <section id="programm" class="section">
+    <div class="container">
+      <p class="eyebrow reveal">Das Programm</p>
+      <h2 class="section-title reveal">Sieben Tage –<br /><em>Ein Ziel</em></h2>
+      <div class="divider reveal"></div>
+      <p class="lead reveal" style="color:rgba(244,239,228,0.7); margin-bottom:3rem;">Moderierte Fachdiskussionen,
+        Feldexkursionen und inspirierende Begegnungen mit Expertinnen und Experten aus Deutschland, Polen, Österreich
+        und der Slowakei. (Programm aktuell in Abstimmung)</p>
+
+      <div class="program-grid reveal">
+        <div class="program-days" id="programDays">
+
+          <div class="day-tab active" data-panel="day1">
+            <div class="day-tab-label">Tag 1 · Fr. 29.05.</div>
+            <div class="day-tab-title">Ankunft & Auftakt</div>
+            <div class="day-tab-sub">Schwedt/Oder</div>
+          </div>
+
+          <div class="day-tab" data-panel="day2">
+            <div class="day-tab-label">Tag 2 · Sa. 30.05.</div>
+            <div class="day-tab-title">Grenzübergreifend</div>
+            <div class="day-tab-sub">Schwedt/Oder</div>
+          </div>
+
+          <div class="day-tab" data-panel="day3">
+            <div class="day-tab-label">Tag 3 · So. 31.05.</div>
+            <div class="day-tab-title">Wanderung + Dialog</div>
+            <div class="day-tab-sub">→ Lunow-Stolzenhagen</div>
+          </div>
+
+          <div class="day-tab" data-panel="day4">
+            <div class="day-tab-label">Tag 4 · Mo. 01.06.</div>
+            <div class="day-tab-title">Herdenschutz & Politik</div>
+            <div class="day-tab-sub">Lunow-Stolzenhagen</div>
+          </div>
+
+          <div class="day-tab" data-panel="day5">
+            <div class="day-tab-label">Tag 5 · Di. 02.06.</div>
+            <div class="day-tab-title">Wanderung + Recht</div>
+            <div class="day-tab-sub">→ Liepe</div>
+          </div>
+
+          <div class="day-tab" data-panel="day6">
+            <div class="day-tab-label">Tag 6 · Mi. 03.06.</div>
+            <div class="day-tab-title">Fazit & Vernetzung</div>
+            <div class="day-tab-sub">Liepe</div>
+          </div>
+
+          <div class="day-tab" data-panel="day7">
+            <div class="day-tab-label">Tag 7 · Do. 04.06.</div>
+            <div class="day-tab-title">Abreise</div>
+            <div class="day-tab-sub">Liepe (Fronleichnam)</div>
+          </div>
+        </div>
+
+        <div class="program-content">
+
+          <div class="prog-panel active" id="day1">
+            <div class="prog-location">
+              <div class="prog-location-icon">📍</div>
+              <div>
+                <div class="prog-location-name">Turmhotel Schwedt/Oder</div>
+                <div class="prog-location-addr">Heinersdorfer Damm 1, 16303 Schwedt/Oder · www.turmhotel-schwedt-oder.de
+                </div>
+              </div>
+            </div>
+            <div class="prog-section-title">Tagesablauf</div>
+            <div class="prog-item">
+              <div class="prog-item-type">Bis 17:30 Uhr</div>
+              <div>
+                <div class="prog-item-name">Ankunft der Teilnehmenden</div>
+                <div class="prog-item-detail">Check-in im Turmhotel, erste Übernachtung.</div>
+              </div>
+            </div>
+            <div class="prog-item">
+              <div class="prog-item-type">Abend</div>
+              <div>
+                <div class="prog-item-name">Moderierte Fachdiskussion</div>
+                <div class="prog-item-detail">Vorstellungsrunde · Projektinhalt und -ziele · Aktueller Sachstand
+                  Bund/Länder · Erfahrungsaustausch</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="prog-panel" id="day2">
+            <div class="prog-location">
+              <div class="prog-location-icon">📍</div>
+              <div>
+                <div class="prog-location-name">Turmhotel Schwedt/Oder</div>
+                <div class="prog-location-addr">Heinersdorfer Damm 1, 16303 Schwedt/Oder · Tagesprogramm vor Ort</div>
+              </div>
+            </div>
+            <div class="prog-section-title">Programm: „Wie machen es die anderen?"</div>
+            <div class="prog-item">
+              <div class="prog-item-type">Vortrag</div>
+              <div>
+                <div class="prog-item-name">Dr. Aleksandra Kraśkiewicz</div>
+                <div class="prog-item-detail">Erfahrungsaustausch mit Dzika Zagroda / Polen – Arbeit mit freilebenden
+                  Luchsen, Wisenten und Wölfen</div>
+              </div>
+            </div>
+            <div class="prog-item">
+              <div class="prog-item-type">Vortrag</div>
+              <div>
+                <div class="prog-item-name">Michael Eichhorn</div>
+                <div class="prog-item-detail">Erfahrungen aus der Arbeit mit Wölfen in der Slowakei und Österreich</div>
+              </div>
+            </div>
+            <div class="prog-item">
+              <div class="prog-item-type">Vortrag</div>
+              <div>
+                <div class="prog-item-name">Gabriele Neumann (Naturschutzinitiative e.V. (NI)</div>
+                <div class="prog-item-detail">Rückkehrer mit Heimatrecht – Wolfsarbeit der Naturschutzinitiative e.V.
+                  (NI)</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="prog-panel" id="day3">
+            <div class="prog-location">
+              <div class="prog-location-icon">🥾</div>
+              <div>
+                <div class="prog-location-name">Wanderung → Seminarhaus Speicher Gästehaus</div>
+                <div class="prog-location-addr">Gutshof 3, 16248 Stolzenhagen ·
+                  www.seminarhausbrandenburg.de</div>
+              </div>
+            </div>
+            <div class="prog-section-title">Tagesablauf</div>
+            <div class="prog-item">
+              <div class="prog-item-type">Morgens</div>
+              <div>
+                <div class="prog-item-name">Wanderung Schwedt → Lunow-Stolzenhagen</div>
+                <div class="prog-item-detail">Entlang dem Grünen Band · Impulse unterwegs</div>
+              </div>
+            </div>
+            <div class="prog-item">
+              <div class="prog-item-type">Abend</div>
+              <div>
+                <div class="prog-item-name">Maximilian Hempel (Taskforce Artenschutz e.V.)</div>
+                <div class="prog-item-detail">Einblick in den operativen Artenschutz</div>
+              </div>
+            </div>
+            <div class="prog-item">
+              <div class="prog-item-type">Abend</div>
+              <div>
+                <div class="prog-item-name">Moderierte Fachdiskussion</div>
+                <div class="prog-item-detail">Thema: Allianz Wolf Brandenburg?</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="prog-panel" id="day4">
+            <div class="prog-location">
+              <div class="prog-location-icon">📍</div>
+              <div>
+                <div class="prog-location-name">Seminarhaus Speicher Gästehaus</div>
+                <div class="prog-location-addr">Gutshof 3, 16248 Stolzenhagen · Tagesprogramm vor Ort
+                </div>
+              </div>
+            </div>
+            <div class="prog-section-title">Geplante Programmpunkte (in Abstimmung)</div>
+            <div class="prog-item">
+              <div class="prog-item-type">Geplant</div>
+              <div>
+                <div class="prog-item-name">LUPUS Institut</div>
+                <div class="prog-item-detail">Wissenschaftliche Einblicke in Wolfsforschung und -management</div>
+              </div>
+            </div>
+            <div class="prog-item">
+              <div class="prog-item-type">Geplant</div>
+              <div>
+                <div class="prog-item-name">Pax Lupus</div>
+                <div class="prog-item-detail">Autonomes System für KI-gestützten Herdenschutz</div>
+              </div>
+            </div>
+            <div class="prog-item">
+              <div class="prog-item-type">Geplant</div>
+              <div>
+                <div class="prog-item-name">Wahlkreis-Politiker (MdB / MdL)</div>
+                <div class="prog-item-detail">Einladung an lokale Volksvertreter zum Dialog</div>
+              </div>
+            </div>
+            <div class="prog-item">
+              <div class="prog-item-type">Geplant</div>
+              <div>
+                <div class="prog-item-name">Wolf- und Bärenpark</div>
+                <div class="prog-item-detail">Besuch / Vorstellung geplant</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="prog-panel" id="day5">
+            <div class="prog-location">
+              <div class="prog-location-icon">🥾</div>
+              <div>
+                <div class="prog-location-name">Wanderung → Landhof Liepe</div>
+                <div class="prog-location-addr">Gutshof 1, 16248 Liepe · www.landhof-liepe.de</div>
+              </div>
+            </div>
+            <div class="prog-section-title">Tagesablauf</div>
+            <div class="prog-item">
+              <div class="prog-item-type">Morgens</div>
+              <div>
+                <div class="prog-item-name">Wanderung Lunow-Stolzenhagen → Liepe</div>
+                <div class="prog-item-detail">Ankunft im Landhof Liepe</div>
+              </div>
+            </div>
+            <div class="prog-item">
+              <div class="prog-item-type">Geplant</div>
+              <div>
+                <div class="prog-item-name">Deutsche Juristische Gesellschaft für Tierschutzrecht</div>
+                <div class="prog-item-detail">Rechtliche Rahmenbedingungen rund um Wolf und Koexistenz</div>
+              </div>
+            </div>
+            <div class="prog-item">
+              <div class="prog-item-type">Geplant</div>
+              <div>
+                <div class="prog-item-name">Sabine Sebald</div>
+                <div class="prog-item-detail">Medialer Umgang mit dem Thema Wolf</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="prog-panel" id="day6">
+            <div class="prog-location">
+              <div class="prog-location-icon">📍</div>
+              <div>
+                <div class="prog-location-name">Landhof Liepe</div>
+                <div class="prog-location-addr">Gutshof 1, 16248 Liepe · Tagesprogramm vor Ort</div>
+              </div>
+            </div>
+            <div class="prog-section-title">Abschlussprogramm (in Abstimmung)</div>
+            <div class="prog-item">
+              <div class="prog-item-type">Tagesthema</div>
+              <div>
+                <div class="prog-item-name">Herdenschutz</div>
+                <div class="prog-item-detail">Joep van den Vlasakker (geplant) · IG Herdenschutz plus Hund e.V.
+                  (geplant) · Michael Eichhorn</div>
+              </div>
+            </div>
+            <div class="prog-item">
+              <div class="prog-item-type">Abschluss</div>
+              <div>
+                <div class="prog-item-name">Gemeinsames Fazit</div>
+                <div class="prog-item-detail">Zusammenfassung der Ergebnisse · Ausblick · Vernetzung</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="prog-panel" id="day7">
+            <div class="prog-location">
+              <div class="prog-location-icon">👋</div>
+              <div>
+                <div class="prog-location-name">Abreisetag – Landhof Liepe</div>
+                <div class="prog-location-addr">Gutshof 1, 16248 Liepe · Fronleichnam (Feiertag in NRW, BW, BY, HE, RP,
+                  SL)</div>
+              </div>
+            </div>
+            <div class="prog-section-title">Verabschiedung</div>
+            <div class="prog-item">
+              <div class="prog-item-type">Ganztags</div>
+              <div>
+                <div class="prog-item-name">Individuelle Abreise</div>
+                <div class="prog-item-detail">Offizieller Abschluss des COEXISTENCE WALK 2026. Hinweis: 04. Juni ist
+                  Fronleichnam-Feiertag in mehreren Bundesländern.</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── REFERENTEN ─────────────────────────────────────────── -->
+  <section id="referenten" class="section">
+    <div class="container">
+      <p class="eyebrow reveal">Referentinnen & Referenten</p>
+      <h2 class="section-title reveal">Expert<em>innen</em> im Dialog</h2>
+      <div class="divider reveal"></div>
+      <p class="lead reveal">
+        Ein interdisziplinäres Team aus Wissenschaft, Naturschutz, Recht und Medien beleuchtet das
+        Thema Wolf aus allen Blickwinkeln.
+      </p>
+
+      <div class="speakers-grid">
+
+        <!-- Aleksandra -->
+        <div class="speaker-card reveal">
+          <img
+            src="https://69ef43b5abe5326bdb42135d.imgix.net/Dr.%20Aleksandra%20Kraszkiewicz.png?auto=format&fit=fill&w=284"
+            alt="Dr. Aleksandra Kraśkiewicz"
+            style="width:100%; height:240px; object-fit:cover; object-position:50% 20%; display:block;">
+          <div class="speaker-info">
+            <div class="speaker-name">Dr. Aleksandra Kraśkiewicz</div>
+            <div class="speaker-role">Dzika Zagroda, Polen</div>
+            <div class="speaker-bio">
+              Erfahrungsaustausch über die Arbeit mit freilebenden Luchsen, Wisenten und Wölfen in Polen.
+            </div>
+          </div>
+        </div>
+
+        <!-- Michael -->
+        <div class="speaker-card reveal reveal-delay-1">
+          <img src="https://69ef43b5abe5326bdb42135d.imgix.net/Michael%20Eichhorn.png?auto=format&fit=fill&w=384"
+            alt="Michael Eichhorn"
+            style="width:100%; height:240px; object-fit:cover; object-position:50% 20%; display:block;">
+          <div class="speaker-info">
+            <div class="speaker-name">Michael Eichhorn</div>
+            <div class="speaker-role">Wolfsexperte · Slowakei / Österreich</div>
+            <div class="speaker-bio">
+              Langjährige Erfahrung in der Arbeit mit Wölfen in der Slowakei und Österreich.
+              Beiträge zu Herdenschutz und Koexistenz.
+            </div>
+          </div>
+        </div>
+
+        <!-- Gabriele -->
+        <div class="speaker-card reveal reveal-delay-2">
+          <img src="https://69ef43b5abe5326bdb42135d.imgix.net/Gabriele%20Neumann.jpeg?auto=format&fit=fill&w=384"
+            alt="Gabriele Neumann"
+            style="width:100%; height:240px; object-fit:cover; object-position:50% 20%; display:block;">
+          <div class="speaker-info">
+            <div class="speaker-name">Gabriele Neumann</div>
+            <div class="speaker-role">Naturschutzinitiative e.V. (NI)</div>
+            <div class="speaker-bio">
+              Zur Arbeit der Naturschutzinitiative und zur Ethologie des Wolfes – Verhalten,
+              Sozialstruktur, Mythos und Realität.
+            </div>
+          </div>
+        </div>
+
+        <!-- Sabine -->
+        <div class="speaker-card reveal">
+          <img src="https://69ef43b5abe5326bdb42135d.imgix.net/Sabine_Sebald.png?auto=format&fit=fill&w=384"
+            alt="Sabine Sebald"
+            style="width:100%; height:240px; object-fit:cover; object-position:50% 20%; display:block;">
+          <div class="speaker-info">
+            <div class="speaker-name">Sabine Sebald</div>
+            <div class="speaker-role">Medienjournalistin</div>
+            <div class="speaker-bio">
+              Medialer Umgang mit dem Thema Wolf: Wie berichten Presse und Fernsehen – und was
+              bleibt dabei oft auf der Strecke?
+            </div>
+          </div>
+        </div>
+
+        <!-- Joep -->
+        <div class="speaker-card reveal reveal-delay-1">
+          <img
+            src="https://69ef43b5abe5326bdb42135d.imgix.net/Joep%20van%20den%20Vlasakker.png?auto=format&fit=fill&w=384"
+            alt="Joep van den Vlasakker"
+            style="width:100%; height:240px; object-fit:cover; object-position:50% 20%; display:block;">
+          <div class="speaker-info">
+            <div class="speaker-name">Joep van den Vlasakker</div>
+            <div class="speaker-role">Herdenschutzexperte</div>
+            <div class="speaker-bio">
+              Internationaler Experte für Herdenschutz – praktische Ansätze zum Schutz von
+              Nutztieren im Wolfsgebiet.
+            </div>
+          </div>
+        </div>
+
+        <!-- Maximilian -->
+        <div class="speaker-card reveal reveal-delay-2">
+          <img src="https://69ef43b5abe5326bdb42135d.imgix.net/Maximilian_Hempel.png?auto=format&fit=fill&w=384"
+            alt="Maximilian Hempel"
+            style="width:100%; height:240px; object-fit:cover; object-position:50% 20%; display:block;">
+          <div class="speaker-info">
+            <div class="speaker-name">Maximilian Hempel</div>
+            <div class="speaker-role">Taskforce Artenschutz e.V.</div>
+            <div class="speaker-bio">
+              Einblick in den operativen Artenschutz
+            </div>
+          </div>
+        </div>
+
+        <!-- Weitere Gäste -->
+        <div class="speaker-card reveal"
+          style="background:var(--parchment); display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding:2rem; min-height:280px;">
+
+          <div style="font-family:var(--font-display); font-size:3rem; color:var(--sand); margin-bottom:1rem;">
+            +
+          </div>
+
+          <div class="speaker-name" style="font-size:1rem;">Weitere Gäste</div>
+          <div class="speaker-role">Programm in Abstimmung</div>
+          <div class="speaker-bio" style="margin-top:0.5rem;">
+            Vertreter aus Politik, Recht, Naturschutzverbänden und Jagd werden noch bekanntgegeben.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── MITMACHEN ──────────────────────────────────────────── -->
+  <section id="mitmachen" class="section">
+    <div class="container">
+      <p class="eyebrow reveal">Mitmachen</p>
+      <h2 class="section-title reveal">Alles ist<br /><em>möglich</em></h2>
+      <div class="divider reveal"></div>
+      <p class="lead reveal">Mitgehen. Mitreden. Mitgestalten. – Der COEXISTENCE WALK lebt von Menschen, die bereit
+        sind, aufeinander zuzugehen.</p>
+
+      <div class="mitmachen-grid">
+        <div class="mitmachen-card reveal">
+          <div class="mitmachen-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M13 3a9 9 0 11-9 9" />
+              <path d="M13 3v6h6" />
+              <circle cx="8" cy="12" r="3" fill="var(--linen)" />
+            </svg>
+          </div>
+          <div class="mitmachen-title">Mitgehen</div>
+          <div class="mitmachen-text">Wandere eine oder mehrere Etappen mit. Ein
+            Shuttle-Service ist für Gepäck und Zwischentransporte im Einsatz.</div>
+          <a href="#kontakt" class="btn btn-primary">Zur Anmeldung</a>
+        </div>
+        <div class="mitmachen-card reveal reveal-delay-1">
+          <div class="mitmachen-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" fill="none" stroke="var(--linen)"
+                stroke-width="2.5" />
+            </svg>
+          </div>
+          <div class="mitmachen-title">Mitreden</div>
+          <div class="mitmachen-text">Als Fachreferentin oder Fachreferent, als Vertreterin einer Organisation oder als
+            Medienschaffende bringst du deine Perspektive in die Diskussion ein.</div>
+          <a href="#kontakt" class="btn btn-outline">Kontakt aufnehmen</a>
+        </div>
+        <div class="mitmachen-card reveal reveal-delay-2">
+          <div class="mitmachen-icon">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 000-7.78z"
+                fill="none" stroke="var(--linen)" stroke-width="2.5" />
+            </svg>
+          </div>
+          <div class="mitmachen-title">Unterstützen</div>
+          <div class="mitmachen-text">Du kannst nicht dabei sein, möchtest das Projekt aber fördern? Jede Spende hilft,
+            diese Non-Profit-Initiative zu realisieren. Steuerlich absetzbar!</div>
+          <a href="#spenden" class="btn btn-primary">Jetzt spenden</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── GALERIE ─────────────────────────────────────────────── -->
+  <section id="galerie" class="section">
+    <div class="container">
+      <p class="eyebrow reveal">Eindrücke</p>
+      <h2 class="section-title reveal">Die Region –<br /><em>Grünes Band</em> Brandenburg</h2>
+      <div class="divider reveal"></div>
+      <div class="gallery-grid reveal">
+        <div class="gallery-item">
+          <img src="https://69ef43b5abe5326bdb42135d.imgix.net/nebelwald.png?w=800&auto=format&fit=crop&q=80"
+            alt="Grünes Band Landschaft" style="height:100%;object-fit:cover;" />
+        </div>
+        <div class="gallery-item">
+          <img src="https://69ef43b5abe5326bdb42135d.imgix.net/wolf.jpeg?w=600&auto=format&fit=crop&q=80"
+            alt="Wolf in freier Wildbahn" style="height:100%;object-fit:cover;" />
+        </div>
+        <div class="gallery-item">
+          <img src="https://69ef43b5abe5326bdb42135d.imgix.net/wandern.png?w=600&auto=format&fit=crop&q=80"
+            alt="Wandergruppe in der Natur" style="height:100%;object-fit:cover;" />
+        </div>
+        <div class="gallery-item">
+          <img src="https://69ef43b5abe5326bdb42135d.imgix.net/turm.png?w=600&auto=format&fit=crop&q=80"
+            alt="Wald Brandenburg" style="height:100%;object-fit:cover;" />
+        </div>
+        <div class="gallery-item">
+          <img src="https://69ef43b5abe5326bdb42135d.imgix.net/img.png?w=600&auto=format&fit=crop&q=80"
+            alt="Grenzregion Polen Brandenburg" style="height:100%;object-fit:cover;" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SPENDEN ─────────────────────────────────────────────── -->
+  <section id="spenden">
+    <div class="container">
+      <div class="spenden-inner">
+        <p class="eyebrow" style="color:var(--sage); text-align:center;">Non-Profit Initiative</p>
+        <h2 class="section-title">Deine Spende<br /><em>macht's möglich</em></h2>
+        <p class="lead">Als Non-Profit-Projekt sind wir auf Unterstützung angewiesen. Spenden an die
+          Naturschutzinitiative e.V. (NI) sind steuerlich absetzbar.</p>
+
+        <div class="iban-box">
+          <div class="iban-row">
+            <div class="iban-label">Empfänger</div>
+            <div class="iban-value">
+              <img src="NI-Logo_weissraum_4k_rgb.png" alt="Naturschutzinitiative e.V. Logo" loading="lazy"
+                style="height:96px; width:auto; object-fit:contain; margin-bottom:0.5rem; display:block;" />
+              Naturschutzinitiative e.V. (NI)
+            </div>
+          </div>
+          <div class="iban-row">
+            <div class="iban-label">IBAN</div>
+            <div class="iban-value">DE83 5739 1800 0011 5018 00</div>
+          </div>
+          <div class="iban-row">
+            <div class="iban-label">Verwendungszweck (Pflicht!)</div>
+            <div class="iban-value" style="color:var(--sand)">Coexistence Walk</div>
+          </div>
+          <!-- Fix 8: Donation impact -->
+          <div
+            style="margin-top:1.25rem; padding-top:1.25rem; border-top:1px solid rgba(255,255,255,0.08); font-size:0.85rem; color:rgba(244,239,228,0.6); display:flex; flex-direction:column; gap:0.4rem;">
+            <div>Wir müssen die Referenten und Seminarräume bezahlen und würden uns deswegen über Spenden sehr freuen.
+            </div>
+          </div>
+        </div>
+
+        <a href="https://naturschutz-initiative.de/" target="_blank" class="btn btn-primary"
+          style="margin:0 auto; display:inline-flex;">
+          Zur offiziellen Website →
+        </a>
+        <p class="iban-notice">
+          Die Naturschutzinitiative e.V. (NI) unterstützt die Initiative als strategischer Partner<br />
+          bei der Verwaltung der Fördergelder. Spenden sind steuerlich absetzbar.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FAQ ────────────────────────────────────────────────── -->
+  <section id="faq" class="section" style="background:var(--cream);">
+    <div class="container">
+      <p class="eyebrow reveal">Fragen & Antworten</p>
+      <h2 class="section-title reveal">FAQ – COEXISTENCE<br /><em>WALK 2026</em></h2>
+      <div class="divider reveal"></div>
+
+      <div class="faq-grid reveal reveal-delay-1"
+        style="display:flex; flex-direction:column; gap:2rem; max-width:800px; margin:0 auto;">
+
+        <div>
+          <h3
+            style="color:var(--bark); border-bottom:1px solid rgba(45,36,22,0.1); padding-bottom:0.5rem; margin-bottom:1rem;">
+            Allgemeines zum Projekt</h3>
+          <div style="margin-bottom:1.5rem;">
+            <strong>Was ist der COEXISTENCE WALK?</strong>
+            <p style="margin-top:0.5rem;">Der COEXISTENCE WALK ist eine mehrtägige Wander- und Dialoginitiative, die zur
+              Projekteröffnung vom 29. Mai bis zum 04. Juni 2026 stattfindet. Unter dem Motto „Neue Wege auf alten
+              Pfaden“ wandern wir von Westpolen (Schwedt/Oder) nach Brandenburg (Liepe), um eine sachliche und emotional
+              ausgewogene Debatte über das Zusammenleben von Mensch und Wolf zu fördern.</p>
+          </div>
+          <div style="margin-bottom:1.5rem;">
+            <strong>Ist dies eine Demonstration gegen oder für den Wolf?</strong>
+            <p style="margin-top:0.5rem;">Nein. Wir grenzen uns bewusst von öffentlichen Protestkundgebungen oder
+              Demonstrationen ab. Der Walk ist eine Dialoginitiative. Unser Ziel ist nicht der Konflikt, sondern der
+              Aufbau von Brücken zwischen Fachleuten, Medien und der Öffentlichkeit durch deeskalierende und
+              evidenzbasierte Kommunikation. Allerdings sind wir mit der überwiegend Interessen geleiteten Art und
+              Weise, wie aktuell über den Umgang mit dem Wolf entschieden wird, nicht einverstanden! Insbesondere
+              Maßnahmen wie die Bejagung stehen vielfach im Widerspruch zu einem ausgewogenen, zukunftsfähigen Umgang
+              mit „dem Rest“ unserer natürlichen Umwelt. Wir suchen Wege zur gesicherten Koexistenz, deshalb steht die
+              eine einfache, aber entscheidende Frage im Mittelpunkt: Wie kann ein tragfähiges Zusammenleben von Mensch
+              und Wolf (und anderen Arten) zukunftssicher gelingen?</p>
+          </div>
+          <div style="margin-bottom:1.5rem;">
+            <strong>Warum findet der erste Walk ausgerechnet im Grenzgebiet Polen/Brandenburg statt?</strong>
+            <p style="margin-top:0.5rem;">Der Ort ist symbolisch gewählt. Er steht für die eigenständige Rückkehr der
+              Wölfe nach dem Fall des „Eisernen Vorhangs“. Wir nutzen das Umfeld des „Grünen Bands“, um den historischen
+              Kontext mit zukünftigen Lösungen für eine tragfähige Koexistenz zu verknüpfen.</p>
+          </div>
+        </div>
+
+        <div>
+          <h3
+            style="color:var(--bark); border-bottom:1px solid rgba(45,36,22,0.1); padding-bottom:0.5rem; margin-bottom:1rem;">
+            Teilnahme & Ablauf</h3>
+          <div style="margin-bottom:1.5rem;">
+            <strong>Kann ich als Privatperson mitwandern?</strong>
+            <p style="margin-top:0.5rem;">Ja, es bestehen konkrete Beteiligungsangebote für die Öffentlichkeit im Rahmen
+              unserer partizipativen Kampagne. Es gibt ein externes Teilnehmermanagement, über das du dich für die
+              Wandergruppe anmelden kannst (zum Kontakt-/ Anmeldeformular oder Telefon/WhatsApp +49 151 59207010).</p>
+          </div>
+          <div style="margin-bottom:1.5rem;">
+            <strong>Wie sieht ein typischer Tag beim COEXISTENCE WALK aus?</strong>
+            <p style="margin-top:0.5rem;">Der Tag ist zweigeteilt: Vormittags und nachmittags finden geführte
+              Wanderetappen (Exkursionen) auf Feld- und Waldwegen statt, bei denen es thematische Impulse gibt. Im
+              Anschluss folgen Fachveranstaltungen mit wissenschaftlichen Fakten, Erfahrungsberichten und moderierten
+              Diskussionen (siehe Verlaufs-/Programmplanung).</p>
+          </div>
+          <div style="margin-bottom:1.5rem;">
+            <strong>Was passiert bei schlechtem Wetter?</strong>
+            <p style="margin-top:0.5rem;">Keine Sorge, unsere Logistikplanung umfasst Alternativrouten und
+              Transportoptionen, falls das Wetter eine Wanderung unmöglich macht.</p>
+          </div>
+        </div>
+
+        <div>
+          <h3
+            style="color:var(--bark); border-bottom:1px solid rgba(45,36,22,0.1); padding-bottom:0.5rem; margin-bottom:1rem;">
+            Logistik & Sicherheit</h3>
+          <div style="margin-bottom:1.5rem;">
+            <strong>Wie ist die Versorgung während der Wanderung geregelt?</strong>
+            <p style="margin-top:0.5rem;">Ein Begleitfahrzeug stellt Wasser, Snacks und Erste-Hilfe-Material bereit.
+              Zudem organisieren wir die Verpflegung sowie den Gepäcktransfer zwischen den Unterkünften.</p>
+          </div>
+          <div style="margin-bottom:1.5rem;">
+            <strong>Gibt es ein Notfallmanagement?</strong>
+            <p style="margin-top:0.5rem;">Ja. Wir haben ein festes Notfallmanagement für Mensch und Hund. Ein
+              Shuttlefahrzeug ist jederzeit verfügbar, und wir stehen in Kontakt mit örtlichen Rettungsdiensten und
+              Tierärzten.</p>
+          </div>
+          <div style="margin-bottom:1.5rem;">
+            <strong>Wer trägt die Kosten für das Projekt?</strong>
+            <p style="margin-top:0.5rem;">Der COEXISTENCE WALK ist ein Non-Profit-Projekt. Übernachtungs- und
+              Verpflegungskosten tragen die Teilnehmer selbst. Die Finanzierung von z.B. Tagungsräumen,
+              Referentenaufwendungen etc. erfolgt unter anderem über ein Spendenkonto, das mit Unterstützung des Vereins
+              Naturschutzinitiative e.V. (NI) eingerichtet wurde. Die Teilnahme an den Veranstaltungen ist grundsätzlich
+              kostenfrei. Für eine langfristige Finanzierung sind wir dennoch auf Spenden angewiesen.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── KONTAKT / ANMELDUNG ────────────────────────────────── -->
+  <section id="kontakt" class="section">
+    <div class="container">
+      <p class="eyebrow reveal">Anmeldung & Kontakt</p>
+      <h2 class="section-title reveal">Dabei<em>sein</em></h2>
+      <div class="divider reveal"></div>
+
+      <div class="kontakt-grid">
+        <div class="kontakt-info reveal">
+          <h3>Kontakt für Medien & Partner</h3>
+          <p>Sie sind Journalist oder möchten als Partner (innerhalb der Interessengemeinschaft / IG) Teil des Netzwerks
+            werden? Wenden Sie sich bitte an unser Medienteam (Ralf Meurer unter Telefon/WhatsApp +49 151 59207010) oder
+            die Projektleitung (Peter Nawrath unter Telefon/WhatsApp +49 179 7337535) für Hintergrundgespräche und
+            Pressematerial.</p>
+
+          <div class="kontakt-detail">
+            <div class="kontakt-detail-icon">
+              <svg viewBox="0 0 24 24">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                <line x1="16" y1="2" x2="16" y2="6" />
+                <line x1="8" y1="2" x2="8" y2="6" />
+                <line x1="3" y1="10" x2="21" y2="10" />
+              </svg>
+            </div>
+            <div class="kontakt-detail-text">
+              <strong>Zeitraum</strong>
+              29. Mai – 04. Juni 2026
+            </div>
+          </div>
+
+          <div class="kontakt-detail">
+            <div class="kontakt-detail-icon">
+              <svg viewBox="0 0 24 24">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+            </div>
+            <div class="kontakt-detail-text">
+              <strong>Region</strong>
+              Polen / Brandenburg<br />Schwedt/Oder bis Liepe
+            </div>
+          </div>
+
+          <div class="kontakt-detail">
+            <div class="kontakt-detail-icon">
+              <svg viewBox="0 0 24 24">
+                <path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71" />
+                <path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71" />
+              </svg>
+            </div>
+            <div class="kontakt-detail-text">
+              <strong>Website</strong>
+              <a href="https://www.coexistence-walk.de" target="_blank"
+                style="color:var(--fern);">www.coexistence-walk.de</a>
+            </div>
+          </div>
+
+          <div class="kontakt-detail">
+            <div class="kontakt-detail-icon">
+              <svg viewBox="0 0 24 24">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                <polyline points="22,6 12,13 2,6" />
+              </svg>
+            </div>
+            <div class="kontakt-detail-text">
+              <strong>Anmeldung</strong>
+              Ab sofort über die Website oder das nebenstehende Formular
+            </div>
+          </div>
+
+          <div style="margin-top:2.5rem;">
+            <p class="eyebrow" style="margin-bottom:0.75rem;">Folge uns</p>
+            <div class="footer-hashtags">
+              <span class="hashtag">#CoexistenceWalk</span>
+              <span class="hashtag">#Wolf</span>
+              <span class="hashtag">#Naturschutz</span>
+              <span class="hashtag">#Brandenburg</span>
+              <span class="hashtag">#Dialog</span>
+              <span class="hashtag">#MenschUndNatur</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="anmeldung-box reveal reveal-delay-1">
+          <h3>Jetzt anmelden</h3>
+          <p>Fülle das Formular aus – wir melden uns zeitnah bei dir.</p>
+
+          <form action="https://formspree.io/f/xgorblbb" method="POST">
+            <input type="hidden" name="_subject" value="Neue Anmeldung – Coexistence Walk" />
+            <input type="hidden" name="_redirect" value="https://www.coexistence-walk.de/danke.html" />
+            <input type="hidden" name="_captcha" value="false" />
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>Vorname & Nachname</label>
+                <input type="text" name="name" placeholder="Max Mustermann" required />
+              </div>
+              <div class="form-group">
+                <label>E-Mail-Adresse</label>
+                <input type="email" name="email" placeholder="deine@email.de" required />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Telefonnummer (für Notfälle vor Ort)</label>
+              <input type="tel" name="telefon" placeholder="+49 ..." required />
+            </div>
+
+            <div class="form-group">
+              <label>Ich möchte teilnehmen am:</label>
+              <div style="display:flex; flex-direction:column; gap:0.5rem; margin-top:0.5rem;">
+                <label style="font-weight:normal; display:flex; align-items:center; gap:0.5rem; cursor:pointer;">
+                  <input type="radio" name="teilnahme" value="Gesamter Zeitraum (29.05. – 04.06.2026)" required />
+                  <span>Gesamter Zeitraum (29.05. – 04.06.2026)</span>
+                </label>
+                <label style="font-weight:normal; display:flex; align-items:center; gap:0.5rem; cursor:pointer;">
+                  <input type="radio" name="teilnahme" value="Einzelne Etappen" id="einzelneEtappenRadio" required />
+                  <span>Einzelne Etappen</span>
+                </label>
+                <input type="text" name="einzelne_etappen_datum"
+                  placeholder="Bitte Datum angeben (z.B. 30.05. - 31.05.)" style="margin-top:0.25rem; display:none;"
+                  id="einzelneEtappenInput" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Logistik & Sicherheit</label>
+              <div
+                style="display:flex; flex-direction:column; gap:1rem; margin-top:0.5rem; background:rgba(255,255,255,0.4); padding:1.25rem; border-radius:6px; border:1px solid rgba(0,0,0,0.05);">
+                <div>
+                  <span style="font-size:0.9rem; color:var(--bark); font-weight:500;">Wandert ein Hund mit?</span>
+                  <div style="display:flex; gap:1.5rem; margin-top:0.5rem;">
+                    <label style="font-weight:normal; display:flex; align-items:center; gap:0.4rem; cursor:pointer;">
+                      <input type="radio" name="hund" value="Ja" required /> Ja
+                    </label>
+                    <label style="font-weight:normal; display:flex; align-items:center; gap:0.4rem; cursor:pointer;">
+                      <input type="radio" name="hund" value="Nein" required /> Nein
+                    </label>
+                  </div>
+                </div>
+                <hr style="border:none; border-top:1px solid rgba(0,0,0,0.06); margin:0;" />
+                <div>
+                  <span style="font-size:0.9rem; color:var(--bark); font-weight:500;">Benötigen Sie einen
+                    Gepäcktransfer?</span>
+                  <div style="display:flex; gap:1.5rem; margin-top:0.5rem;">
+                    <label style="font-weight:normal; display:flex; align-items:center; gap:0.4rem; cursor:pointer;">
+                      <input type="radio" name="gepaeck" value="Ja" required /> Ja
+                    </label>
+                    <label style="font-weight:normal; display:flex; align-items:center; gap:0.4rem; cursor:pointer;">
+                      <input type="radio" name="gepaeck" value="Nein" required /> Nein
+                    </label>
+                  </div>
+                </div>
+                <div
+                  style="font-size:0.85rem; color:var(--sand); margin-top:0.2rem; display:flex; align-items:center; gap:0.4rem;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="8" x2="12" y2="12"></line>
+                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                  </svg>
+                  Beachte: Selbstverpflegung!
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Rechtliches</label>
+              <div
+                style="display:flex; flex-direction:column; gap:0.8rem; margin-top:0.5rem; background:rgba(255,255,255,0.4); padding:1.25rem; border-radius:6px; border:1px solid rgba(0,0,0,0.05);">
+                <label
+                  style="font-weight:normal; display:flex; align-items:flex-start; gap:0.6rem; font-size:0.85rem; line-height:1.4; cursor:pointer;">
+                  <input type="checkbox" name="privat_exkursion" required style="margin-top:0.15rem; flex-shrink:0;" />
+                  <span>Ich habe zur Kenntnis genommen, dass es sich um eine private Exkursion (Interessengemeinschaft)
+                    und nicht um eine Demonstration handelt.</span>
+                </label>
+                <label
+                  style="font-weight:normal; display:flex; align-items:flex-start; gap:0.6rem; font-size:0.85rem; line-height:1.4; cursor:pointer;">
+                  <input type="checkbox" name="unterkunft_selbstbuchung" required
+                    style="margin-top:0.15rem; flex-shrink:0;" />
+                  <span>Mir ist bewusst, dass Hotelzimmer oder sonstige Unterkünfte selbstständig und separat nach
+                    eigenen Wünschen gebucht werden müssen.</span>
+                </label>
+                <label
+                  style="font-weight:normal; display:flex; align-items:flex-start; gap:0.6rem; font-size:0.85rem; line-height:1.4; cursor:pointer;">
+                  <input type="checkbox" name="agb" required style="margin-top:0.15rem; flex-shrink:0;" />
+                  <span>Ich akzeptiere die <a href="teilnahmebedingungen.html" target="_blank"
+                      style="color:var(--fern); text-decoration:underline; text-underline-offset:2px;">Teilnahmebedingungen</a>
+                    und den Haftungsausschluss.</span>
+                </label>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary"
+              style="width:100%; justify-content:center; margin-top:0.5rem;">Anmeldung absenden</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── TEAM ──────────────────────────────────────────── -->
+  <section id="team" class="section">
+    <div class="container">
+      <p class="eyebrow reveal">Organisation</p>
+      <h2 class="section-title reveal reveal-delay-1">Das <em>Team</em></h2>
+      <div class="divider reveal reveal-delay-2"></div>
+
+      <div class="team-grid">
+
+        <div class="team-card reveal">
+          <div class="team-card-img-wrap">
+            <img src="https://69ef43b5abe5326bdb42135d.imgix.net/Peter%20Nawrath.png?auto=format&fit=fill&w=384"
+              alt="Peter Nawrath" loading="lazy" style="object-position: center 20%;" />
+          </div>
+          <div class="team-card-name">Peter Nawrath</div>
+        </div>
+
+        <div class="team-card reveal reveal-delay-1">
+          <div class="team-card-img-wrap">
+            <img src="https://69ef43b5abe5326bdb42135d.imgix.net/Ralf%20Peter%20Meurer_.png?auto=format&fit=fill&w=384"
+              alt="Ralf Peter Meurer" loading="lazy" />
+          </div>
+          <div class="team-card-name">Ralf Peter Meurer</div>
+        </div>
+
+        <div class="team-card reveal reveal-delay-2">
+          <div class="team-card-img-wrap">
+            <img src="https://69ef43b5abe5326bdb42135d.imgix.net/Martina%20Z%C3%B6llner.png?auto=format&fit=fill&w=384"
+              alt="Martina Zöllner" loading="lazy" />
+          </div>
+          <div class="team-card-name">Martina Zöllner</div>
+        </div>
+
+        <div class="team-card reveal reveal-delay-3">
+          <div class="team-card-img-wrap">
+            <img src="https://69ef43b5abe5326bdb42135d.imgix.net/Sabine%20Beerbaum.png?auto=format&fit=fill&w=384"
+              alt="Sabine Beerbaum" loading="lazy" />
+          </div>
+          <div class="team-card-name">Sabine Beerbaum</div>
+        </div>
+
+        <div class="team-card reveal">
+          <div class="team-card-img-wrap">
+            <img src="https://69ef43b5abe5326bdb42135d.imgix.net/Kevin%20Reutemann.png?auto=format&fit=fill&w=384"
+              alt="Kevin Reutemann" loading="lazy" />
+          </div>
+          <div class="team-card-name">Kevin Reutemann</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── UNTERSTÜTZER & PARTNER ───────────────────────────────── -->
+  <section id="partner-new" class="section">
+    <div class="container">
+      <p class="eyebrow reveal" style="text-align:center;">Netzwerk</p>
+      <h2 class="section-title reveal reveal-delay-1" style="text-align:center;">Unterstützer &amp; <em>Partner</em>
+      </h2>
+      <div class="divider reveal reveal-delay-2" style="margin-left:auto; margin-right:auto;"></div>
+
+      <div class="partner-grid-new reveal reveal-delay-3">
+
+        <a href="https://naturschutz-initiative.de/" target="_blank" rel="noopener noreferrer"
+          aria-label="Naturschutzinitiative e.V. (NI)">
+          <img src="NI-Logo_weissraum_4k_rgb.png" alt="Naturschutzinitiative e.V. (NI)" loading="lazy" />
+          <span class="partner-name">Naturschutzinitiative e.V. (NI)</span>
+        </a>
+
+        <a href="https://www.gzsdw.de/" target="_blank" rel="noopener noreferrer"
+          aria-label="Gesellschaft zum Schutz der Wölfe e.V.">
+          <img
+            src="https://69ef43b5abe5326bdb42135d.imgix.net/Gesellschaft_zum_Schutz_der_Woelfe_e_V_Logo.jpeg?auto=format&fit=fill&w=384"
+            alt="Gesellschaft zum Schutz der Wölfe e.V." loading="lazy" />
+          <span class="partner-name">Ges. z. Schutz der Wölfe e.V.</span>
+        </a>
+
+        <a href="#partner-new" aria-label="Sabine's Hundeschule">
+          <img src="https://69ef43b5abe5326bdb42135d.imgix.net/Sabine_Hundeschule.jpeg?auto=format&fit=fill&w=384"
+            alt="Sabine's Hundeschule" loading="lazy" />
+          <span class="partner-name">Sabine's Hundeschule</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── FOOTER ─────────────────────────────────────────────── -->
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="nav-logo">
+            <img src="wolf_druck.png" alt="Coexistence Walk Logo"
+              style="height:152px; width:auto; object-fit:contain;" />
+          </div>
+          <p>Gemeinsam Gehen für den Wolf. Eine Non-Profit-Initiative im deutsch-polnischen Grenzgebiet, 29. Mai – 04.
+            Juni 2026.</p>
+          <div class="footer-hashtags" style="margin-top:1rem;">
+            <span class="hashtag">#CoexistenceWalk</span>
+            <span class="hashtag">#Wolf</span>
+            <span class="hashtag">#Brandenburg</span>
+          </div>
+          <div style="margin-top:0.8rem;">
+            <a href="https://www.facebook.com/coexistencewalk/" target="_blank" rel="noopener noreferrer"
+              class="hashtag"
+              style="text-decoration:none; display:inline-flex; align-items:center; gap:0.4rem; transition:color 0.3s;"
+              onmouseover="this.style.color='#1877F2'" onmouseout="this.style.color=''">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+              </svg>
+              @coexistencewalk
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-links">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="#about">Über die Initiative</a></li>
+            <li><a href="#route">Route & Stationen</a></li>
+            <li><a href="#programm">Programm</a></li>
+            <li><a href="#referenten">Referent:innen</a></li>
+            <li><a href="#mitmachen">Mitmachen</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links">
+          <h4>Unterstützen</h4>
+          <ul>
+            <li><a href="#spenden">Spenden</a></li>
+            <li><a href="#kontakt">Anmeldung</a></li>
+            <li><a href="https://www.coexistence-walk.de" target="_blank">www.coexistence-walk.de</a></li>
+          </ul>
+          <div style="margin-top:1.5rem;">
+            <h4>Spendenkonto</h4>
+            <p style="font-size:0.8rem; margin-top:0.5rem; line-height:1.8;">
+              Naturschutzinitiative e.V.<br />
+              IBAN: DE83 5739 1800 0011 5018 00<br />
+              Stichwort: <em style="color:var(--sage);">Coexistence Walk</em>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 COEXISTENCE WALK – Interessengemeinschaft</span>
+        <div style="display:flex; gap:1.5rem;">
+          <a href="impressum.html" style="text-decoration: underline; color: rgba(244, 239, 228, 0.7);">Impressum</a>
+          <a href="datenschutz.html"
+            style="text-decoration: underline; color: rgba(244, 239, 228, 0.7);">Datenschutzerklärung</a>
+          <a href="teilnahmebedingungen.html"
+            style="text-decoration: underline; color: rgba(244, 239, 228, 0.7);">Teilnahmebedingungen</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ─── Fix 3: STICKY CTA ─────────────────────────────────── -->
+  <a href="#kontakt" class="sticky-btn" id="stickyBtn">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <path d="M5 12h14M12 5l7 7-7 7" />
+    </svg>
+    Platz reservieren →
+  </a>
+
+  <!-- ─── SCRIPTS ────────────────────────────────────────────── -->
+  <script>
+    // Navbar scroll effect + Sticky CTA + Progress Bar
+    const navbar = document.getElementById('navbar');
+    const stickyBtn = document.getElementById('stickyBtn');
+    const progressBar = document.getElementById('progressBar');
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      navbar.classList.toggle('scrolled', scrollY > 60);
+      stickyBtn.classList.toggle('show', scrollY > window.innerHeight * 0.6);
+      // Fix 6: progress bar
+      const height = document.body.scrollHeight - window.innerHeight;
+      progressBar.style.width = ((scrollY / height) * 100) + '%';
+    }, { passive: true });
+
+    // Program day tabs
+    document.getElementById('programDays').addEventListener('click', e => {
+      const tab = e.target.closest('.day-tab');
+      if (!tab) return;
+      document.querySelectorAll('.day-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.prog-panel').forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById(tab.dataset.panel).classList.add('active');
+    });
+
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Mobile nav
+    document.getElementById('hambBtn').addEventListener('click', () => {
+      document.querySelector('.nav-links').classList.toggle('nav-open');
+    });
+    // Anmeldeformular Einzelne Etappen Toggle
+    const radioEinzeln = document.getElementById('einzelneEtappenRadio');
+    const inputEinzeln = document.getElementById('einzelneEtappenInput');
+    const radioGesamt = document.querySelector('input[name="teilnahme"][value="Gesamter Zeitraum (29.05. – 04.06.2026)"]');
+    if (radioEinzeln && radioGesamt && inputEinzeln) {
+      radioEinzeln.addEventListener('change', () => { if (radioEinzeln.checked) inputEinzeln.style.display = 'block'; });
+      radioGesamt.addEventListener('change', () => { if (radioGesamt.checked) inputEinzeln.style.display = 'none'; });
+    }
+
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
+</body>
+
+</html>
