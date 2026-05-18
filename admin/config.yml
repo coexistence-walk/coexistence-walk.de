@@ -1,6 +1,9 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: coexistence-walk/coexistence-walk.de
   branch: main # Branch deines Repositories (oft main oder master)
+  base_url: https://cms-auth.coexistence-walk.workers.dev # <--- URL deines Cloudflare Workers
+  auth_endpoint: auth
 
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
