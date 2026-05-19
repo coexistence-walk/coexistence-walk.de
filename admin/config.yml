@@ -2,7 +2,7 @@ backend:
   name: github
   repo: coexistence-walk/coexistence-walk.de
   branch: main
-  base_url: https://coexistence-walk-de.pages.dev
+  base_url: https://coexistence-walk.de
 
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
