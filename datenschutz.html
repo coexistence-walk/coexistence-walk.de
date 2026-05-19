@@ -5,11 +5,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>COEXISTENCE WALK 2026 – Gemeinsam Gehen für den Wolf</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="manifest" href="/site.webmanifest" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap"
     rel="stylesheet" />
+
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
   <style>
     /* ─── TOKENS ─────────────────────────────────────────────── */
@@ -685,6 +691,124 @@
       background: rgba(255, 255, 255, 0.15);
     }
 
+    /* ─── INTRO VIDEO ────────────────────────────────────────── */
+    #intro-video {
+      background: var(--bark);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #intro-video::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      background-size: 200px;
+      pointer-events: none;
+      opacity: 0.5;
+    }
+
+    .video-section-inner {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+
+    .video-section-inner .eyebrow {
+      color: var(--sage);
+    }
+
+    .video-section-inner .section-title {
+      color: var(--linen);
+    }
+
+    .video-section-inner .section-title em {
+      color: var(--sage);
+    }
+
+    .video-section-inner .divider {
+      background: rgba(255, 255, 255, 0.15);
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .video-section-inner .lead {
+      color: rgba(244, 239, 228, 0.7);
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+    }
+
+    .video-container {
+      position: relative;
+      max-width: 960px;
+      margin: 3rem auto 0;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow:
+        0 8px 60px rgba(0, 0, 0, 0.4),
+        0 0 0 1px rgba(142, 168, 112, 0.15);
+    }
+
+    .video-container::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: 13px;
+      background: linear-gradient(135deg, rgba(142, 168, 112, 0.3), transparent 40%, transparent 60%, rgba(201, 184, 138, 0.2));
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .video-ratio {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%; /* 16:9 */
+      background: #111;
+    }
+
+    .video-ratio iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .video-ornament {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2.5rem;
+      color: rgba(244, 239, 228, 0.25);
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-family: var(--font-body);
+    }
+
+    .video-ornament::before,
+    .video-ornament::after {
+      content: '';
+      width: 40px;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    @media (max-width: 768px) {
+      .video-container {
+        margin: 2rem -1rem 0;
+        border-radius: 0;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      .video-container::before {
+        border-radius: 0;
+      }
+    }
+
     /* ─── ABOUT ───────────────────────────────────────────────── */
     #about {
       background: var(--cream);
@@ -1276,22 +1400,27 @@
       margin-bottom: 1.25rem;
     }
 
-    .form-group label {
+    /* Only top-level direct label gets the uppercase style */
+    .form-group>label:first-child {
       display: block;
       font-size: 0.72rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--fern);
       font-weight: 500;
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.5rem;
     }
 
-    .form-group input,
+    .form-group input[type="text"],
+    .form-group input[type="email"],
+    .form-group input[type="tel"],
     .form-group select,
     .form-group textarea {
       width: 100%;
+      box-sizing: border-box;
       background: var(--cream);
       border: 1.5px solid var(--sand);
+      border-radius: 4px;
       padding: 0.75rem 1rem;
       font-family: var(--font-body);
       font-size: 0.92rem;
@@ -1301,16 +1430,33 @@
       resize: vertical;
     }
 
-    .form-group input:focus,
+    .form-group input[type="text"]:focus,
+    .form-group input[type="email"]:focus,
+    .form-group input[type="tel"]:focus,
     .form-group select:focus,
     .form-group textarea:focus {
       border-color: var(--fern);
+    }
+
+    .form-group input[type="radio"],
+    .form-group input[type="checkbox"] {
+      width: auto;
+      flex-shrink: 0;
+      margin: 0;
+      accent-color: var(--fern);
+      cursor: pointer;
     }
 
     .form-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 1rem;
+    }
+
+    @media (max-width: 500px) {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
     }
 
     /* ─── PARTNER ─────────────────────────────────────────────── */
@@ -1562,300 +1708,38 @@
           transform: translateY(-10px);
         }
 
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      .nav-links a {
-        color: var(--ink) !important;
-        font-size: 1rem;
-        width: 100%;
-        text-align: center;
-        padding: 0.5rem 0;
-      }
-
-      .hamburger {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: var(--linen);
-        transition: color 0.3s;
-      }
-
-      #navbar.scrolled .hamburger {
-        color: var(--ink);
-      }
-
-      .hero-title {
-        font-size: clamp(2.5rem, 10vw, 4rem);
-      }
-
-      .hero-form {
-        flex-direction: column;
-        width: 100%;
-      }
-
-      .hero-form input[type="email"] {
-        border-right: 1px solid rgba(255, 255, 255, 0.22);
-        border-bottom: none;
-        border-radius: 4px 4px 0 0;
-      }
-
-      .hero-form .btn-primary {
-        border-left: 1px solid rgba(255, 255, 255, 0.22);
-        border-radius: 0 0 4px 4px;
-        width: 100%;
-        justify-content: center;
-      }
-
-      .partner-grid-new {
-        gap: 2rem;
-      }
-    }
-
-    @media (max-width: 600px) {
-
-      .hero-scroll,
-      .band-divider {
-        display: none;
-      }
-
-      .form-row {
-        grid-template-columns: 1fr;
-      }
-
-      .band-inner {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1.5rem;
-      }
-
-      .stage {
-        padding: 1.5rem;
-      }
-
-      .stage-num {
-        font-size: 2.5rem;
-      }
-
-      .iban-box {
-        padding: 1.5rem;
-      }
-
-      .iban-value {
-        font-size: 0.95rem;
-      }
-
-      .sticky-btn {
-        width: calc(100% - 32px);
-        justify-content: center;
-        font-size: 0.85rem;
-        padding: 1rem;
-      }
-
-      .footer-top {
-        flex-direction: column;
-        gap: 2.5rem;
-      }
-    }
-
-    /* ─── TEAM ────────────────────────────────────────────────── */
-    #team {
-      background: var(--cream);
-    }
-
-    .team-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 2rem;
-      margin-top: 3rem;
-    }
-
-    .team-card {
-      text-align: center;
-      background: var(--linen);
-      border: 1px solid var(--parchment);
-      border-radius: 8px;
-      overflow: hidden;
-      transition: transform 0.3s var(--ease-out), box-shadow 0.3s;
-    }
-
-    .team-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.12);
-    }
-
-    .team-card-img-wrap {
-      width: 100%;
-      aspect-ratio: 3 / 4;
-      overflow: hidden;
-    }
-
-    .team-card-img-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
-      display: block;
-      transition: transform 0.5s var(--ease-out);
-    }
-
-    .team-card:hover .team-card-img-wrap img {
-      transform: scale(1.04);
-    }
-
-    .team-card-name {
-      font-family: var(--font-display);
-      font-size: 1.05rem;
-      font-weight: 600;
-      color: var(--bark);
-      line-height: 1.3;
-      padding: 1rem 1rem 1.2rem;
-    }
-
-    /* ─── PARTNER NEW ─────────────────────────────────────────── */
-    #partner-new {
-      background: var(--linen);
-    }
-
-    .partner-grid-new {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 3rem;
-      justify-content: center;
-      align-items: center;
-      margin-top: 3rem;
-    }
-
-    .partner-grid-new a {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.75rem;
-      text-decoration: none;
-      transition: transform 0.3s var(--ease-out);
-    }
-
-    .partner-grid-new a:hover {
-      transform: translateY(-4px);
-    }
-
-    .partner-grid-new img {
-      max-height: 120px;
-      width: auto;
-      opacity: 1;
-      transition: all 0.3s var(--ease-out);
-    }
-
-    .partner-grid-new .partner-name {
-      font-size: 0.72rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--fern);
-      font-weight: 500;
-      text-align: center;
-      transition: color 0.3s;
-    }
-
-    .partner-grid-new a:hover .partner-name {
-      color: var(--moss);
-    }
-  </style>
-</head>
-
-<body>
-
-  <!-- Fix 6: Scroll Progress Bar -->
-  <div id="progressBar"></div>
-
-  <!-- ─── NAVBAR ────────────────────────────────────────────── -->
-  <nav id="navbar">
-    <div class="container">
-      <div class="nav-inner">
-        <a class="nav-logo" href="index.html">
-          <img src="wolf_druck.png" alt="Coexistence Walk Logo"
-            style="height:48px; width:auto; display:inline-block; object-fit:contain; vertical-align:middle;" />
-        </a>
-        <ul class="nav-links">
-          <li><a href="index.html#about">Initiative</a></li>
-          <li><a href="index.html#route">Route</a></li>
-          <li><a href="index.html#programm">Programm</a></li>
-          <li><a href="index.html#referenten">Referenten</a></li>
-          <li><a href="index.html#mitmachen">Mitmachen</a></li>
-          <li><a href="index.html#spenden" class="nav-cta">Spenden</a></li>
-        </ul>
-        <button class="hamburger" id="hambBtn" aria-label="Menü">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <line x1="3" y1="6" x2="21" y2="6" />
-            <line x1="3" y1="12" x2="21" y2="12" />
-            <line x1="3" y1="18" x2="21" y2="18" />
-          </svg>
-        </button>
-      </div>
-    </div>
-  </nav>
 
   <section class="section" style="padding-top: 150px; min-height: 70vh;">
     <div class="container" style="max-width: 800px;">
       <p class="eyebrow">Rechtliches</p>
       <h1 class="section-title">Datenschutzerklärung</h1>
       <div class="divider"></div>
-
+      
       <div style="color: #3a3a30; font-size: 1rem; line-height: 1.8;">
-        <h2
-          style="font-family: var(--font-display); font-size: 1.8rem; font-weight: 600; color: var(--bark); margin-top: 2.5rem; margin-bottom: 1rem;">
-          1. Datenschutz auf einen Blick</h2>
-
-        <h3
-          style="font-family: var(--font-display); font-size: 1.3rem; font-weight: 600; color: var(--bark); margin-top: 1.5rem; margin-bottom: 0.5rem;">
-          Wer ist verantwortlich für die Datenerfassung auf dieser Website?</h3>
+        <h2 style="font-family: var(--font-display); font-size: 1.8rem; font-weight: 600; color: var(--bark); margin-top: 2.5rem; margin-bottom: 1rem;">1. Datenschutz auf einen Blick</h2>
+        
+        <h3 style="font-family: var(--font-display); font-size: 1.3rem; font-weight: 600; color: var(--bark); margin-top: 1.5rem; margin-bottom: 0.5rem;">Wer ist verantwortlich für die Datenerfassung auf dieser Website?</h3>
         <p>Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber. Dessen Kontaktdaten lauten:</p>
         <p>Peter Nawrath<br>
-          Laurentiusstraße 18<br>
-          52249 Eschweiler<br>
-          Telefon: +49 179 7337535<br>
-          E-Mail: <a href="mailto:info@coexistence-walk.de"
-            style="color: var(--fern); text-decoration: underline;">info@coexistence-walk.de</a></p>
+        Laurentiusstraße 18<br>
+        52249 Eschweiler<br>
+        Telefon: +49 179 7337535<br>
+        E-Mail: <a href="mailto:info@coexistence-walk.de" style="color: var(--fern); text-decoration: underline;">info@coexistence-walk.de</a></p>
 
-        <h3
-          style="font-family: var(--font-display); font-size: 1.3rem; font-weight: 600; color: var(--bark); margin-top: 1.5rem; margin-bottom: 0.5rem;">
-          Wie erfassen wir deine Daten?</h3>
-        <p>Deine Daten werden zum einen dadurch erhoben, dass du uns diese mitteilst. Hierbei kann es sich z. B. um
-          Daten handeln, die du in ein Kontaktformular eingibst. Andere Daten werden automatisch oder nach deiner
-          Einwilligung beim Besuch der Website durch unsere IT-Systeme erfasst. Das sind vor allem technische Daten (z.
-          B. Internetbrowser, Betriebssystem oder Uhrzeit des Seitenaufrufs).</p>
+        <h3 style="font-family: var(--font-display); font-size: 1.3rem; font-weight: 600; color: var(--bark); margin-top: 1.5rem; margin-bottom: 0.5rem;">Wie erfassen wir deine Daten?</h3>
+        <p>Deine Daten werden zum einen dadurch erhoben, dass du uns diese mitteilst. Hierbei kann es sich z. B. um Daten handeln, die du in ein Kontaktformular eingibst. Andere Daten werden automatisch oder nach deiner Einwilligung beim Besuch der Website durch unsere IT-Systeme erfasst. Das sind vor allem technische Daten (z. B. Internetbrowser, Betriebssystem oder Uhrzeit des Seitenaufrufs).</p>
 
-        <h3
-          style="font-family: var(--font-display); font-size: 1.3rem; font-weight: 600; color: var(--bark); margin-top: 1.5rem; margin-bottom: 0.5rem;">
-          Welche Rechte hast du bezüglich deiner Daten?</h3>
-        <p>Du hast jederzeit das Recht, unentgeltlich Auskunft über Herkunft, Empfänger und Zweck deiner gespeicherten
-          personenbezogenen Daten zu erhalten. Du hast außerdem ein Recht, die Berichtigung oder Löschung dieser Daten
-          zu verlangen. Hierzu sowie zu weiteren Fragen zum Thema Datenschutz kannst du dich jederzeit an uns wenden.
-          Des Weiteren steht dir ein Beschwerderecht bei der zuständigen Aufsichtsbehörde zu.</p>
+        <h3 style="font-family: var(--font-display); font-size: 1.3rem; font-weight: 600; color: var(--bark); margin-top: 1.5rem; margin-bottom: 0.5rem;">Welche Rechte hast du bezüglich deiner Daten?</h3>
+        <p>Du hast jederzeit das Recht, unentgeltlich Auskunft über Herkunft, Empfänger und Zweck deiner gespeicherten personenbezogenen Daten zu erhalten. Du hast außerdem ein Recht, die Berichtigung oder Löschung dieser Daten zu verlangen. Hierzu sowie zu weiteren Fragen zum Thema Datenschutz kannst du dich jederzeit an uns wenden. Des Weiteren steht dir ein Beschwerderecht bei der zuständigen Aufsichtsbehörde zu.</p>
 
-        <h2
-          style="font-family: var(--font-display); font-size: 1.8rem; font-weight: 600; color: var(--bark); margin-top: 2.5rem; margin-bottom: 1rem;">
-          2. Datenerfassung auf dieser Website</h2>
+        <h2 style="font-family: var(--font-display); font-size: 1.8rem; font-weight: 600; color: var(--bark); margin-top: 2.5rem; margin-bottom: 1rem;">2. Datenerfassung auf dieser Website</h2>
+        
+        <h3 style="font-family: var(--font-display); font-size: 1.3rem; font-weight: 600; color: var(--bark); margin-top: 1.5rem; margin-bottom: 0.5rem;">Kontakt- und Anmeldeformulare (Formspree)</h3>
+        <p>Wenn du uns per Kontakt- oder Anmeldeformular Anfragen zukommen lässt, werden deine Angaben aus dem Formular inklusive der von dir dort angegebenen Kontaktdaten zwecks Bearbeitung der Anfrage und für den Fall von Anschlussfragen bei uns gespeichert. Diese Daten geben wir nicht ohne deine Einwilligung weiter.</p>
+        <p>Für die technische Abwicklung unserer Formulare nutzen wir den Dienst Formspree (Formspree, Inc., USA). Wenn du das Formular absendest, werden deine eingegebenen Daten an die Server von Formspree übertragen und dort verarbeitet. Weitere Informationen zum Umgang mit Nutzerdaten findest du in der Datenschutzerklärung von Formspree: <a href="https://formspree.io/legal/privacy-policy/" target="_blank" rel="noopener noreferrer" style="color: var(--fern); text-decoration: underline;">https://formspree.io/legal/privacy-policy/</a></p>
 
-        <h3
-          style="font-family: var(--font-display); font-size: 1.3rem; font-weight: 600; color: var(--bark); margin-top: 1.5rem; margin-bottom: 0.5rem;">
-          Kontakt- und Anmeldeformulare (Formspree)</h3>
-        <p>Wenn du uns per Kontakt- oder Anmeldeformular Anfragen zukommen lässt, werden deine Angaben aus dem Formular
-          inklusive der von dir dort angegebenen Kontaktdaten zwecks Bearbeitung der Anfrage und für den Fall von
-          Anschlussfragen bei uns gespeichert. Diese Daten geben wir nicht ohne deine Einwilligung weiter.</p>
-        <p>Für die technische Abwicklung unserer Formulare nutzen wir den Dienst Formspree (Formspree, Inc., USA). Wenn
-          du das Formular absendest, werden deine eingegebenen Daten an die Server von Formspree übertragen und dort
-          verarbeitet. Weitere Informationen zum Umgang mit Nutzerdaten findest du in der Datenschutzerklärung von
-          Formspree: <a href="https://formspree.io/legal/privacy-policy/" target="_blank" rel="noopener noreferrer"
-            style="color: var(--fern); text-decoration: underline;">https://formspree.io/legal/privacy-policy/</a></p>
-
-        <h3
-          style="font-family: var(--font-display); font-size: 1.3rem; font-weight: 600; color: var(--bark); margin-top: 1.5rem; margin-bottom: 0.5rem;">
-          Server-Log-Dateien</h3>
-        <p>Der Provider der Seiten erhebt und speichert automatisch Informationen in so genannten Server-Log-Dateien,
-          die dein Browser automatisch an uns übermittelt. Dies sind:</p>
+        <h3 style="font-family: var(--font-display); font-size: 1.3rem; font-weight: 600; color: var(--bark); margin-top: 1.5rem; margin-bottom: 0.5rem;">Server-Log-Dateien</h3>
+        <p>Der Provider der Seiten erhebt und speichert automatisch Informationen in so genannten Server-Log-Dateien, die dein Browser automatisch an uns übermittelt. Dies sind:</p>
         <ul style="margin-left: 20px; margin-bottom: 1rem;">
           <li>Browsertyp und Browserversion</li>
           <li>verwendetes Betriebssystem</li>
@@ -1866,58 +1750,461 @@
         </ul>
         <p>Eine Zusammenführung dieser Daten mit anderen Datenquellen wird nicht vorgenommen.</p>
 
-        <h2
-          style="font-family: var(--font-display); font-size: 1.8rem; font-weight: 600; color: var(--bark); margin-top: 2.5rem; margin-bottom: 1rem;">
-          3. Plugins und externe Dienste</h2>
-        <p>Um unsere Website ansprechend und funktional zu gestalten, binden wir Dienste von Drittanbietern ein. Bei der
-          Nutzung dieser Dienste wird deine IP-Adresse an die Server der jeweiligen Anbieter übertragen.</p>
+        <h2 style="font-family: var(--font-display); font-size: 1.8rem; font-weight: 600; color: var(--bark); margin-top: 2.5rem; margin-bottom: 1rem;">3. Plugins und externe Dienste</h2>
+        <p>Um unsere Website ansprechend und funktional zu gestalten, binden wir Dienste von Drittanbietern ein. Bei der Nutzung dieser Dienste wird deine IP-Adresse an die Server der jeweiligen Anbieter übertragen.</p>
 
-        <h3
-          style="font-family: var(--font-display); font-size: 1.3rem; font-weight: 600; color: var(--bark); margin-top: 1.5rem; margin-bottom: 0.5rem;">
-          Google Maps</h3>
-        <p>Diese Seite nutzt über eine API den Kartendienst Google Maps, um dir die Route des Walks visuell
-          darzustellen. Anbieter ist die Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland.</p>
-        <p>Zur Nutzung der Funktionen von Google Maps ist es notwendig, deine IP-Adresse zu speichern. Diese
-          Informationen werden in der Regel an einen Server von Google in den USA übertragen und dort gespeichert. Wir
-          haben keinen Einfluss auf diese Datenübertragung.</p>
-        <p>Mehr Informationen zum Umgang mit Nutzerdaten findest du in der Datenschutzerklärung von Google: <a
-            href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer"
-            style="color: var(--fern); text-decoration: underline;">https://policies.google.com/privacy</a></p>
+        <h3 style="font-family: var(--font-display); font-size: 1.3rem; font-weight: 600; color: var(--bark); margin-top: 1.5rem; margin-bottom: 0.5rem;">Google Maps</h3>
+        <p>Diese Seite nutzt über eine API den Kartendienst Google Maps, um dir die Route des Walks visuell darzustellen. Anbieter ist die Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland.</p>
+        <p>Zur Nutzung der Funktionen von Google Maps ist es notwendig, deine IP-Adresse zu speichern. Diese Informationen werden in der Regel an einen Server von Google in den USA übertragen und dort gespeichert. Wir haben keinen Einfluss auf diese Datenübertragung.</p>
+        <p>Mehr Informationen zum Umgang mit Nutzerdaten findest du in der Datenschutzerklärung von Google: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" style="color: var(--fern); text-decoration: underline;">https://policies.google.com/privacy</a></p>
 
-        <h3
-          style="font-family: var(--font-display); font-size: 1.3rem; font-weight: 600; color: var(--bark); margin-top: 1.5rem; margin-bottom: 0.5rem;">
-          Google Web Fonts</h3>
-        <p>Diese Seite nutzt zur einheitlichen Darstellung von Schriftarten so genannte Web Fonts, die von Google
-          bereitgestellt werden. Beim Aufruf einer Seite lädt dein Browser die benötigten Web Fonts in deinen
-          Browsercache, um Texte und Schriftarten korrekt anzuzeigen. Wenn dein Browser Web Fonts nicht unterstützt,
-          wird eine Standardschrift von deinem Computer genutzt.</p>
-        <p>Weitere Informationen zu Google Web Fonts findest du unter <a href="https://developers.google.com/fonts/faq"
-            target="_blank" rel="noopener noreferrer"
-            style="color: var(--fern); text-decoration: underline;">https://developers.google.com/fonts/faq</a> und in
-          der Datenschutzerklärung von Google: <a href="https://policies.google.com/privacy" target="_blank"
-            rel="noopener noreferrer"
-            style="color: var(--fern); text-decoration: underline;">https://policies.google.com/privacy</a></p>
+        <h3 style="font-family: var(--font-display); font-size: 1.3rem; font-weight: 600; color: var(--bark); margin-top: 1.5rem; margin-bottom: 0.5rem;">Google Web Fonts</h3>
+        <p>Diese Seite nutzt zur einheitlichen Darstellung von Schriftarten so genannte Web Fonts, die von Google bereitgestellt werden. Beim Aufruf einer Seite lädt dein Browser die benötigten Web Fonts in deinen Browsercache, um Texte und Schriftarten korrekt anzuzeigen. Wenn dein Browser Web Fonts nicht unterstützt, wird eine Standardschrift von deinem Computer genutzt.</p>
+        <p>Weitere Informationen zu Google Web Fonts findest du unter <a href="https://developers.google.com/fonts/faq" target="_blank" rel="noopener noreferrer" style="color: var(--fern); text-decoration: underline;">https://developers.google.com/fonts/faq</a> und in der Datenschutzerklärung von Google: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" style="color: var(--fern); text-decoration: underline;">https://policies.google.com/privacy</a></p>
 
-        <h3
-          style="font-family: var(--font-display); font-size: 1.3rem; font-weight: 600; color: var(--bark); margin-top: 1.5rem; margin-bottom: 0.5rem;">
-          Imgix (Content Delivery Network)</h3>
-        <p>Wir nutzen das Content Delivery Network (CDN) Imgix, um Bilder (z. B. Logos und Team-Fotos) auf unserer
-          Website schnell und geräteübergreifend optimiert auszuliefern. Ein CDN ist ein Netzwerk regional verteilter
-          und über das Internet verbundener Server. Durch die Nutzung werden technische Daten, wie deine IP-Adresse, an
-          Server von Imgix übertragen. Anbieter ist die Zebrafish Labs, Inc. (Imgix), 423 Washington St, San Francisco,
-          CA 94111, USA.</p>
-        <p>Weitere Informationen findest du in der Datenschutzerklärung von Imgix: <a href="https://imgix.com/privacy"
-            target="_blank" rel="noopener noreferrer"
-            style="color: var(--fern); text-decoration: underline;">https://imgix.com/privacy</a></p>
+        <h3 style="font-family: var(--font-display); font-size: 1.3rem; font-weight: 600; color: var(--bark); margin-top: 1.5rem; margin-bottom: 0.5rem;">Imgix (Content Delivery Network)</h3>
+        <p>Wir nutzen das Content Delivery Network (CDN) Imgix, um Bilder (z. B. Logos und Team-Fotos) auf unserer Website schnell und geräteübergreifend optimiert auszuliefern. Ein CDN ist ein Netzwerk regional verteilter und über das Internet verbundener Server. Durch die Nutzung werden technische Daten, wie deine IP-Adresse, an Server von Imgix übertragen. Anbieter ist die Zebrafish Labs, Inc. (Imgix), 423 Washington St, San Francisco, CA 94111, USA.</p>
+        <p>Weitere Informationen findest du in der Datenschutzerklärung von Imgix: <a href="https://imgix.com/privacy" target="_blank" rel="noopener noreferrer" style="color: var(--fern); text-decoration: underline;">https://imgix.com/privacy</a></p>
 
-        <p
-          style="margin-top: 2rem; font-style: italic; color: rgba(244, 239, 228, 0.7); background: var(--bark); padding: 1rem; border-radius: 4px;">
-          Wenn du auf Nummer sicher gehen möchtest, kannst du bezüglich der US-Dienste (Google, Formspree, Imgix)
-          zusätzlich ein sogenanntes Cookie-Banner (Consent-Tool) auf deiner Seite einrichten. Damit holst du dir aktiv
-          die Zustimmung der Nutzer ein, bevor Google Maps oder die externen Bilder geladen werden.</p>
+        <p style="margin-top: 2rem; font-style: italic; color: rgba(244, 239, 228, 0.7); background: var(--bark); padding: 1rem; border-radius: 4px;">Wenn du auf Nummer sicher gehen möchtest, kannst du bezüglich der US-Dienste (Google, Formspree, Imgix) zusätzlich ein sogenanntes Cookie-Banner (Consent-Tool) auf deiner Seite einrichten. Damit holst du dir aktiv die Zustimmung der Nutzer ein, bevor Google Maps oder die externen Bilder geladen werden.</p>
       </div>
     </div>
   </section>
+            alt="Grenzregion Polen Brandenburg" style="height:100%;object-fit:cover;" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SPENDEN ─────────────────────────────────────────────── -->
+  <section id="spenden">
+    <div class="container">
+      <div class="spenden-inner">
+        <p class="eyebrow" style="color:var(--sage); text-align:center;">Non-Profit Initiative</p>
+        <h2 class="section-title">Deine Spende<br /><em>macht's möglich</em></h2>
+        <p class="lead">Als Non-Profit-Projekt sind wir auf Unterstützung angewiesen. Spenden an die
+          Naturschutzinitiative e.V. (NI) sind steuerlich absetzbar.</p>
+
+        <div class="iban-box">
+          <div class="iban-row">
+            <div class="iban-label">Empfänger</div>
+            <div class="iban-value">
+              <img src="NI-Logo_weissraum_4k_rgb.png" alt="Naturschutzinitiative e.V. Logo" loading="lazy"
+                style="height:96px; width:auto; object-fit:contain; margin-bottom:0.5rem; display:block;" />
+              Naturschutzinitiative e.V. (NI)
+            </div>
+          </div>
+          <div class="iban-row">
+            <div class="iban-label">IBAN</div>
+            <div class="iban-value">DE83 5739 1800 0011 5018 00</div>
+          </div>
+          <div class="iban-row">
+            <div class="iban-label">Verwendungszweck (Pflicht!)</div>
+            <div class="iban-value" style="color:var(--sand)">Coexistence Walk</div>
+          </div>
+          <!-- Fix 8: Donation impact -->
+          <div
+            style="margin-top:1.25rem; padding-top:1.25rem; border-top:1px solid rgba(255,255,255,0.08); font-size:0.85rem; color:rgba(244,239,228,0.6); display:flex; flex-direction:column; gap:0.4rem;">
+            <div>Wir müssen die Referenten und Seminarräume bezahlen und würden uns deswegen über Spenden sehr freuen.
+            </div>
+          </div>
+        </div>
+
+        <a href="https://naturschutz-initiative.de/" target="_blank" class="btn btn-primary"
+          style="margin:0 auto; display:inline-flex;">
+          Zur offiziellen Website →
+        </a>
+        <p class="iban-notice">
+          Die Naturschutzinitiative e.V. (NI) unterstützt die Initiative als strategischer Partner<br />
+          bei der Verwaltung der Fördergelder. Spenden sind steuerlich absetzbar.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FAQ ────────────────────────────────────────────────── -->
+  <section id="faq" class="section" style="background:var(--cream);">
+    <div class="container">
+      <p class="eyebrow reveal">Fragen & Antworten</p>
+      <h2 class="section-title reveal">FAQ – COEXISTENCE<br /><em>WALK 2026</em></h2>
+      <div class="divider reveal"></div>
+
+      <div class="faq-grid reveal reveal-delay-1"
+        style="display:flex; flex-direction:column; gap:2rem; max-width:800px; margin:0 auto;">
+
+        <div>
+          <h3
+            style="color:var(--bark); border-bottom:1px solid rgba(45,36,22,0.1); padding-bottom:0.5rem; margin-bottom:1rem;">
+            Allgemeines zum Projekt</h3>
+          <div style="margin-bottom:1.5rem;">
+            <strong>Was ist der COEXISTENCE WALK?</strong>
+            <p style="margin-top:0.5rem;">Der COEXISTENCE WALK ist eine mehrtägige Wander- und Dialoginitiative, die zur
+              Projekteröffnung vom 29. Mai bis zum 04. Juni 2026 stattfindet. Unter dem Motto „Neue Wege auf alten
+              Pfaden“ wandern wir von Westpolen (Schwedt/Oder) nach Brandenburg (Liepe), um eine sachliche und emotional
+              ausgewogene Debatte über das Zusammenleben von Mensch und Wolf zu fördern.</p>
+          </div>
+          <div style="margin-bottom:1.5rem;">
+            <strong>Ist dies eine Demonstration gegen oder für den Wolf?</strong>
+            <p style="margin-top:0.5rem;">Nein. Wir grenzen uns bewusst von öffentlichen Protestkundgebungen oder
+              Demonstrationen ab. Der Walk ist eine Dialoginitiative. Unser Ziel ist nicht der Konflikt, sondern der
+              Aufbau von Brücken zwischen Fachleuten, Medien und der Öffentlichkeit durch deeskalierende und
+              evidenzbasierte Kommunikation. Allerdings sind wir mit der überwiegend Interessen geleiteten Art und
+              Weise, wie aktuell über den Umgang mit dem Wolf entschieden wird, nicht einverstanden! Insbesondere
+              Maßnahmen wie die Bejagung stehen vielfach im Widerspruch zu einem ausgewogenen, zukunftsfähigen Umgang
+              mit „dem Rest“ unserer natürlichen Umwelt. Wir suchen Wege zur gesicherten Koexistenz, deshalb steht die
+              eine einfache, aber entscheidende Frage im Mittelpunkt: Wie kann ein tragfähiges Zusammenleben von Mensch
+              und Wolf (und anderen Arten) zukunftssicher gelingen?</p>
+          </div>
+          <div style="margin-bottom:1.5rem;">
+            <strong>Warum findet der erste Walk ausgerechnet im Grenzgebiet Polen/Brandenburg statt?</strong>
+            <p style="margin-top:0.5rem;">Der Ort ist symbolisch gewählt. Er steht für die eigenständige Rückkehr der
+              Wölfe nach dem Fall des „Eisernen Vorhangs“. Wir nutzen das Umfeld des „Grünen Bands“, um den historischen
+              Kontext mit zukünftigen Lösungen für eine tragfähige Koexistenz zu verknüpfen.</p>
+          </div>
+        </div>
+
+        <div>
+          <h3
+            style="color:var(--bark); border-bottom:1px solid rgba(45,36,22,0.1); padding-bottom:0.5rem; margin-bottom:1rem;">
+            Teilnahme & Ablauf</h3>
+          <div style="margin-bottom:1.5rem;">
+            <strong>Kann ich als Privatperson mitwandern?</strong>
+            <p style="margin-top:0.5rem;">Ja, es bestehen konkrete Beteiligungsangebote für die Öffentlichkeit im Rahmen
+              unserer partizipativen Kampagne. Es gibt ein externes Teilnehmermanagement, über das du dich für die
+              Wandergruppe anmelden kannst (zum Kontakt-/ Anmeldeformular oder Telefon/WhatsApp +49 151 59207010).</p>
+          </div>
+          <div style="margin-bottom:1.5rem;">
+            <strong>Wie sieht ein typischer Tag beim COEXISTENCE WALK aus?</strong>
+            <p style="margin-top:0.5rem;">Der Tag ist zweigeteilt: Vormittags und nachmittags finden geführte
+              Wanderetappen (Exkursionen) auf Feld- und Waldwegen statt, bei denen es thematische Impulse gibt. Im
+              Anschluss folgen Fachveranstaltungen mit wissenschaftlichen Fakten, Erfahrungsberichten und moderierten
+              Diskussionen (siehe Verlaufs-/Programmplanung).</p>
+          </div>
+          <div style="margin-bottom:1.5rem;">
+            <strong>Was passiert bei schlechtem Wetter?</strong>
+            <p style="margin-top:0.5rem;">Keine Sorge, unsere Logistikplanung umfasst Alternativrouten und
+              Transportoptionen, falls das Wetter eine Wanderung unmöglich macht.</p>
+          </div>
+        </div>
+
+        <div>
+          <h3
+            style="color:var(--bark); border-bottom:1px solid rgba(45,36,22,0.1); padding-bottom:0.5rem; margin-bottom:1rem;">
+            Logistik & Sicherheit</h3>
+          <div style="margin-bottom:1.5rem;">
+            <strong>Wie ist die Versorgung während der Wanderung geregelt?</strong>
+            <p style="margin-top:0.5rem;">Ein Begleitfahrzeug stellt Wasser, Snacks und Erste-Hilfe-Material bereit.
+              Zudem organisieren wir die Verpflegung sowie den Gepäcktransfer zwischen den Unterkünften.</p>
+          </div>
+          <div style="margin-bottom:1.5rem;">
+            <strong>Gibt es ein Notfallmanagement?</strong>
+            <p style="margin-top:0.5rem;">Ja. Wir haben ein festes Notfallmanagement für Mensch und Hund. Ein
+              Shuttlefahrzeug ist jederzeit verfügbar, und wir stehen in Kontakt mit örtlichen Rettungsdiensten und
+              Tierärzten.</p>
+          </div>
+          <div style="margin-bottom:1.5rem;">
+            <strong>Wer trägt die Kosten für das Projekt?</strong>
+            <p style="margin-top:0.5rem;">Der COEXISTENCE WALK ist ein Non-Profit-Projekt. Übernachtungs- und
+              Verpflegungskosten tragen die Teilnehmer selbst. Die Finanzierung von z.B. Tagungsräumen,
+              Referentenaufwendungen etc. erfolgt unter anderem über ein Spendenkonto, das mit Unterstützung des Vereins
+              Naturschutzinitiative e.V. (NI) eingerichtet wurde. Die Teilnahme an den Veranstaltungen ist grundsätzlich
+              kostenfrei. Für eine langfristige Finanzierung sind wir dennoch auf Spenden angewiesen.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── KONTAKT / ANMELDUNG ────────────────────────────────── -->
+  <section id="kontakt" class="section">
+    <div class="container">
+      <p class="eyebrow reveal">Anmeldung & Kontakt</p>
+      <h2 class="section-title reveal">Dabei<em>sein</em></h2>
+      <div class="divider reveal"></div>
+
+      <div class="kontakt-grid">
+        <div class="kontakt-info reveal">
+          <h3>Kontakt für Medien & Partner</h3>
+          <p>Sie sind Journalist oder möchten als Partner (innerhalb der Interessengemeinschaft / IG) Teil des Netzwerks
+            werden? Wenden Sie sich bitte an unser Medienteam (Ralf Meurer unter Telefon/WhatsApp +49 151 59207010) oder
+            die Projektleitung (Peter Nawrath unter Telefon/WhatsApp +49 179 7337535) für Hintergrundgespräche und
+            Pressematerial.</p>
+
+          <div class="kontakt-detail">
+            <div class="kontakt-detail-icon">
+              <svg viewBox="0 0 24 24">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                <line x1="16" y1="2" x2="16" y2="6" />
+                <line x1="8" y1="2" x2="8" y2="6" />
+                <line x1="3" y1="10" x2="21" y2="10" />
+              </svg>
+            </div>
+            <div class="kontakt-detail-text">
+              <strong>Zeitraum</strong>
+              29. Mai – 04. Juni 2026
+            </div>
+          </div>
+
+          <div class="kontakt-detail">
+            <div class="kontakt-detail-icon">
+              <svg viewBox="0 0 24 24">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+            </div>
+            <div class="kontakt-detail-text">
+              <strong>Region</strong>
+              Polen / Brandenburg<br />Schwedt/Oder bis Liepe
+            </div>
+          </div>
+
+          <div class="kontakt-detail">
+            <div class="kontakt-detail-icon">
+              <svg viewBox="0 0 24 24">
+                <path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71" />
+                <path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71" />
+              </svg>
+            </div>
+            <div class="kontakt-detail-text">
+              <strong>Website</strong>
+              <a href="https://www.coexistence-walk.de" target="_blank"
+                style="color:var(--fern);">www.coexistence-walk.de</a>
+            </div>
+          </div>
+
+          <div class="kontakt-detail">
+            <div class="kontakt-detail-icon">
+              <svg viewBox="0 0 24 24">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                <polyline points="22,6 12,13 2,6" />
+              </svg>
+            </div>
+            <div class="kontakt-detail-text">
+              <strong>Anmeldung</strong>
+              Ab sofort über die Website oder das nebenstehende Formular
+            </div>
+          </div>
+
+          <div style="margin-top:2.5rem;">
+            <p class="eyebrow" style="margin-bottom:0.75rem;">Folge uns</p>
+            <div class="footer-hashtags">
+              <span class="hashtag">#CoexistenceWalk</span>
+              <span class="hashtag">#Wolf</span>
+              <span class="hashtag">#Naturschutz</span>
+              <span class="hashtag">#Brandenburg</span>
+              <span class="hashtag">#Dialog</span>
+              <span class="hashtag">#MenschUndNatur</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="anmeldung-box reveal reveal-delay-1">
+          <h3>Jetzt anmelden</h3>
+          <p>Fülle das Formular aus – wir melden uns zeitnah bei dir.</p>
+
+          <form action="https://formspree.io/f/xgorblbb" method="POST">
+            <input type="hidden" name="_subject" value="Neue Anmeldung – Coexistence Walk" />
+            <input type="hidden" name="_redirect" value="https://www.coexistence-walk.de/danke.html" />
+            <input type="hidden" name="_captcha" value="false" />
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>Vorname & Nachname</label>
+                <input type="text" name="name" placeholder="Max Mustermann" required />
+              </div>
+              <div class="form-group">
+                <label>E-Mail-Adresse</label>
+                <input type="email" name="email" placeholder="deine@email.de" required />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Telefonnummer (für Notfälle vor Ort)</label>
+              <input type="tel" name="telefon" placeholder="+49 ..." required />
+            </div>
+
+            <div class="form-group">
+              <label>Ich möchte teilnehmen am:</label>
+              <div style="display:flex; flex-direction:column; gap:0.5rem; margin-top:0.5rem;">
+                <label style="font-weight:normal; display:flex; align-items:center; gap:0.5rem; cursor:pointer;">
+                  <input type="radio" name="teilnahme" value="Gesamter Zeitraum (29.05. – 04.06.2026)" required />
+                  <span>Gesamter Zeitraum (29.05. – 04.06.2026)</span>
+                </label>
+                <label style="font-weight:normal; display:flex; align-items:center; gap:0.5rem; cursor:pointer;">
+                  <input type="radio" name="teilnahme" value="Einzelne Etappen" id="einzelneEtappenRadio" required />
+                  <span>Einzelne Etappen</span>
+                </label>
+                <input type="text" name="einzelne_etappen_datum"
+                  placeholder="Bitte Datum angeben (z.B. 30.05. - 31.05.)" style="margin-top:0.25rem; display:none;"
+                  id="einzelneEtappenInput" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Logistik & Sicherheit</label>
+              <div
+                style="display:flex; flex-direction:column; gap:1rem; margin-top:0.5rem; background:rgba(255,255,255,0.4); padding:1.25rem; border-radius:6px; border:1px solid rgba(0,0,0,0.05);">
+                <div>
+                  <span style="font-size:0.9rem; color:var(--bark); font-weight:500;">Wandert ein Hund mit?</span>
+                  <div style="display:flex; gap:1.5rem; margin-top:0.5rem;">
+                    <label style="font-weight:normal; display:flex; align-items:center; gap:0.4rem; cursor:pointer;">
+                      <input type="radio" name="hund" value="Ja" required /> Ja
+                    </label>
+                    <label style="font-weight:normal; display:flex; align-items:center; gap:0.4rem; cursor:pointer;">
+                      <input type="radio" name="hund" value="Nein" required /> Nein
+                    </label>
+                  </div>
+                </div>
+                <hr style="border:none; border-top:1px solid rgba(0,0,0,0.06); margin:0;" />
+                <div>
+                  <span style="font-size:0.9rem; color:var(--bark); font-weight:500;">Benötigen Sie einen
+                    Gepäcktransfer?</span>
+                  <div style="display:flex; gap:1.5rem; margin-top:0.5rem;">
+                    <label style="font-weight:normal; display:flex; align-items:center; gap:0.4rem; cursor:pointer;">
+                      <input type="radio" name="gepaeck" value="Ja" required /> Ja
+                    </label>
+                    <label style="font-weight:normal; display:flex; align-items:center; gap:0.4rem; cursor:pointer;">
+                      <input type="radio" name="gepaeck" value="Nein" required /> Nein
+                    </label>
+                  </div>
+                </div>
+                <div
+                  style="font-size:0.85rem; color:var(--sand); margin-top:0.2rem; display:flex; align-items:center; gap:0.4rem;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="8" x2="12" y2="12"></line>
+                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                  </svg>
+                  Beachte: Selbstverpflegung!
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Rechtliches</label>
+              <div
+                style="display:flex; flex-direction:column; gap:0.8rem; margin-top:0.5rem; background:rgba(255,255,255,0.4); padding:1.25rem; border-radius:6px; border:1px solid rgba(0,0,0,0.05);">
+                <label
+                  style="font-weight:normal; display:flex; align-items:flex-start; gap:0.6rem; font-size:0.85rem; line-height:1.4; cursor:pointer;">
+                  <input type="checkbox" name="privat_exkursion" required style="margin-top:0.15rem; flex-shrink:0;" />
+                  <span>Ich habe zur Kenntnis genommen, dass es sich um eine private Exkursion (Interessengemeinschaft)
+                    und nicht um eine Demonstration handelt.</span>
+                </label>
+                <label
+                  style="font-weight:normal; display:flex; align-items:flex-start; gap:0.6rem; font-size:0.85rem; line-height:1.4; cursor:pointer;">
+                  <input type="checkbox" name="unterkunft_selbstbuchung" required
+                    style="margin-top:0.15rem; flex-shrink:0;" />
+                  <span>Mir ist bewusst, dass Hotelzimmer oder sonstige Unterkünfte selbstständig und separat nach
+                    eigenen Wünschen gebucht werden müssen.</span>
+                </label>
+                <label
+                  style="font-weight:normal; display:flex; align-items:flex-start; gap:0.6rem; font-size:0.85rem; line-height:1.4; cursor:pointer;">
+                  <input type="checkbox" name="agb" required style="margin-top:0.15rem; flex-shrink:0;" />
+                  <span>Ich akzeptiere die <a href="teilnahmebedingungen.html" target="_blank"
+                      style="color:var(--fern); text-decoration:underline; text-underline-offset:2px;">Teilnahmebedingungen</a>
+                    und den Haftungsausschluss.</span>
+                </label>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary"
+              style="width:100%; justify-content:center; margin-top:0.5rem;">Anmeldung absenden</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── TEAM ──────────────────────────────────────────── -->
+  <section id="team" class="section">
+    <div class="container">
+      <p class="eyebrow reveal">Organisation</p>
+      <h2 class="section-title reveal reveal-delay-1">Das <em>Team</em></h2>
+      <div class="divider reveal reveal-delay-2"></div>
+
+      <div class="team-grid">
+
+        <div class="team-card reveal">
+          <div class="team-card-img-wrap">
+            <img src="https://69ef43b5abe5326bdb42135d.imgix.net/Peter%20Nawrath.png?auto=format&fit=fill&w=384"
+              alt="Peter Nawrath" loading="lazy" style="object-position: center 20%;" />
+          </div>
+          <div class="team-card-name">Peter Nawrath</div>
+        </div>
+
+        <div class="team-card reveal reveal-delay-1">
+          <div class="team-card-img-wrap">
+            <img src="https://69ef43b5abe5326bdb42135d.imgix.net/Ralf%20Peter%20Meurer_.png?auto=format&fit=fill&w=384"
+              alt="Ralf Peter Meurer" loading="lazy" />
+          </div>
+          <div class="team-card-name">Ralf Peter Meurer</div>
+        </div>
+
+        <div class="team-card reveal reveal-delay-2">
+          <div class="team-card-img-wrap">
+            <img src="https://69ef43b5abe5326bdb42135d.imgix.net/Martina%20Z%C3%B6llner.png?auto=format&fit=fill&w=384"
+              alt="Martina Zöllner" loading="lazy" />
+          </div>
+          <div class="team-card-name">Martina Zöllner</div>
+        </div>
+
+        <div class="team-card reveal reveal-delay-3">
+          <div class="team-card-img-wrap">
+            <img src="https://69ef43b5abe5326bdb42135d.imgix.net/Sabine%20Beerbaum.png?auto=format&fit=fill&w=384"
+              alt="Sabine Beerbaum" loading="lazy" />
+          </div>
+          <div class="team-card-name">Sabine Beerbaum</div>
+        </div>
+
+        <div class="team-card reveal">
+          <div class="team-card-img-wrap">
+            <img src="https://69ef43b5abe5326bdb42135d.imgix.net/Kevin%20Reutemann.png?auto=format&fit=fill&w=384"
+              alt="Kevin Reutemann" loading="lazy" />
+          </div>
+          <div class="team-card-name">Kevin Reutemann</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── UNTERSTÜTZER & PARTNER ───────────────────────────────── -->
+  <section id="partner-new" class="section">
+    <div class="container">
+      <p class="eyebrow reveal" style="text-align:center;">Netzwerk</p>
+      <h2 class="section-title reveal reveal-delay-1" style="text-align:center;">Unterstützer &amp; <em>Partner</em>
+      </h2>
+      <div class="divider reveal reveal-delay-2" style="margin-left:auto; margin-right:auto;"></div>
+
+      <div class="partner-grid-new reveal reveal-delay-3">
+
+        <a href="https://naturschutz-initiative.de/" target="_blank" rel="noopener noreferrer"
+          aria-label="Naturschutzinitiative e.V. (NI)">
+          <img src="NI-Logo_weissraum_4k_rgb.png" alt="Naturschutzinitiative e.V. (NI)" loading="lazy" />
+          <span class="partner-name">Naturschutzinitiative e.V. (NI)</span>
+        </a>
+
+        <a href="https://www.gzsdw.de/" target="_blank" rel="noopener noreferrer"
+          aria-label="Gesellschaft zum Schutz der Wölfe e.V.">
+          <img
+            src="https://69ef43b5abe5326bdb42135d.imgix.net/Gesellschaft_zum_Schutz_der_Woelfe_e_V_Logo.jpeg?auto=format&fit=fill&w=384"
+            alt="Gesellschaft zum Schutz der Wölfe e.V." loading="lazy" />
+          <span class="partner-name">Ges. z. Schutz der Wölfe e.V.</span>
+        </a>
+
+        <a href="#partner-new" aria-label="Sabine's Hundeschule">
+          <img src="https://69ef43b5abe5326bdb42135d.imgix.net/Sabine_Hundeschule.jpeg?auto=format&fit=fill&w=384"
+            alt="Sabine's Hundeschule" loading="lazy" />
+          <span class="partner-name">Sabine's Hundeschule</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── FOOTER ─────────────────────────────────────────────── -->
   <footer>
     <div class="container">
       <div class="footer-top">
@@ -1950,19 +2237,19 @@
         <div class="footer-links">
           <h4>Navigation</h4>
           <ul>
-            <li><a href="index.html#about">Über die Initiative</a></li>
-            <li><a href="index.html#route">Route & Stationen</a></li>
-            <li><a href="index.html#programm">Programm</a></li>
-            <li><a href="index.html#referenten">Referent:innen</a></li>
-            <li><a href="index.html#mitmachen">Mitmachen</a></li>
+            <li><a href="#about">Über die Initiative</a></li>
+            <li><a href="#route">Route & Stationen</a></li>
+            <li><a href="#programm">Programm</a></li>
+            <li><a href="#referenten">Referent:innen</a></li>
+            <li><a href="#mitmachen">Mitmachen</a></li>
           </ul>
         </div>
 
         <div class="footer-links">
           <h4>Unterstützen</h4>
           <ul>
-            <li><a href="index.html#spenden">Spenden</a></li>
-            <li><a href="index.html#kontakt">Anmeldung</a></li>
+            <li><a href="#spenden">Spenden</a></li>
+            <li><a href="#kontakt">Anmeldung</a></li>
             <li><a href="https://www.coexistence-walk.de" target="_blank">www.coexistence-walk.de</a></li>
           </ul>
           <div style="margin-top:1.5rem;">
@@ -1977,18 +2264,20 @@
       </div>
 
       <div class="footer-bottom">
-        <span>© 2026 COEXISTENCE WALK – Interessengemeinschaft;</span>
+        <span>© 2026 COEXISTENCE WALK – Interessengemeinschaft</span>
         <div style="display:flex; gap:1.5rem;">
           <a href="impressum.html" style="text-decoration: underline; color: rgba(244, 239, 228, 0.7);">Impressum</a>
           <a href="datenschutz.html"
             style="text-decoration: underline; color: rgba(244, 239, 228, 0.7);">Datenschutzerklärung</a>
+          <a href="teilnahmebedingungen.html"
+            style="text-decoration: underline; color: rgba(244, 239, 228, 0.7);">Teilnahmebedingungen</a>
         </div>
       </div>
     </div>
   </footer>
 
   <!-- ─── Fix 3: STICKY CTA ─────────────────────────────────── -->
-  <a href="index.html#kontakt" class="sticky-btn" id="stickyBtn">
+  <a href="#kontakt" class="sticky-btn" id="stickyBtn">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
       <path d="M5 12h14M12 5l7 7-7 7" />
     </svg>
@@ -2036,6 +2325,24 @@
     document.getElementById('hambBtn').addEventListener('click', () => {
       document.querySelector('.nav-links').classList.toggle('nav-open');
     });
+    // Anmeldeformular Einzelne Etappen Toggle
+    const radioEinzeln = document.getElementById('einzelneEtappenRadio');
+    const inputEinzeln = document.getElementById('einzelneEtappenInput');
+    const radioGesamt = document.querySelector('input[name="teilnahme"][value="Gesamter Zeitraum (29.05. – 04.06.2026)"]');
+    if (radioEinzeln && radioGesamt && inputEinzeln) {
+      radioEinzeln.addEventListener('change', () => { if (radioEinzeln.checked) inputEinzeln.style.display = 'block'; });
+      radioGesamt.addEventListener('change', () => { if (radioGesamt.checked) inputEinzeln.style.display = 'none'; });
+    }
+
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
   </script>
 </body>
 
