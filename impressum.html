@@ -2343,12 +2343,14 @@
 
       <div class="footer-bottom">
         <span>© 2026 COEXISTENCE WALK – Interessengemeinschaft</span>
-        <div style="display:flex; gap:1.5rem;">
+        <div style="display:flex; gap:1.5rem; flex-wrap:wrap; justify-content:flex-end;">
           <a href="impressum.html" style="text-decoration: underline; color: rgba(244, 239, 228, 0.7);">Impressum</a>
           <a href="datenschutz.html"
             style="text-decoration: underline; color: rgba(244, 239, 228, 0.7);">Datenschutzerklärung</a>
           <a href="teilnahmebedingungen.html"
             style="text-decoration: underline; color: rgba(244, 239, 228, 0.7);">Teilnahmebedingungen</a>
+          <a href="#" onclick="openCookieSettings(); return false;"
+            style="text-decoration: underline; color: rgba(142, 168, 112, 0.8);" id="footer-cookie-settings">Cookie-Einstellungen</a>
         </div>
       </div>
     </div>
@@ -2363,7 +2365,7 @@
   </a>
 
   <!-- ─── COOKIE BANNER ───────────────────────────────────────── -->
-  <div id="cookie-banner" aria-label="Cookie-Einstellungen" role="dialog" aria-modal="true">
+  <div id="cookie-banner" aria-label="Cookie-Einstellungen" role="dialog" aria-modal="true" aria-live="polite">
     <div class="cb-inner">
       <div class="cb-header">
         <div class="cb-icon">
@@ -2371,44 +2373,35 @@
         </div>
         <h3 class="cb-title">Privatsphäre &amp; Cookies</h3>
       </div>
-      <p class="cb-text">Wir verwenden Cookies und externe Dienste (YouTube, Google Maps). Einige sind notwendig, andere helfen uns bei Analyse &amp; Darstellung. Bitte wähle, welche du zulassen möchtest.</p>
+      <p class="cb-text">Diese Website verwendet ausschließlich technisch notwendige Cookies. Eingebettete Inhalte von Drittanbietern (YouTube, Google Maps) werden erst nach deiner Einwilligung geladen und übertragen dabei Daten an den jeweiligen Anbieter.</p>
       <div class="cb-options">
         <label class="cb-option cb-option--disabled">
-          <span class="cb-toggle cb-toggle--active">
+          <span class="cb-toggle cb-toggle--active" aria-checked="true" role="checkbox">
             <span class="cb-toggle-knob"></span>
           </span>
           <span class="cb-option-info">
             <strong>Notwendig</strong>
-            <span>Immer aktiv – für den Betrieb der Website erforderlich</span>
-          </span>
-        </label>
-        <label class="cb-option" for="cb-analytics">
-          <span class="cb-toggle" id="cb-analytics-toggle">
-            <span class="cb-toggle-knob"></span>
-          </span>
-          <input type="checkbox" id="cb-analytics" style="display:none;">
-          <span class="cb-option-info">
-            <strong>Statistik</strong>
-            <span>Helfen uns zu verstehen, wie Besucher die Website nutzen</span>
+            <span>Immer aktiv – für den Betrieb der Website erforderlich (kein Tracking)</span>
           </span>
         </label>
         <label class="cb-option" for="cb-marketing">
-          <span class="cb-toggle" id="cb-marketing-toggle">
+          <span class="cb-toggle" id="cb-marketing-toggle" role="checkbox" aria-checked="false" tabindex="0">
             <span class="cb-toggle-knob"></span>
           </span>
           <input type="checkbox" id="cb-marketing" style="display:none;">
           <span class="cb-option-info">
-            <strong>Marketing</strong>
-            <span>Für eingebettete Inhalte (YouTube, Google Maps)</span>
+            <strong>Externe Medien</strong>
+            <span>YouTube &amp; Google Maps – Daten werden an Google LLC (USA) übertragen</span>
           </span>
         </label>
       </div>
       <div class="cb-actions">
+        <button class="cb-btn cb-btn--reject" id="cb-reject-btn">Alle ablehnen</button>
         <button class="cb-btn cb-btn--outline" id="cb-save-btn">Auswahl speichern</button>
         <button class="cb-btn cb-btn--primary" id="cb-accept-btn">Alle akzeptieren</button>
       </div>
       <div class="cb-footer-links">
-        <a href="datenschutz.html" target="_blank" rel="noopener noreferrer">Datenschutz</a>
+        <a href="datenschutz.html" target="_blank" rel="noopener noreferrer">Datenschutzerklärung</a>
         <a href="impressum.html" target="_blank" rel="noopener noreferrer">Impressum</a>
       </div>
     </div>
@@ -2477,26 +2470,72 @@
 
   <!-- ─── COOKIE CONSENT LOGIC ─────────────────────────────── -->
   <script>
-    // ── Helpers ────────────────────────────────────────────────
+    // ════════════════════════════════════════════════════════════
+    // CMP – Consent Management (DSGVO-konform)
+    // Blockierungs-Modus: Drittanbieter-Inhalte werden erst nach
+    // aktiver Einwilligung geladen.
+    // ════════════════════════════════════════════════════════════
+
+    const CONSENT_KEY = 'cmp_consent_v2';
+
     function setConsent(consent) {
-      localStorage.setItem('cookieConsent', JSON.stringify(consent));
+      consent.timestamp = new Date().toISOString();
+      consent.version = '2';
+      localStorage.setItem(CONSENT_KEY, JSON.stringify(consent));
     }
+
     function getConsent() {
-      const raw = localStorage.getItem('cookieConsent');
-      return raw ? JSON.parse(raw) : null;
+      const raw = localStorage.getItem(CONSENT_KEY);
+      // Migrate old key
+      if (!raw) {
+        const old = localStorage.getItem('cookieConsent');
+        if (old) {
+          const parsed = JSON.parse(old);
+          setConsent(parsed);
+          localStorage.removeItem('cookieConsent');
+          return parsed;
+        }
+        return null;
+      }
+      return JSON.parse(raw);
     }
 
     // ── Toggle UI ───────────────────────────────────────────────
     function initToggle(toggleEl, inputEl) {
-      toggleEl.addEventListener('click', () => {
+      function toggle() {
         inputEl.checked = !inputEl.checked;
-        toggleEl.classList.toggle('cb-toggle--active', inputEl.checked);
+        const active = inputEl.checked;
+        toggleEl.classList.toggle('cb-toggle--active', active);
+        toggleEl.setAttribute('aria-checked', String(active));
+      }
+      toggleEl.addEventListener('click', toggle);
+      toggleEl.addEventListener('keydown', (e) => {
+        if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); toggle(); }
       });
     }
-    initToggle(document.getElementById('cb-analytics-toggle'), document.getElementById('cb-analytics'));
     initToggle(document.getElementById('cb-marketing-toggle'), document.getElementById('cb-marketing'));
 
-    // ── Load embeds when marketing consent given ────────────────
+    // ── Drittanbieter-Blockierung (Blocking Mode) ───────────────
+    // Externe Skripte & Embeds werden erst nach Consent geladen.
+    // Netlify Identity: nur bei Bedarf (Admin-Bereich)
+    function loadNetlifyIdentity() {
+      if (window.netlifyIdentityLoaded) return;
+      window.netlifyIdentityLoaded = true;
+      const s = document.createElement('script');
+      s.src = 'https://identity.netlify.com/v1/netlify-identity-widget.js';
+      s.onload = () => {
+        if (window.netlifyIdentity) {
+          window.netlifyIdentity.on('init', user => {
+            if (!user) {
+              window.netlifyIdentity.on('login', () => { document.location.href = '/admin/'; });
+            }
+          });
+        }
+      };
+      document.head.appendChild(s);
+    }
+
+    // YouTube & Google Maps Embeds
     function loadEmbeds() {
       // YouTube
       const ytPlaceholder = document.getElementById('yt-placeholder');
@@ -2512,28 +2551,36 @@
       }
     }
 
+    // ── Banner ein-/ausblenden ──────────────────────────────────
     function showCookieBanner() {
       document.getElementById('cookie-banner').classList.add('cb-visible');
       document.body.classList.add('cb-open');
+      // Fokus ins Banner setzen (Barrierefreiheit)
+      setTimeout(() => {
+        const firstBtn = document.querySelector('#cookie-banner .cb-btn');
+        if (firstBtn) firstBtn.focus();
+      }, 100);
     }
+
     function hideCookieBanner() {
       document.getElementById('cookie-banner').classList.remove('cb-visible');
       document.body.classList.remove('cb-open');
     }
 
-    // Accept all
-    document.getElementById('cb-accept-btn').addEventListener('click', () => {
-      const consent = { necessary: true, analytics: true, marketing: true };
+    // ── Button: Alle ablehnen ───────────────────────────────────
+    document.getElementById('cb-reject-btn').addEventListener('click', () => {
+      const consent = { necessary: true, analytics: false, marketing: false };
       setConsent(consent);
+      document.getElementById('cb-marketing').checked = false;
+      document.getElementById('cb-marketing-toggle').classList.remove('cb-toggle--active');
       hideCookieBanner();
-      loadEmbeds();
     });
 
-    // Save selection
+    // ── Button: Auswahl speichern ───────────────────────────────
     document.getElementById('cb-save-btn').addEventListener('click', () => {
       const consent = {
         necessary: true,
-        analytics: document.getElementById('cb-analytics').checked,
+        analytics: false, // kein Analytics eingebunden
         marketing: document.getElementById('cb-marketing').checked
       };
       setConsent(consent);
@@ -2541,26 +2588,58 @@
       if (consent.marketing) loadEmbeds();
     });
 
-    // Called by inline "Einwilligen" buttons on placeholders
+    // ── Button: Alle akzeptieren ────────────────────────────────
+    document.getElementById('cb-accept-btn').addEventListener('click', () => {
+      const consent = { necessary: true, analytics: true, marketing: true };
+      setConsent(consent);
+      // Toggle-UI aktualisieren
+      document.getElementById('cb-marketing').checked = true;
+      document.getElementById('cb-marketing-toggle').classList.add('cb-toggle--active');
+      hideCookieBanner();
+      loadEmbeds();
+    });
+
+    // ── Inline-Einwilligung (von Embed-Platzhaltern) ────────────
     function acceptMarketingAndLoadEmbeds() {
       const existing = getConsent() || { necessary: true, analytics: false };
       existing.marketing = true;
       setConsent(existing);
+      document.getElementById('cb-marketing').checked = true;
+      document.getElementById('cb-marketing-toggle').classList.add('cb-toggle--active');
       hideCookieBanner();
       loadEmbeds();
     }
 
-    // On page load
+    // ── Beim Laden der Seite ────────────────────────────────────
     window.addEventListener('DOMContentLoaded', () => {
       const consent = getConsent();
+
       if (!consent) {
-        // First visit – show banner
-        setTimeout(() => showCookieBanner(), 800);
+        // Erstbesuch – Banner anzeigen (ohne Verzögerung für DSGVO)
+        setTimeout(() => showCookieBanner(), 600);
       } else {
-        // Returning visitor – apply saved consent silently
+        // Wiederkehrender Besucher – gespeicherten Consent anwenden
         if (consent.marketing) loadEmbeds();
       }
+
+      // Netlify Identity nur laden wenn User auf Admin-Seite will
+      // (wird durch Hash-Link ausgelöst, nicht automatisch)
+      if (window.location.hash === '#netlify-identity') {
+        loadNetlifyIdentity();
+      }
     });
+
+    // Globale Funktion für Footer-Link "Cookie-Einstellungen"
+    window.openCookieSettings = function() {
+      const consent = getConsent();
+      if (consent && consent.marketing) {
+        document.getElementById('cb-marketing').checked = true;
+        document.getElementById('cb-marketing-toggle').classList.add('cb-toggle--active');
+        document.getElementById('cb-marketing-toggle').setAttribute('aria-checked', 'true');
+      }
+      showCookieBanner();
+      return false;
+    };
   </script>
 </body>
 

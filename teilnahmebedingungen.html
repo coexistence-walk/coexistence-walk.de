@@ -1936,13 +1936,15 @@
       </div>
 
       <div class="footer-bottom">
-        <span>© 2026 COEXISTENCE WALK – Interessengemeinschaft &amp;</span>
-        <div style="display:flex; gap:1.5rem;">
+        <span>© 2026 COEXISTENCE WALK – Interessengemeinschaft</span>
+        <div style="display:flex; gap:1.5rem; flex-wrap:wrap; justify-content:flex-end;">
           <a href="impressum.html" style="text-decoration: underline; color: rgba(244, 239, 228, 0.7);">Impressum</a>
           <a href="datenschutz.html"
             style="text-decoration: underline; color: rgba(244, 239, 228, 0.7);">Datenschutzerklärung</a>
           <a href="teilnahmebedingungen.html"
             style="text-decoration: underline; color: rgba(244, 239, 228, 0.7);">Teilnahmebedingungen</a>
+          <a href="#" onclick="openCookieSettings(); return false;"
+            style="text-decoration: underline; color: rgba(142, 168, 112, 0.8);" id="footer-cookie-settings">Cookie-Einstellungen</a>
         </div>
       </div>
     </div>
@@ -1997,6 +1999,283 @@
     document.getElementById('hambBtn').addEventListener('click', () => {
       document.querySelector('.nav-links').classList.toggle('nav-open');
     });
+  </script>
+<!-- ─── COOKIE BANNER ───────────────────────────────────────── -->
+  <div id="cookie-banner" aria-label="Cookie-Einstellungen" role="dialog" aria-modal="true" aria-live="polite">
+    <div class="cb-inner">
+      <div class="cb-header">
+        <div class="cb-icon">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+        </div>
+        <h3 class="cb-title">Privatsphäre &amp; Cookies</h3>
+      </div>
+      <p class="cb-text">Diese Website verwendet ausschließlich technisch notwendige Cookies. Eingebettete Inhalte von Drittanbietern (YouTube, Google Maps) werden erst nach deiner Einwilligung geladen und übertragen dabei Daten an den jeweiligen Anbieter.</p>
+      <div class="cb-options">
+        <label class="cb-option cb-option--disabled">
+          <span class="cb-toggle cb-toggle--active" aria-checked="true" role="checkbox">
+            <span class="cb-toggle-knob"></span>
+          </span>
+          <span class="cb-option-info">
+            <strong>Notwendig</strong>
+            <span>Immer aktiv – für den Betrieb der Website erforderlich (kein Tracking)</span>
+          </span>
+        </label>
+        <label class="cb-option" for="cb-marketing">
+          <span class="cb-toggle" id="cb-marketing-toggle" role="checkbox" aria-checked="false" tabindex="0">
+            <span class="cb-toggle-knob"></span>
+          </span>
+          <input type="checkbox" id="cb-marketing" style="display:none;">
+          <span class="cb-option-info">
+            <strong>Externe Medien</strong>
+            <span>YouTube &amp; Google Maps – Daten werden an Google LLC (USA) übertragen</span>
+          </span>
+        </label>
+      </div>
+      <div class="cb-actions">
+        <button class="cb-btn cb-btn--reject" id="cb-reject-btn">Alle ablehnen</button>
+        <button class="cb-btn cb-btn--outline" id="cb-save-btn">Auswahl speichern</button>
+        <button class="cb-btn cb-btn--primary" id="cb-accept-btn">Alle akzeptieren</button>
+      </div>
+      <div class="cb-footer-links">
+        <a href="datenschutz.html" target="_blank" rel="noopener noreferrer">Datenschutzerklärung</a>
+        <a href="impressum.html" target="_blank" rel="noopener noreferrer">Impressum</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── SCRIPTS ────────────────────────────────────────────── -->
+  <script>
+    // Navbar scroll effect + Sticky CTA + Progress Bar
+    const navbar = document.getElementById('navbar');
+    const stickyBtn = document.getElementById('stickyBtn');
+    const progressBar = document.getElementById('progressBar');
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      navbar.classList.toggle('scrolled', scrollY > 60);
+      stickyBtn.classList.toggle('show', scrollY > window.innerHeight * 0.6);
+      // Fix 6: progress bar
+      const height = document.body.scrollHeight - window.innerHeight;
+      progressBar.style.width = ((scrollY / height) * 100) + '%';
+    }, { passive: true });
+
+    // Program day tabs
+    document.getElementById('programDays').addEventListener('click', e => {
+      const tab = e.target.closest('.day-tab');
+      if (!tab) return;
+      document.querySelectorAll('.day-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.prog-panel').forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById(tab.dataset.panel).classList.add('active');
+    });
+
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Mobile nav
+    document.getElementById('hambBtn').addEventListener('click', () => {
+      document.querySelector('.nav-links').classList.toggle('nav-open');
+    });
+    // Anmeldeformular Einzelne Etappen Toggle
+    const radioEinzeln = document.getElementById('einzelneEtappenRadio');
+    const inputEinzeln = document.getElementById('einzelneEtappenInput');
+    const radioGesamt = document.querySelector('input[name="teilnahme"][value="Gesamter Zeitraum (29.05. – 04.06.2026)"]');
+    if (radioEinzeln && radioGesamt && inputEinzeln) {
+      radioEinzeln.addEventListener('change', () => { if (radioEinzeln.checked) inputEinzeln.style.display = 'block'; });
+      radioGesamt.addEventListener('change', () => { if (radioGesamt.checked) inputEinzeln.style.display = 'none'; });
+    }
+
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
+
+  <!-- ─── COOKIE CONSENT LOGIC ─────────────────────────────── -->
+  <script>
+    // ════════════════════════════════════════════════════════════
+    // CMP – Consent Management (DSGVO-konform)
+    // Blockierungs-Modus: Drittanbieter-Inhalte werden erst nach
+    // aktiver Einwilligung geladen.
+    // ════════════════════════════════════════════════════════════
+
+    const CONSENT_KEY = 'cmp_consent_v2';
+
+    function setConsent(consent) {
+      consent.timestamp = new Date().toISOString();
+      consent.version = '2';
+      localStorage.setItem(CONSENT_KEY, JSON.stringify(consent));
+    }
+
+    function getConsent() {
+      const raw = localStorage.getItem(CONSENT_KEY);
+      // Migrate old key
+      if (!raw) {
+        const old = localStorage.getItem('cookieConsent');
+        if (old) {
+          const parsed = JSON.parse(old);
+          setConsent(parsed);
+          localStorage.removeItem('cookieConsent');
+          return parsed;
+        }
+        return null;
+      }
+      return JSON.parse(raw);
+    }
+
+    // ── Toggle UI ───────────────────────────────────────────────
+    function initToggle(toggleEl, inputEl) {
+      function toggle() {
+        inputEl.checked = !inputEl.checked;
+        const active = inputEl.checked;
+        toggleEl.classList.toggle('cb-toggle--active', active);
+        toggleEl.setAttribute('aria-checked', String(active));
+      }
+      toggleEl.addEventListener('click', toggle);
+      toggleEl.addEventListener('keydown', (e) => {
+        if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); toggle(); }
+      });
+    }
+    initToggle(document.getElementById('cb-marketing-toggle'), document.getElementById('cb-marketing'));
+
+    // ── Drittanbieter-Blockierung (Blocking Mode) ───────────────
+    // Externe Skripte & Embeds werden erst nach Consent geladen.
+    // Netlify Identity: nur bei Bedarf (Admin-Bereich)
+    function loadNetlifyIdentity() {
+      if (window.netlifyIdentityLoaded) return;
+      window.netlifyIdentityLoaded = true;
+      const s = document.createElement('script');
+      s.src = 'https://identity.netlify.com/v1/netlify-identity-widget.js';
+      s.onload = () => {
+        if (window.netlifyIdentity) {
+          window.netlifyIdentity.on('init', user => {
+            if (!user) {
+              window.netlifyIdentity.on('login', () => { document.location.href = '/admin/'; });
+            }
+          });
+        }
+      };
+      document.head.appendChild(s);
+    }
+
+    // YouTube & Google Maps Embeds
+    function loadEmbeds() {
+      // YouTube
+      const ytPlaceholder = document.getElementById('yt-placeholder');
+      if (ytPlaceholder) {
+        const wrapper = document.getElementById('yt-wrapper');
+        wrapper.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/MQ13fP1Js8s?rel=0&modestbranding=1" title="Coexistence Walk – Introvideo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;"></iframe>';
+      }
+      // Google Maps
+      const mapsPlaceholder = document.getElementById('maps-placeholder');
+      if (mapsPlaceholder) {
+        const mapsWrapper = document.getElementById('maps-wrapper');
+        mapsWrapper.innerHTML = '<iframe src="https://www.google.com/maps/d/u/0/embed?mid=1cdY2sush3cqZQHjYv3aYtqN90N5G7vY&ehbc=2E312F&noprof=1" style="width:100%;height:380px;border:0;display:block;" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" title="Route Coexistence Walk 2026"></iframe>';
+      }
+    }
+
+    // ── Banner ein-/ausblenden ──────────────────────────────────
+    function showCookieBanner() {
+      document.getElementById('cookie-banner').classList.add('cb-visible');
+      document.body.classList.add('cb-open');
+      // Fokus ins Banner setzen (Barrierefreiheit)
+      setTimeout(() => {
+        const firstBtn = document.querySelector('#cookie-banner .cb-btn');
+        if (firstBtn) firstBtn.focus();
+      }, 100);
+    }
+
+    function hideCookieBanner() {
+      document.getElementById('cookie-banner').classList.remove('cb-visible');
+      document.body.classList.remove('cb-open');
+    }
+
+    // ── Button: Alle ablehnen ───────────────────────────────────
+    document.getElementById('cb-reject-btn').addEventListener('click', () => {
+      const consent = { necessary: true, analytics: false, marketing: false };
+      setConsent(consent);
+      document.getElementById('cb-marketing').checked = false;
+      document.getElementById('cb-marketing-toggle').classList.remove('cb-toggle--active');
+      hideCookieBanner();
+    });
+
+    // ── Button: Auswahl speichern ───────────────────────────────
+    document.getElementById('cb-save-btn').addEventListener('click', () => {
+      const consent = {
+        necessary: true,
+        analytics: false, // kein Analytics eingebunden
+        marketing: document.getElementById('cb-marketing').checked
+      };
+      setConsent(consent);
+      hideCookieBanner();
+      if (consent.marketing) loadEmbeds();
+    });
+
+    // ── Button: Alle akzeptieren ────────────────────────────────
+    document.getElementById('cb-accept-btn').addEventListener('click', () => {
+      const consent = { necessary: true, analytics: true, marketing: true };
+      setConsent(consent);
+      // Toggle-UI aktualisieren
+      document.getElementById('cb-marketing').checked = true;
+      document.getElementById('cb-marketing-toggle').classList.add('cb-toggle--active');
+      hideCookieBanner();
+      loadEmbeds();
+    });
+
+    // ── Inline-Einwilligung (von Embed-Platzhaltern) ────────────
+    function acceptMarketingAndLoadEmbeds() {
+      const existing = getConsent() || { necessary: true, analytics: false };
+      existing.marketing = true;
+      setConsent(existing);
+      document.getElementById('cb-marketing').checked = true;
+      document.getElementById('cb-marketing-toggle').classList.add('cb-toggle--active');
+      hideCookieBanner();
+      loadEmbeds();
+    }
+
+    // ── Beim Laden der Seite ────────────────────────────────────
+    window.addEventListener('DOMContentLoaded', () => {
+      const consent = getConsent();
+
+      if (!consent) {
+        // Erstbesuch – Banner anzeigen (ohne Verzögerung für DSGVO)
+        setTimeout(() => showCookieBanner(), 600);
+      } else {
+        // Wiederkehrender Besucher – gespeicherten Consent anwenden
+        if (consent.marketing) loadEmbeds();
+      }
+
+      // Netlify Identity nur laden wenn User auf Admin-Seite will
+      // (wird durch Hash-Link ausgelöst, nicht automatisch)
+      if (window.location.hash === '#netlify-identity') {
+        loadNetlifyIdentity();
+      }
+    });
+
+    // Globale Funktion für Footer-Link "Cookie-Einstellungen"
+    window.openCookieSettings = function() {
+      const consent = getConsent();
+      if (consent && consent.marketing) {
+        document.getElementById('cb-marketing').checked = true;
+        document.getElementById('cb-marketing-toggle').classList.add('cb-toggle--active');
+        document.getElementById('cb-marketing-toggle').setAttribute('aria-checked', 'true');
+      }
+      showCookieBanner();
+      return false;
+    };
   </script>
 </body>
 
