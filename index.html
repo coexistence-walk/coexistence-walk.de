@@ -1098,7 +1098,7 @@
           <h4>Navigation</h4>
           <ul>
             <li><a href="coexistence-walk-2026.html#about">Über die Initiative</a></li>
-            <li><a href="coexistence-walk-2026.html#route">Route &amp; Stationen</a></li>
+            <li><a href="coexistence-walk-2026.html#route">Route & Stationen</a></li>
             <li><a href="coexistence-walk-2026.html#programm">Programm</a></li>
             <li><a href="coexistence-walk-2026.html#referenten">Referent:innen</a></li>
             <li><a href="coexistence-walk-2026.html#mitmachen">Mitmachen</a></li>
@@ -1111,7 +1111,6 @@
             <li><a href="coexistence-walk-2026.html#spenden">Spenden</a></li>
             <li><a href="coexistence-walk-2026.html#kontakt">Anmeldung</a></li>
             <li><a href="https://www.coexistence-walk.de" target="_blank">www.coexistence-walk.de</a></li>
-            <li><a href="https://www.facebook.com/coexistencewalk/" target="_blank" rel="noopener noreferrer">Facebook: coexistencewalk</a></li>
           </ul>
           <div style="margin-top:1.5rem;">
             <h4>Spendenkonto</h4>
@@ -1292,16 +1291,21 @@
 
     // ── Toggle UI ───────────────────────────────────────────────
     function initToggle(toggleEl, inputEl) {
-      function toggle() {
-        inputEl.checked = !inputEl.checked;
+      if (!toggleEl || !inputEl) return;
+      function updateUI() {
         const active = inputEl.checked;
         toggleEl.classList.toggle('cb-toggle--active', active);
         toggleEl.setAttribute('aria-checked', String(active));
       }
-      toggleEl.addEventListener('click', toggle);
+      inputEl.addEventListener('change', updateUI);
       toggleEl.addEventListener('keydown', (e) => {
-        if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); toggle(); }
+        if (e.key === ' ' || e.key === 'Enter') {
+          e.preventDefault();
+          inputEl.checked = !inputEl.checked;
+          updateUI();
+        }
       });
+      updateUI();
     }
     initToggle(document.getElementById('cb-marketing-toggle'), document.getElementById('cb-marketing'));
 
@@ -1325,8 +1329,13 @@
     document.getElementById('cb-reject-btn').addEventListener('click', () => {
       const consent = { necessary: true, analytics: false, marketing: false };
       setConsent(consent);
-      document.getElementById('cb-marketing').checked = false;
-      document.getElementById('cb-marketing-toggle').classList.remove('cb-toggle--active');
+      const input = document.getElementById('cb-marketing');
+      const toggle = document.getElementById('cb-marketing-toggle');
+      if (input && toggle) {
+        input.checked = false;
+        toggle.classList.remove('cb-toggle--active');
+        toggle.setAttribute('aria-checked', 'false');
+      }
       hideCookieBanner();
     });
 
@@ -1345,9 +1354,13 @@
     document.getElementById('cb-accept-btn').addEventListener('click', () => {
       const consent = { necessary: true, analytics: true, marketing: true };
       setConsent(consent);
-      // Toggle-UI aktualisieren
-      document.getElementById('cb-marketing').checked = true;
-      document.getElementById('cb-marketing-toggle').classList.add('cb-toggle--active');
+      const input = document.getElementById('cb-marketing');
+      const toggle = document.getElementById('cb-marketing-toggle');
+      if (input && toggle) {
+        input.checked = true;
+        toggle.classList.add('cb-toggle--active');
+        toggle.setAttribute('aria-checked', 'true');
+      }
       hideCookieBanner();
     });
 
@@ -1358,16 +1371,28 @@
       if (!consent) {
         // Erstbesuch – Banner anzeigen (ohne Verzögerung für DSGVO)
         setTimeout(() => showCookieBanner(), 600);
+      } else {
+        const marketingActive = !!(consent && consent.marketing);
+        const input = document.getElementById('cb-marketing');
+        const toggle = document.getElementById('cb-marketing-toggle');
+        if (input && toggle) {
+          input.checked = marketingActive;
+          toggle.classList.toggle('cb-toggle--active', marketingActive);
+          toggle.setAttribute('aria-checked', String(marketingActive));
+        }
       }
     });
 
     // Globale Funktion für Footer-Link "Cookie-Einstellungen"
     window.openCookieSettings = function() {
       const consent = getConsent();
-      if (consent && consent.marketing) {
-        document.getElementById('cb-marketing').checked = true;
-        document.getElementById('cb-marketing-toggle').classList.add('cb-toggle--active');
-        document.getElementById('cb-marketing-toggle').setAttribute('aria-checked', 'true');
+      const marketingActive = !!(consent && consent.marketing);
+      const input = document.getElementById('cb-marketing');
+      const toggle = document.getElementById('cb-marketing-toggle');
+      if (input && toggle) {
+        input.checked = marketingActive;
+        toggle.classList.toggle('cb-toggle--active', marketingActive);
+        toggle.setAttribute('aria-checked', String(marketingActive));
       }
       showCookieBanner();
       return false;
