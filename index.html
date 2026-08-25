@@ -5,7 +5,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>COEXISTENCE WALK 2027 – Coming Soon</title>
-  <meta name="description" content="Coexistence Walk 2027 – Gemeinsam Gehen für den Wolf. Das nächste Kapitel kündigt sich an. Entdecken Sie das Archiv des Coexistence Walk 2026." />
+  <meta name="description"
+    content="Coexistence Walk 2027 – Gemeinsam Gehen für den Wolf. Das nächste Kapitel kündigt sich an. Entdecken Sie das Archiv des Coexistence Walk 2026." />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
@@ -240,8 +241,17 @@
     }
 
     @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.85); }
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.4;
+        transform: scale(0.85);
+      }
     }
 
     /* ─── VIDEO PLAYER FRAME & SLOW FADE-IN ──────────────────── */
@@ -254,7 +264,7 @@
       padding: 8px;
       background: linear-gradient(145deg, rgba(201, 184, 138, 0.3) 0%, rgba(51, 66, 38, 0.4) 40%, rgba(15, 19, 14, 0.8) 100%);
       box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.85),
-                  0 0 50px rgba(142, 168, 112, 0.12);
+        0 0 50px rgba(142, 168, 112, 0.12);
       animation: videoEntrance 2s var(--ease-out) both;
     }
 
@@ -388,7 +398,7 @@
       border-radius: 14px;
       color: var(--linen);
       box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4),
-                  0 0 30px rgba(212, 163, 75, 0.2);
+        0 0 30px rgba(212, 163, 75, 0.2);
       transition: all 0.35s var(--ease-out);
       position: relative;
       overflow: hidden;
@@ -409,7 +419,7 @@
       transform: translateY(-3px) scale(1.02);
       border-color: #fff;
       box-shadow: 0 16px 45px rgba(0, 0, 0, 0.6),
-                  0 0 40px rgba(212, 163, 75, 0.45);
+        0 0 40px rgba(212, 163, 75, 0.45);
       background: linear-gradient(135deg, rgba(65, 52, 32, 0.9) 0%, rgba(68, 88, 51, 0.9) 100%);
     }
 
@@ -618,6 +628,7 @@
         opacity: 0;
         transform: translateY(24px) scale(0.98);
       }
+
       100% {
         opacity: 1;
         transform: translateY(0) scale(1);
@@ -629,6 +640,7 @@
         opacity: 0;
         transform: translateY(20px);
       }
+
       100% {
         opacity: 1;
         transform: translateY(0);
@@ -640,6 +652,7 @@
         opacity: 0;
         transform: translateY(-15px);
       }
+
       100% {
         opacity: 1;
         transform: translateY(0);
@@ -651,34 +664,43 @@
       .header-inner {
         padding: 0.75rem 1rem;
       }
+
       .brand-title {
         font-size: 1.05rem;
       }
+
       .brand-logo img {
         height: 38px;
       }
+
       .nav-btn {
         padding: 0.45rem 0.85rem;
         font-size: 0.78rem;
       }
+
       .video-showcase {
         padding: 4px;
         border-radius: 14px;
         margin-bottom: 2rem;
       }
+
       .video-inner {
         border-radius: 10px;
       }
+
       .video-controls-overlay {
-        opacity: 1; /* Always visible on mobile devices */
+        opacity: 1;
+        /* Always visible on mobile devices */
         bottom: 10px;
         right: 10px;
       }
+
       .archive-card-btn {
         width: 100%;
         padding: 1rem 1.4rem;
         justify-content: flex-start;
       }
+
       .footer-main,
       .footer-bottom {
         flex-direction: column;
@@ -719,8 +741,8 @@
       max-height: 92svh;
       overflow-y: auto;
       box-shadow:
-        0 -8px 40px rgba(0,0,0,0.35),
-        0 0 0 1px rgba(142,168,112,0.12);
+        0 -8px 40px rgba(0, 0, 0, 0.35),
+        0 0 0 1px rgba(142, 168, 112, 0.12);
       border-top: 2px solid var(--fern);
       position: relative;
     }
@@ -748,7 +770,7 @@
       font-family: var(--font-body);
       font-size: 0.88rem;
       line-height: 1.6;
-      color: rgba(244,239,228,0.72);
+      color: rgba(244, 239, 228, 0.72);
       margin-bottom: 1.4rem;
     }
 
@@ -766,13 +788,13 @@
       cursor: pointer;
       padding: 0.7rem 1rem;
       border-radius: 8px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       transition: background 0.2s;
     }
 
     .cb-option:hover {
-      background: rgba(255,255,255,0.09);
+      background: rgba(255, 255, 255, 0.09);
     }
 
     .cb-option--disabled {
@@ -795,7 +817,7 @@
 
     .cb-option-info span {
       font-size: 0.78rem;
-      color: rgba(244,239,228,0.55);
+      color: rgba(244, 239, 228, 0.55);
     }
 
     /* Toggle switch */
@@ -804,7 +826,7 @@
       flex-shrink: 0;
       width: 42px;
       height: 24px;
-      background: rgba(255,255,255,0.15);
+      background: rgba(255, 255, 255, 0.15);
       border-radius: 12px;
       transition: background 0.25s;
       cursor: pointer;
@@ -822,7 +844,7 @@
       height: 18px;
       border-radius: 50%;
       background: #fff;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.25);
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
       transition: transform 0.25s var(--ease-out);
     }
 
@@ -863,25 +885,25 @@
 
     .cb-btn--outline {
       background: transparent;
-      color: rgba(244,239,228,0.75);
-      border: 1.5px solid rgba(255,255,255,0.2);
+      color: rgba(244, 239, 228, 0.75);
+      border: 1.5px solid rgba(255, 255, 255, 0.2);
     }
 
     .cb-btn--outline:hover {
-      background: rgba(255,255,255,0.08);
+      background: rgba(255, 255, 255, 0.08);
       color: var(--linen);
     }
 
     .cb-btn--reject {
       background: transparent;
-      color: rgba(244,239,228,0.55);
-      border: 1.5px solid rgba(255,255,255,0.12);
+      color: rgba(244, 239, 228, 0.55);
+      border: 1.5px solid rgba(255, 255, 255, 0.12);
     }
 
     .cb-btn--reject:hover {
-      background: rgba(255,255,255,0.06);
+      background: rgba(255, 255, 255, 0.06);
       color: var(--linen);
-      border-color: rgba(255,255,255,0.25);
+      border-color: rgba(255, 255, 255, 0.25);
     }
 
     .cb-footer-links {
@@ -895,7 +917,7 @@
 
     .cb-footer-links a {
       font-size: 0.75rem;
-      color: rgba(244,239,228,0.45);
+      color: rgba(244, 239, 228, 0.45);
       text-decoration: underline;
       text-underline-offset: 2px;
       transition: color 0.2s;
@@ -906,34 +928,42 @@
     }
 
     @media (max-width: 600px) {
+
       /* Banner fills the full bottom on small phones */
       #cookie-banner {
         padding: 0;
       }
+
       .cb-inner {
         border-radius: 14px 14px 0 0;
         max-height: 88svh;
       }
+
       .cb-options {
         gap: 0.5rem;
         margin-bottom: 1.2rem;
       }
+
       .cb-option {
         padding: 0.6rem 0.75rem;
       }
+
       .cb-actions {
         flex-direction: column;
         gap: 0.6rem;
       }
+
       .cb-btn {
         text-align: center;
         padding: 0.85rem 1.2rem;
         font-size: 0.85rem;
       }
+
       .cb-text {
         margin-bottom: 1rem;
         font-size: 0.85rem;
       }
+
       .cb-footer-links {
         gap: 1rem;
         margin-top: 0.5rem;
@@ -958,7 +988,7 @@
         <a href="coexistence-walk-2026.html" class="nav-btn nav-btn-gold">
           <span>Coexistence Walk 2026</span>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <path d="M5 12h14M12 5l7 7-7 7"/>
+            <path d="M5 12h14M12 5l7 7-7 7" />
           </svg>
         </a>
         <a href="blog.html" class="nav-btn nav-btn-outline">Blog</a>
@@ -978,25 +1008,19 @@
       <!-- Video Showcase with slow fade-in -->
       <div class="video-showcase">
         <div class="video-inner">
-          <video
-            id="introVideo"
-            class="video-element"
-            src="videos/coexistence-walk_2027_into.mp4"
-            autoplay
-            muted
-            playsinline
-            preload="auto"
-            title="Coexistence Walk 2027 Intro"></video>
+          <video id="introVideo" class="video-element" src="videos/coexistence-walk_2027_into.mp4" autoplay muted
+            playsinline preload="auto" title="Coexistence Walk 2027 Intro"></video>
 
           <!-- Interactive Controls Overlay -->
           <div class="video-controls-overlay" id="videoControls">
             <button class="ctrl-btn" id="audioToggleBtn" title="Ton umschalten" aria-label="Ton einschalten">
               <svg id="soundMutedIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M11 5L6 9H2v6h4l5 4V5z"/>
-                <line x1="23" y1="9" x2="17" y2="15"/>
-                <line x1="17" y1="9" x2="23" y2="15"/>
+                <path d="M11 5L6 9H2v6h4l5 4V5z" />
+                <line x1="23" y1="9" x2="17" y2="15" />
+                <line x1="17" y1="9" x2="23" y2="15" />
               </svg>
-              <svg id="soundActiveIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
+              <svg id="soundActiveIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                style="display:none;">
                 <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
                 <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
               </svg>
@@ -1008,7 +1032,8 @@
                 <rect x="6" y="4" width="4" height="16"></rect>
                 <rect x="14" y="4" width="4" height="16"></rect>
               </svg>
-              <svg id="playIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
+              <svg id="playIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                style="display:none;">
                 <polygon points="5 3 19 12 5 21 5 3"></polygon>
               </svg>
             </button>
@@ -1020,16 +1045,18 @@
       <h1 class="coming-soon-heading">Coming soon</h1>
       <p class="teaser-subtext">Gemeinsam Gehen für den Wolf – Die nächste Etappe kündigt sich an.</p>
       <p class="teaser-desc">
-        Wir bereiten den nächsten <strong>COEXISTENCE WALK 2027</strong> vor. Neue Routen, vertiefender Dialog und sachlicher Diskurs rund um die Koexistenz von Mensch und Wolf.
+        Wir bereiten den nächsten <strong>COEXISTENCE WALK 2027</strong> vor. Neue Routen, vertiefender Dialog und
+        sachlicher Diskurs rund um die Koexistenz von Mensch und Wolf.
       </p>
 
       <!-- Prominent Archive CTA Button -->
       <div class="cta-container">
-        <a href="coexistence-walk-2026.html" class="archive-card-btn" title="Besuche das vollständige Archiv des Coexistence Walk 2026">
+        <a href="coexistence-walk-2026.html" class="archive-card-btn"
+          title="Besuche das vollständige Archiv des Coexistence Walk 2026">
           <div class="archive-btn-icon">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
-              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
             </svg>
           </div>
           <div class="archive-btn-text">
@@ -1047,17 +1074,20 @@
         <div class="preview-card">
           <span class="preview-card-icon">🐺</span>
           <h3>Dialog im Fokus</h3>
-          <p>Lösungen finden durch sachlichen Diskurs, Fakten und den direkten Austausch zwischen Befürwortern, Kritikern und Fachleuten.</p>
+          <p>Lösungen finden durch sachlichen Diskurs, Fakten und den direkten Austausch zwischen Befürwortern,
+            Kritikern und Fachleuten.</p>
         </div>
         <div class="preview-card">
           <span class="preview-card-icon">🌲</span>
           <h3>Natur & Bewegung</h3>
-          <p>Gemeinsam unterwegs durch symbolträchtige Landschaften im Umfeld des Grünen Bandes – Schritt für Schritt für ein tragfähiges Miteinander.</p>
+          <p>Gemeinsam unterwegs durch symbolträchtige Landschaften im Umfeld des Grünen Bandes – Schritt für Schritt
+            für ein tragfähiges Miteinander.</p>
         </div>
         <div class="preview-card">
           <span class="preview-card-icon">📁</span>
           <h3>Archiv & Rückblick</h3>
-          <p>Entdecken Sie alle Vorträge, Experten, Etappen und Fotos des vergangenen Walks auf unserer Archivseite 2026.</p>
+          <p>Entdecken Sie alle Vorträge, Experten, Etappen und Fotos des vergangenen Walks auf unserer Archivseite
+            2026.</p>
         </div>
       </div>
 
@@ -1073,8 +1103,6 @@
             <img src="wolf_druck.png" alt="Coexistence Walk Logo"
               style="height:152px; width:auto; object-fit:contain;" />
           </div>
-          <p>Gemeinsam Gehen für den Wolf. Eine Non-Profit-Initiative im deutsch-polnischen Grenzgebiet, 29. Mai – 04.
-            Juni 2026.</p>
           <div class="footer-hashtags" style="margin-top:1rem;">
             <span class="hashtag">#CoexistenceWalk</span>
             <span class="hashtag">#Wolf</span>
@@ -1132,7 +1160,8 @@
           <a href="teilnahmebedingungen.html"
             style="text-decoration: underline; color: rgba(244, 239, 228, 0.7);">Teilnahmebedingungen</a>
           <a href="#" onclick="openCookieSettings(); return false;"
-            style="text-decoration: underline; color: rgba(142, 168, 112, 0.8);" id="footer-cookie-settings">Cookie-Einstellungen</a>
+            style="text-decoration: underline; color: rgba(142, 168, 112, 0.8);"
+            id="footer-cookie-settings">Cookie-Einstellungen</a>
         </div>
       </div>
     </div>
@@ -1143,11 +1172,16 @@
     <div class="cb-inner">
       <div class="cb-header">
         <div class="cb-icon">
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8">
+            <circle cx="12" cy="12" r="10" />
+            <path d="M12 8v4M12 16h.01" />
+          </svg>
         </div>
         <h3 class="cb-title">Privatsphäre &amp; Cookies</h3>
       </div>
-      <p class="cb-text">Diese Website verwendet ausschließlich technisch notwendige Cookies. Eingebettete Inhalte von Drittanbietern (YouTube, Google Maps) werden erst nach deiner Einwilligung geladen und übertragen dabei Daten an den jeweiligen Anbieter.</p>
+      <p class="cb-text">Diese Website verwendet ausschließlich technisch notwendige Cookies. Eingebettete Inhalte von
+        Drittanbietern (YouTube, Google Maps) werden erst nach deiner Einwilligung geladen und übertragen dabei Daten an
+        den jeweiligen Anbieter.</p>
       <div class="cb-options">
         <label class="cb-option cb-option--disabled">
           <span class="cb-toggle cb-toggle--active" aria-checked="true" role="checkbox">
@@ -1384,7 +1418,7 @@
     });
 
     // Globale Funktion für Footer-Link "Cookie-Einstellungen"
-    window.openCookieSettings = function() {
+    window.openCookieSettings = function () {
       const consent = getConsent();
       const marketingActive = !!(consent && consent.marketing);
       const input = document.getElementById('cb-marketing');
