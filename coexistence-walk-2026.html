@@ -4,18 +4,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>COEXISTENCE WALK 2026 – Gemeinsam Gehen für den Wolf</title>
+  <title>COEXISTENCE WALK 2026 (Archiv) – Gemeinsam Gehen für den Wolf</title>
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
   <link rel="manifest" href="/site.webmanifest" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap"
-    rel="stylesheet" />
+  <!-- Fonts: lokal gehostet – keine Datenübermittlung an Google -->
+  <link rel="stylesheet" href="/fonts/fonts.css" />
 
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <!-- Netlify Identity: wird erst nach Einwilligung geladen -->
+  <!-- wird via JS nachgeladen, sofern notwendig -->
 
   <style>
     /* ─── TOKENS ─────────────────────────────────────────────── */
@@ -2102,6 +2100,18 @@
       color: var(--linen);
     }
 
+    .cb-btn--reject {
+      background: transparent;
+      color: rgba(244,239,228,0.55);
+      border: 1.5px solid rgba(255,255,255,0.12);
+    }
+
+    .cb-btn--reject:hover {
+      background: rgba(255,255,255,0.06);
+      color: var(--linen);
+      border-color: rgba(255,255,255,0.25);
+    }
+
     .cb-footer-links {
       display: flex;
       gap: 1.5rem;
@@ -2228,6 +2238,12 @@
 
 <body>
 
+  <!-- Archive Notice Bar -->
+  <div style="background: #232d1c; color: #ede8dc; font-size: 0.88rem; padding: 0.5rem 1rem; text-align: center; font-weight: 500; letter-spacing: 0.03em; border-bottom: 1px solid rgba(201, 184, 138, 0.3); z-index: 1002; position: relative;">
+    🌲 <span>Archiv: <strong>Coexistence Walk 2026</strong></span>
+    <a href="index.html" style="text-decoration: underline; color: #c9b88a; margin-left: 0.8rem; font-weight: 600;">Zur Startseite / 2027 Preview &rarr;</a>
+  </div>
+
   <!-- Fix 6: Scroll Progress Bar -->
   <div id="progressBar"></div>
 
@@ -2235,18 +2251,18 @@
   <nav id="navbar">
     <div class="container">
       <div class="nav-inner">
-        <a class="nav-logo" href="index.html">
+        <a class="nav-logo" href="index.html" title="Zur Startseite">
           <img src="wolf_druck.png" alt="Coexistence Walk Logo"
             style="height:48px; width:auto; display:inline-block; object-fit:contain; vertical-align:middle;" />
         </a>
         <ul class="nav-links">
-          <li><a href="coexistence-walk-2026.html#about">Initiative</a></li>
-          <li><a href="coexistence-walk-2026.html#route">Route</a></li>
-          <li><a href="coexistence-walk-2026.html#programm">Programm</a></li>
-          <li><a href="coexistence-walk-2026.html#referenten">Referenten</a></li>
-          <li><a href="coexistence-walk-2026.html#mitmachen">Mitmachen</a></li>
+          <li><a href="#about">Initiative</a></li>
+          <li><a href="#route">Route</a></li>
+          <li><a href="#programm">Programm</a></li>
+          <li><a href="#referenten">Referenten</a></li>
+          <li><a href="#mitmachen">Mitmachen</a></li>
           <li><a href="blog.html">Blog</a></li>
-          <li><a href="coexistence-walk-2026.html#spenden" class="nav-cta">Spenden</a></li>
+          <li><a href="#spenden" class="nav-cta">Spenden</a></li>
         </ul>
         <button class="hamburger" id="hambBtn" aria-label="Menü">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -2258,31 +2274,1151 @@
       </div>
     </div>
   </nav>
-  <section class="section" style="padding-top: 150px; min-height: 70vh;">
-    <div class="container" style="max-width: 800px;">
-      <p class="eyebrow">Rechtliches</p>
-      <h1 class="section-title">Impressum</h1>
-      <div class="divider"></div>
-      
-      <div style="color: #3a3a30; font-size: 1rem; line-height: 1.8;">
-        <h3 style="font-family: var(--font-display); font-size: 1.3rem; font-weight: 600; color: var(--bark); margin-top: 2rem; margin-bottom: 0.5rem;">Angaben gemäß § 5 DDG</h3>
-        <p>Interessengemeinschaft Coexistence Walk<br>
-        Vertreten durch: Peter Nawrath<br>
-        Laurentiusstraße 18<br>
-        52249 Eschweiler</p>
 
-        <h3 style="font-family: var(--font-display); font-size: 1.3rem; font-weight: 600; color: var(--bark); margin-top: 2rem; margin-bottom: 0.5rem;">Kontakt</h3>
-        <p>Telefon: +49 179 7337535<br>
-        E-Mail: <a href="mailto:info@coexistence-walk.de" style="color: var(--fern); text-decoration: underline;">info@coexistence-walk.de</a></p>
+  <!-- ─── HERO ──────────────────────────────────────────────── -->
+  <section id="hero">
+    <div class="hero-bg">
+      <img class="hero-bg-img" src="https://i.imgur.com/p0XRn1t.jpg" loading="eager" fetchpriority="high"
+        alt="Coexistence Walk – Natur Hintergrundbild" />
+    </div>
+    <div class="hero-grain"></div>
+    <div class="hero-vignette"></div>
+    <div class="hero-bottom"></div>
 
-        <h3 style="font-family: var(--font-display); font-size: 1.3rem; font-weight: 600; color: var(--bark); margin-top: 2rem; margin-bottom: 0.5rem;">Verantwortlich für den Inhalt nach § 18 MStV</h3>
-        <p>Peter Nawrath<br>
-        Laurentiusstraße 18<br>
-        52249 Eschweiler</p>
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-tag">
+          <span class="dot"></span>
+          29. Mai – 04. Juni 2026 &nbsp;·&nbsp; Brandenburg / Polen
+        </div>
+        <div style="margin-bottom:1.5rem;">
+          <img src="wolf_druck.png" alt="Coexistence Walk Logo" loading="eager"
+            style="height:160px; width:auto; object-fit:contain; filter:drop-shadow(0 4px 20px rgba(0,0,0,0.6));" />
+        </div>
+        <h1 class="hero-title">
+          <strong>Gemeinsam Gehen <br>für den Wolf</strong>
+          Coexistence<br />Walk
+        </h1>
+        <p class="hero-subtitle">„Neue Wege auf alten Pfaden"</p>
+        <div class="hero-meta">
+          <div class="hero-meta-item">
+            <span class="hero-meta-label">Region</span>
+            <span class="hero-meta-value">Schwedt/Oder → Liepe</span>
+          </div>
+          <div class="hero-meta-item">
+            <span class="hero-meta-label">Format</span>
+            <span class="hero-meta-value">Wandern + Fachevents</span>
+          </div>
+          <div class="hero-meta-item">
+            <span class="hero-meta-label">Träger</span>
+            <span class="hero-meta-value">Non-Profit Initiative</span>
+          </div>
+        </div>
+        <div class="hero-actions">
+          <a href="#kontakt" class="btn btn-primary">Jetzt anmelden</a>
+          <a href="#about" class="btn btn-outline" style="color:var(--linen);border-color:rgba(244,239,228,0.4)">Mehr
+            erfahren</a>
+        </div>
+
+        <!-- Fix 1A+B: Hero Form mit Formspree hidden fields -->
+        <form class="hero-form" action="https://formspree.io/f/mlgakpzb" method="POST">
+          <input type="hidden" name="_subject" value="Neue Anmeldung – Coexistence Walk" />
+          <input type="hidden" name="_redirect" value="https://www.coexistence-walk.de/danke.html" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="email" name="email" placeholder="E-Mail für Updates &amp; Anmeldung" required />
+          <button type="submit" class="btn btn-primary">Platz reservieren →</button>
+        </form>
+
+        <!-- Fix 4B: konkrete Knappheit -->
+
+        <!-- Fix 1C: Vertrauenssignale -->
+        <div
+          style="margin-top:0.6rem; font-size:0.75rem; color:rgba(244,239,228,0.45); display:flex; gap:1rem; flex-wrap:wrap;">
+          <span>✔ Keine Werbung</span>
+          <span>✔ Nur Event-Infos</span>
+          <span>✔ Jederzeit abmeldbar</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- ─── INTRO BAND ─────────────────────────────────────────── -->
+  <div id="intro-band">
+    <div class="container">
+      <div class="band-inner">
+        <div class="band-fact">
+          <div class="band-fact-num">7</div>
+          <div class="band-fact-label">Tage gemeinsam wandern</div>
+        </div>
+        <div class="band-divider"></div>
+        <div class="band-fact">
+          <div class="band-fact-num">~3</div>
+          <div class="band-fact-label">Etappen entlang dem Grünen Band</div>
+        </div>
+        <div class="band-divider"></div>
+        <div class="band-fact">
+          <div class="band-fact-num">100+</div>
+          <div class="band-fact-label">Wolfsrudel in Deutschland</div>
+        </div>
+        <div class="band-divider"></div>
+        <div class="band-fact">
+          <div class="band-fact-num">2026</div>
+          <div class="band-fact-label">1. COEXISTENCE WALK</div>
+        </div>
+        <a href="#kontakt" class="btn btn-outline"
+          style="color:var(--linen);border-color:rgba(244,239,228,0.35);white-space:nowrap;flex-shrink:0">
+          Dabei sein →
+        </a>
+      </div>
+      <!-- Fix 4A: Social Proof -->
+      <div
+        style="margin-top:1.5rem; padding-top:1.5rem; border-top:1px solid rgba(255,255,255,0.1); font-size:0.85rem; color:rgba(244,239,228,0.55); display:flex; align-items:center; gap:0.75rem; flex-wrap:wrap;">
+        <span style="display:inline-flex;">
+          <span
+            style="width:28px;height:28px;border-radius:50%;background:var(--fern);border:2px solid var(--moss);display:inline-flex;align-items:center;justify-content:center;font-size:0.65rem;color:var(--linen);">DE</span>
+          <span
+            style="width:28px;height:28px;border-radius:50%;background:var(--sage);border:2px solid var(--moss);display:inline-flex;align-items:center;justify-content:center;font-size:0.65rem;color:var(--bark);margin-left:-8px;">PL</span>
+          <span
+            style="width:28px;height:28px;border-radius:50%;background:var(--sand);border:2px solid var(--moss);display:inline-flex;align-items:center;justify-content:center;font-size:0.65rem;color:var(--bark);margin-left:-8px;">AT</span>
+        </span>
+        Bereits Interesse von Teilnehmenden aus Deutschland, Polen &amp; Österreich
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── INTRO VIDEO ────────────────────────────────────────── -->
+  <section id="intro-video" class="section">
+    <div class="container">
+      <div class="video-section-inner">
+        <p class="eyebrow reveal">Video</p>
+        <h2 class="section-title reveal">Entdecke den <em>Coexistence Walk</em></h2>
+        <div class="divider reveal"></div>
+        <p class="lead reveal">
+          Ein kurzer Einblick in unsere Vision – gemeinsam gehen, gemeinsam verstehen, gemeinsam handeln.
+        </p>
+
+        <div class="video-container reveal">
+          <div class="video-ratio" id="yt-wrapper">
+            <!-- Consent placeholder – replaced by iframe after marketing consent -->
+            <div id="yt-placeholder" class="embed-consent-placeholder">
+              <div class="embed-consent-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="40" height="40"><circle cx="12" cy="12" r="10"/><polygon points="10,8 16,12 10,16" fill="currentColor" stroke="none"/></svg>
+              </div>
+              <p class="embed-consent-text">Dieses Video wird von <strong>YouTube</strong> bereitgestellt.<br>Um es abzuspielen, akzeptiere bitte Marketing-Cookies.</p>
+              <button class="embed-consent-btn" onclick="acceptMarketingAndLoadEmbeds()">Einwilligen &amp; Video laden</button>
+              <a class="embed-consent-settings" href="#" onclick="showCookieBanner(); return false;">Cookie-Einstellungen</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="video-ornament">
+          <span>▶ Introvideo</span>
+        </div>
       </div>
     </div>
   </section>
-<!-- ─── FOOTER ─────────────────────────────────────────────── -->
+
+  <!-- ─── ABOUT ──────────────────────────────────────────────── -->
+  <section id="about" class="section">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-img-wrap reveal">
+          <!-- Wanderer / Natur Foto -->
+          <img class="main-img"
+            src="https://69ef43b5abe5326bdb42135d.imgix.net/ChatGPT%20Image%2027.%20Apr.%202026,%2013_17_59.png?w=900&auto=format&fit=crop&q=80"
+            loading="lazy" alt="Wandergruppe in der Natur" style="height:520px;" />
+        </div>
+        <div class="about-text reveal reveal-delay-1">
+          <p class="eyebrow">Über die Initiative</p>
+          <h2 class="section-title">Herzlich Willkommen<br /><em>beim Projekt</em></h2>
+          <div class="divider"></div>
+          <div class="about-highlight">
+            COEXISTENCE WALK – Gemeinsam Gehen für den Wolf! Neue Wege beginnen mit einem Gespräch.
+          </div>
+          <p>Der Umgang mit dem Wolf wirft Fragen auf, die viele Menschen bewegen. Unser Anliegen ist es,
+            unterschiedliche Sichtweisen zusammenzuführen und über Ansätze für ein langfristiges, naturnahes Miteinander
+            zu sprechen. Bei unserer Veranstaltung stehen die aktuellen Entwicklungen im „Wolfsmanagement“ im
+            Mittelpunkt. Ziel dieses Fachaustauschs ist es, verschiedene Ansätze für ein Nebeneinander von Mensch und
+            Wolf sachlich zu erörtern. Der gemeinsame Austausch dient dazu, bestehende Konzepte zu reflektieren und
+            zukunftsfähige Strategien für den Umgang mit Wildtieren in unserer Kulturlandschaft zu besprechen.</p>
+          <p>Dieses Projekt eröffnet bewusst einen anderen Raum: einen Raum für Dialog statt Konfrontation, für
+            Verständnis statt Polarisierung und für gemeinsame Lösungen, statt vorschneller Entscheidungen.</p>
+          <p>Der „COEXISTENCE WALK – Gemeinsam Gehen für den Wolf“ lädt dazu ein, neue Wege auf alten Pfaden zu gehen.
+            Über mehrere Tage verbinden wir Unterwegssein in der Natur mit Austausch, Wissen und Begegnung.
+            Wissenschaftliche Erkenntnisse, praktische Erfahrungen und unterschiedliche Sichtweisen kommen zusammen –
+            nicht, um Gegensätze zu verhärten, sondern um Brücken zu bauen.</p>
+          <p>Im Mittelpunkt steht eine einfache, aber entscheidende Frage:<br /><strong>Wie kann ein tragfähiges
+              Zusammenleben von Mensch und Wolf gelingen?</strong><br />Wir suchen erweiterte Möglichkeiten zur
+            gesicherten Koexistenz. Darum lebt dieser Weg von den Menschen, die ihn mitgehen. Von Neugierigen,
+            Fachleuten, Interessierten – und auch von kritischen Stimmen, die bereit sind, sich auf einen offenen Dialog
+            einzulassen.</p>
+          <p>Schauen Sie genauer hin. Gehen Sie ein Stück mit uns. Und werden Sie Teil eines Dialogs, der etwas
+            verändern kann.</p>
+          <div style="margin-top:2.5rem; display:flex; gap:1rem; flex-wrap:wrap;">
+            <a href="#programm" class="btn btn-primary">Programm ansehen</a>
+            <a href="#mitmachen" class="btn btn-outline">Mitmachen</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── ROUTE ──────────────────────────────────────────────── -->
+  <section id="route" class="section">
+    <div class="container">
+      <div class="route-header reveal">
+        <p class="eyebrow">Die Route</p>
+        <h2 class="section-title">Entlang dem<br /><em>Grünen Band</em></h2>
+        <div class="divider"></div>
+        <p class="lead">Von Schwedt/Oder nach Liepe – wir folgen den historischen Rückkehrrouten der Wölfe durch die
+          Brandenburg-polnische Grenzregion.</p>
+      </div>
+
+      <!-- Fix 7: Google Maps – consent gated -->
+      <div style="position:relative; margin-bottom:4rem;" class="reveal reveal-delay-1">
+        <div id="maps-wrapper" style="width:100%;height:380px;position:relative;">
+          <div id="maps-placeholder" class="embed-consent-placeholder embed-consent-placeholder--maps">
+            <div class="embed-consent-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="40" height="40"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="currentColor" stroke="none"/></svg>
+            </div>
+            <p class="embed-consent-text">Diese Karte wird von <strong>Google Maps</strong> bereitgestellt.<br>Um sie anzuzeigen, akzeptiere bitte Marketing-Cookies.</p>
+            <button class="embed-consent-btn" onclick="acceptMarketingAndLoadEmbeds()">Einwilligen &amp; Karte laden</button>
+            <a class="embed-consent-settings" href="#" onclick="showCookieBanner(); return false;">Cookie-Einstellungen</a>
+          </div>
+        </div>
+        <div
+          style="position:absolute;inset:0;background:linear-gradient(to right,rgba(45,36,22,0.55) 0%,transparent 50%);display:flex;align-items:flex-end;padding:2rem;pointer-events:none;">
+          <div>
+            <div
+              style="font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--sage);margin-bottom:0.4rem;">
+              Route</div>
+            <div style="font-family:var(--font-display);font-size:1.4rem;color:var(--linen);">Schwedt/Oder →
+              Lunow-Stolzenhagen → Liepe</div>
+            <div style="font-size:0.82rem;color:rgba(244,239,228,0.6);margin-top:0.3rem;">Entlang dem Grünen Band</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stages-grid">
+        <div class="stage reveal">
+          <div class="stage-num">01</div>
+          <div class="stage-icon"><svg viewBox="0 0 24 24">
+              <path d="M12 22s-8-5.5-8-11a8 8 0 0116 0c0 5.5-8 11-8 11z" />
+              <circle cx="12" cy="11" r="3" fill="var(--linen)" />
+            </svg></div>
+          <div class="stage-date">Fr. 29. – Sa. 30. Mai</div>
+          <div class="stage-title">Schwedt/Oder</div>
+          <div class="stage-detail">Startpunkt. Ankunft, Vorstellungsrunde und erste moderierte Fachdiskussion im
+            Turmhotel. Samstag: Tagesprogramm vor Ort mit grenzübergreifenden Perspektiven.</div>
+        </div>
+        <div class="stage reveal reveal-delay-1">
+          <div class="stage-num">02</div>
+          <div class="stage-icon"><svg viewBox="0 0 24 24">
+              <path d="M3 18l9-14 9 14H3z" fill="var(--linen)" />
+            </svg></div>
+          <div class="stage-date">So. 31. Mai – Mo. 01. Jun</div>
+          <div class="stage-title">Lunow-Stolzenhagen</div>
+          <div class="stage-detail">Wanderung ab Schwedt mit Unterkunft im Speicher-Gästehaus auf dem Gut Stolzenhagen. Themen: Luchse, Wisente &amp; Wölfe in Polen, operativer Artenschutz (Taskforce Artenschutz e.V.), medialer Umgang mit dem Wolf.</div>
+        </div>
+        <div class="stage reveal reveal-delay-2">
+          <div class="stage-num">03</div>
+          <div class="stage-icon"><svg viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="8" fill="none" stroke="var(--linen)" stroke-width="2.5" />
+              <path d="M12 8v4l3 3" stroke="var(--linen)" stroke-width="2.5" />
+            </svg></div>
+          <div class="stage-date">Di. 02. – Do. 04. Jun</div>
+          <div class="stage-title">Liepe</div>
+          <div class="stage-detail">Wanderung nach Liepe. Landhof Liepe als Abschlussquartier. Themen: Wege zur Koexistenz,
+            Herdenschutz, gemeinsames Fazit. Abreisetag 04. Juni (Fronleichnam).</div>
+        </div>
+      </div>
+
+      <div
+        style="margin-top:2rem; background:var(--cream); padding:1.25rem 2rem; border-left:3px solid var(--sand); font-size:0.88rem; color:#555548;">
+        <strong style="color:var(--bark);">ℹ️ Praktisches:</strong> Die Tageswanderstrecken werden etwa ±15 km betragen. Kosten für Übernachtungen/Verpflegung übernimmt jeder Exkursionsteilnehmer selbst. Es können auch andere Hotels/Pensionen im Umfeld der Veranstaltungsorte genutzt werden. Der 04. Juni 2026 ist Feiertag (Fronleichnam) in NRW, Baden-Württemberg, Bayern, Hessen, Rheinland-Pfalz und im Saarland (regionale Regelungen in Sachsen/Thüringen).
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── PROGRAMM ───────────────────────────────────────────── -->
+  <section id="programm" class="section">
+    <div class="container">
+      <p class="eyebrow reveal">Das Programm</p>
+      <h2 class="section-title reveal">Sieben Tage –<br /><em>Ein Ziel</em></h2>
+      <div class="divider reveal"></div>
+      <p class="lead reveal" style="color:rgba(244,239,228,0.7); margin-bottom:3rem;">Moderierte Fachdiskussionen,
+        Feldexkursionen und inspirierende Begegnungen mit Expertinnen und Experten aus Deutschland, Polen, Österreich
+        und der Slowakei. (Programm aktuell in Abstimmung)</p>
+
+      <div class="program-grid reveal">
+        <div class="program-days" id="programDays">
+
+          <div class="day-tab active" data-panel="day1">
+            <div class="day-tab-label">Tag 1 · Fr. 29.05.</div>
+            <div class="day-tab-title">Ankunft & Auftakt</div>
+            <div class="day-tab-sub">Schwedt/Oder</div>
+          </div>
+
+          <div class="day-tab" data-panel="day2">
+            <div class="day-tab-label">Tag 2 · Sa. 30.05.</div>
+            <div class="day-tab-title">Grenzübergreifend</div>
+            <div class="day-tab-sub">Schwedt/Oder</div>
+          </div>
+
+          <div class="day-tab" data-panel="day3">
+            <div class="day-tab-label">Tag 3 · So. 31.05.</div>
+            <div class="day-tab-title">Wanderung &amp; Artenschutz</div>
+            <div class="day-tab-sub">→ Lunow-Stolzenhagen</div>
+          </div>
+
+          <div class="day-tab" data-panel="day4">
+            <div class="day-tab-label">Tag 4 · Mo. 01.06.</div>
+            <div class="day-tab-title">Medien &amp; Diskurs</div>
+            <div class="day-tab-sub">Lunow-Stolzenhagen</div>
+          </div>
+
+          <div class="day-tab" data-panel="day5">
+            <div class="day-tab-label">Tag 5 · Di. 02.06.</div>
+            <div class="day-tab-title">Wanderung &amp; Koexistenz</div>
+            <div class="day-tab-sub">→ Liepe</div>
+          </div>
+
+          <div class="day-tab" data-panel="day6">
+            <div class="day-tab-label">Tag 6 · Mi. 03.06.</div>
+            <div class="day-tab-title">Herdenschutz &amp; Fazit</div>
+            <div class="day-tab-sub">Liepe</div>
+          </div>
+
+          <div class="day-tab" data-panel="day7">
+            <div class="day-tab-label">Tag 7 · Do. 04.06.</div>
+            <div class="day-tab-title">Abreise</div>
+            <div class="day-tab-sub">Liepe (Fronleichnam)</div>
+          </div>
+        </div>
+
+        <div class="program-content">
+
+          <div class="prog-panel active" id="day1">
+            <div class="prog-location">
+              <div class="prog-location-icon">📍</div>
+              <div>
+                <div class="prog-location-name">Turmhotel Schwedt/Oder</div>
+                <div class="prog-location-addr">Heinersdorfer Damm 1, 16303 Schwedt/Oder · www.turmhotel-schwedt-oder.de</div>
+              </div>
+            </div>
+            <div class="prog-section-title">Tagesablauf</div>
+            <div class="prog-item">
+              <div class="prog-item-type">Bis 17:30 Uhr</div>
+              <div>
+                <div class="prog-item-name">Ankunft der Projektteilnehmer*innen im Turmhotel</div>
+                <div class="prog-item-detail">1. Übernachtung</div>
+              </div>
+            </div>
+            <div class="prog-item">
+              <div class="prog-item-type">20:00 Uhr</div>
+              <div>
+                <div class="prog-item-name">Moderierte Fachdiskussion</div>
+                <div class="prog-item-detail">Vorstellungsrunde, Projektinhalt und – ziele, aktueller Sachstand in Bund/Ländern, Erfahrungs-austausch</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="prog-panel" id="day2">
+            <div class="prog-location">
+              <div class="prog-location-icon">📍</div>
+              <div>
+                <div class="prog-location-name">Turmhotel Schwedt/Oder</div>
+                <div class="prog-location-addr">Heinersdorfer Damm 1, 16303 Schwedt/Oder · Verbleib im Turmhotel / Tagesprogramm vor Ort · Pavillon/Lagerfeuer (2. Übernachtung)</div>
+              </div>
+            </div>
+            <div class="prog-section-title">Moderierte Fachdiskussion und Tagesprogramm</div>
+            <div class="prog-item">
+              <div class="prog-item-type">10:30 Uhr</div>
+              <div>
+                <div class="prog-item-name">Gabriele Neumann (NI)</div>
+                <div class="prog-item-detail">„Rückkehrer mit Heimatrecht – Wolfsarbeit der Naturschutzinitiative e.V. (NI)“</div>
+              </div>
+            </div>
+            <div class="prog-section-title" style="margin-top: 1.5rem;">Grenzübergreifende Betrachtungen: „Wie machen es die anderen?“ Präsentationen und Gespräche:</div>
+            <div class="prog-item">
+              <div class="prog-item-type">15:00 Uhr</div>
+              <div>
+                <div class="prog-item-name">Dr. Aleksandra Kraśkiewicz (Dzika Zagroda)</div>
+                <div class="prog-item-detail">Erfahrungen aus der Arbeit mit freilebenden Luchsen, Wisenten und Wölfen in Polen</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="prog-panel" id="day3">
+            <div class="prog-location">
+              <div class="prog-location-icon">🥾</div>
+              <div>
+                <div class="prog-location-name">Seminarhaus Speicher Gästehaus</div>
+                <div class="prog-location-addr">Gutshof 3, 16248 Stolzenhagen · www.seminarhausbrandenburg.de · Pavillon/Lagerfeuer (3. Übernachtung)</div>
+              </div>
+            </div>
+            <div class="prog-section-title">Tagesablauf &amp; Programm</div>
+            <div class="prog-item">
+              <div class="prog-item-type">Morgens</div>
+              <div>
+                <div class="prog-item-name">Wanderung ab Schwedt/Oder nach Lunow-Stolzenhagen</div>
+                <div class="prog-item-detail">Ziel Seminarhaus Taubenblau · unterwegs: Impulse</div>
+              </div>
+            </div>
+
+            <div class="prog-item">
+              <div class="prog-item-type">20:00 Uhr</div>
+              <div>
+                <div class="prog-item-name">Maximilian Hempel (Taskforce Artenschutz e.V.)</div>
+                <div class="prog-item-detail">Einblick in den operativen Artenschutz · anschl.: Diskussion</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="prog-panel" id="day4">
+            <div class="prog-location">
+              <div class="prog-location-icon">📍</div>
+              <div>
+                <div class="prog-location-name">Seminarhaus Speicher Gästehaus</div>
+                <div class="prog-location-addr">Gutshof 3, 16248 Stolzenhagen · www.seminarhausbrandenburg.de · Verbleib Seminarhaus Taubenblau / Tagesprogramm vor Ort · Pavillon/Lagerfeuer (4. Übernachtung)</div>
+              </div>
+            </div>
+            <div class="prog-section-title">Moderierte Fachdiskussion und Tagesprogramm</div>
+            <div class="prog-item">
+              <div class="prog-item-type">10:30 Uhr</div>
+              <div>
+                <div class="prog-item-name">Sabine Sebald</div>
+                <div class="prog-item-detail">Der Wolfspodcast – Medialer Umgang</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="prog-panel" id="day5">
+            <div class="prog-location">
+              <div class="prog-location-icon">🥾</div>
+              <div>
+                <div class="prog-location-name">Wanderung → Landhof Liepe</div>
+                <div class="prog-location-addr">Gutshof 1, 16248 Liepe · www.landhof-liepe.de</div>
+              </div>
+            </div>
+            <div class="prog-section-title">Tagesablauf &amp; Programm</div>
+            <div class="prog-item">
+              <div class="prog-item-type">Morgens</div>
+              <div>
+                <div class="prog-item-name">Wanderung ab Lunow-Stolzenhagen nach Liepe</div>
+                <div class="prog-item-detail">Ankunft im Landhof Liepe (5. Übernachtung)</div>
+              </div>
+            </div>
+            <div class="prog-item">
+              <div class="prog-item-type">15:00 Uhr</div>
+              <div>
+                <div class="prog-item-name">Joep v.d. Vlasakker</div>
+                <div class="prog-item-detail">Wege zur Koexistenz mit dem Thema Wolf</div>
+              </div>
+            </div>
+            <div class="prog-item">
+              <div class="prog-item-type">20:00 Uhr</div>
+              <div>
+                <div class="prog-item-name">Moderierte Fachdiskussion</div>
+                <div class="prog-item-detail">Vertreter Jagdverband / ÖJV Brandenburg (aktuell in Abstimmung)</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="prog-panel" id="day6">
+            <div class="prog-location">
+              <div class="prog-location-icon">📍</div>
+              <div>
+                <div class="prog-location-name">Landhof Liepe · Tagesprogramm vor Ort</div>
+                <div class="prog-location-addr">Gutshof 1, 16248 Liepe · Pavillon / Lagerfeuer (6. Übernachtung)</div>
+              </div>
+            </div>
+            <div class="prog-section-title">Moderierte Fachdiskussion &amp; Tagesprogramm (Tagesthema Herdenschutz)</div>
+            <div class="prog-item">
+              <div class="prog-item-type">10:30 Uhr</div>
+              <div>
+                <div class="prog-item-name">Joep v.d. Vlasakker</div>
+              </div>
+            </div>
+            <div class="prog-item">
+              <div class="prog-item-type">15:00 Uhr</div>
+              <div>
+                <div class="prog-item-name">Michael Eichhorn</div>
+                <div class="prog-item-detail">Erfahrungen aus der Arbeit mit Wölfen in der Slowakei und Österreich</div>
+              </div>
+            </div>
+            <div class="prog-item">
+              <div class="prog-item-type">Abschluss</div>
+              <div>
+                <div class="prog-item-name">Gemeinsames Fazit / Abschlusserklärung</div>
+                <div class="prog-item-detail">Zusammenfassung der Ergebnisse · Ausblick · Vernetzung</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="prog-panel" id="day7">
+            <div class="prog-location">
+              <div class="prog-location-icon">👋</div>
+              <div>
+                <div class="prog-location-name">Abreisetag – Landhof Liepe</div>
+                <div class="prog-location-addr">Gutshof 1, 16248 Liepe · Fronleichnam (Feiertag in NRW, BW, BY, HE, RP,
+                  SL)</div>
+              </div>
+            </div>
+            <div class="prog-section-title">Verabschiedung</div>
+            <div class="prog-item">
+              <div class="prog-item-type">Ganztags</div>
+              <div>
+                <div class="prog-item-name">Individuelle Abreise</div>
+                <div class="prog-item-detail">Offizieller Abschluss des COEXISTENCE WALK 2026. Hinweis: 04. Juni ist
+                  Fronleichnam-Feiertag in mehreren Bundesländern.</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── REFERENTEN ─────────────────────────────────────────── -->
+  <section id="referenten" class="section">
+    <div class="container">
+      <p class="eyebrow reveal">Referentinnen & Referenten</p>
+      <h2 class="section-title reveal">Expert<em>innen</em> im Dialog</h2>
+      <div class="divider reveal"></div>
+      <p class="lead reveal">
+        Ein interdisziplinäres Team aus Wissenschaft, Naturschutz, Recht und Medien beleuchtet das
+        Thema Wolf aus allen Blickwinkeln.
+      </p>
+
+      <div class="speakers-grid">
+
+        <!-- Aleksandra -->
+        <div class="speaker-card reveal">
+          <img
+            src="https://69ef43b5abe5326bdb42135d.imgix.net/Dr._Aleksandra_Kraszkiewicz.png?auto=format&fit=fill&w=284"
+            alt="Dr. Aleksandra Kraśkiewicz"
+            style="width:100%; height:240px; object-fit:cover; object-position:50% 20%; display:block;">
+          <div class="speaker-info">
+            <div class="speaker-name">Dr. Aleksandra Kraśkiewicz</div>
+            <div class="speaker-role">Dzika Zagroda, Polen</div>
+            <div class="speaker-bio">
+              Erfahrungsaustausch über die Arbeit mit freilebenden Luchsen, Wisenten und Wölfen in Polen.
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Michael -->
+        <div class="speaker-card reveal reveal-delay-1">
+          <img src="https://69ef43b5abe5326bdb42135d.imgix.net/Michael%20Eichhorn.png?auto=format&fit=fill&w=384"
+            alt="Michael Eichhorn"
+            style="width:100%; height:240px; object-fit:cover; object-position:50% 20%; display:block;">
+          <div class="speaker-info">
+            <div class="speaker-name">Michael Eichhorn</div>
+            <div class="speaker-role">Wolfsexperte · Slowakei / Österreich</div>
+            <div class="speaker-bio">
+              Langjährige Erfahrung in der Arbeit mit Wölfen in der Slowakei und Österreich.
+              Beiträge zu Herdenschutz und Koexistenz.
+            </div>
+          </div>
+        </div>
+
+        <!-- Gabriele -->
+        <div class="speaker-card reveal reveal-delay-2">
+          <img src="https://69ef43b5abe5326bdb42135d.imgix.net/Gabriele%20Neumann.jpeg?auto=format&fit=fill&w=384"
+            alt="Gabriele Neumann"
+            style="width:100%; height:240px; object-fit:cover; object-position:50% 20%; display:block;">
+          <div class="speaker-info">
+            <div class="speaker-name">Gabriele Neumann</div>
+            <div class="speaker-role">Naturschutzinitiative e.V. (NI)</div>
+            <div class="speaker-bio">
+              Zur Arbeit der Naturschutzinitiative und zur Ethologie des Wolfes – Verhalten,
+              Sozialstruktur, Mythos und Realität.
+            </div>
+          </div>
+        </div>
+
+        <!-- Sabine -->
+        <div class="speaker-card reveal">
+          <img src="https://69ef43b5abe5326bdb42135d.imgix.net/Sabine_Sebald.png?auto=format&fit=fill&w=384"
+            alt="Sabine Sebald"
+            style="width:100%; height:240px; object-fit:cover; object-position:50% 20%; display:block;">
+          <div class="speaker-info">
+            <div class="speaker-name">Sabine Sebald</div>
+            <div class="speaker-role">Medienjournalistin</div>
+            <div class="speaker-bio">
+              Medialer Umgang mit dem Thema Wolf: Wie berichten Presse und Fernsehen – und was
+              bleibt dabei oft auf der Strecke?
+            </div>
+          </div>
+        </div>
+
+        <!-- Joep -->
+        <div class="speaker-card reveal reveal-delay-1">
+          <img
+            src="https://69ef43b5abe5326bdb42135d.imgix.net/Joep%20van%20den%20Vlasakker.png?auto=format&fit=fill&w=384"
+            alt="Joep van den Vlasakker"
+            style="width:100%; height:240px; object-fit:cover; object-position:50% 20%; display:block;">
+          <div class="speaker-info">
+            <div class="speaker-name">Joep van den Vlasakker</div>
+            <div class="speaker-role">Herdenschutzexperte</div>
+            <div class="speaker-bio">
+              Internationaler Experte für Herdenschutz – praktische Ansätze zum Schutz von
+              Nutztieren im Wolfsgebiet.
+            </div>
+          </div>
+        </div>
+
+        <!-- Maximilian -->
+        <div class="speaker-card reveal reveal-delay-2">
+          <img src="https://69ef43b5abe5326bdb42135d.imgix.net/Maximilian_Hempel.png?auto=format&fit=fill&w=384"
+            alt="Maximilian Hempel"
+            style="width:100%; height:240px; object-fit:cover; object-position:50% 20%; display:block;">
+          <div class="speaker-info">
+            <div class="speaker-name">Maximilian Hempel</div>
+            <div class="speaker-role">Taskforce Artenschutz e.V.</div>
+            <div class="speaker-bio">
+              Einblick in den operativen Artenschutz
+            </div>
+          </div>
+        </div>
+
+        <!-- Weitere Gäste -->
+        <div class="speaker-card reveal"
+          style="background:var(--parchment); display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding:2rem; min-height:280px;">
+
+          <div style="font-family:var(--font-display); font-size:3rem; color:var(--sand); margin-bottom:1rem;">
+            +
+          </div>
+
+          <div class="speaker-name" style="font-size:1rem;">Weitere Gäste</div>
+          <div class="speaker-role">Programm in Abstimmung</div>
+          <div class="speaker-bio" style="margin-top:0.5rem;">
+            Vertreter aus Politik, Recht, Naturschutzverbänden und Jagd werden noch bekanntgegeben.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── MITMACHEN ──────────────────────────────────────────── -->
+  <section id="mitmachen" class="section">
+    <div class="container">
+      <p class="eyebrow reveal">Mitmachen</p>
+      <h2 class="section-title reveal">Alles ist<br /><em>möglich</em></h2>
+      <div class="divider reveal"></div>
+      <p class="lead reveal">Mitgehen. Mitreden. Mitgestalten. – Der COEXISTENCE WALK lebt von Menschen, die bereit
+        sind, aufeinander zuzugehen.</p>
+
+      <div class="mitmachen-grid">
+        <div class="mitmachen-card reveal">
+          <div class="mitmachen-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M13 3a9 9 0 11-9 9" />
+              <path d="M13 3v6h6" />
+              <circle cx="8" cy="12" r="3" fill="var(--linen)" />
+            </svg>
+          </div>
+          <div class="mitmachen-title">Mitgehen</div>
+          <div class="mitmachen-text">Wandere eine oder mehrere Etappen mit. Ein
+            Shuttle-Service ist für Gepäck und Zwischentransporte im Einsatz.</div>
+          <a href="#kontakt" class="btn btn-primary">Zur Anmeldung</a>
+        </div>
+        <div class="mitmachen-card reveal reveal-delay-1">
+          <div class="mitmachen-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" fill="none" stroke="var(--linen)"
+                stroke-width="2.5" />
+            </svg>
+          </div>
+          <div class="mitmachen-title">Mitreden</div>
+          <div class="mitmachen-text">Als Fachreferentin oder Fachreferent, als Vertreterin einer Organisation oder als
+            Medienschaffende bringst du deine Perspektive in die Diskussion ein.</div>
+          <a href="#kontakt" class="btn btn-outline">Kontakt aufnehmen</a>
+        </div>
+        <div class="mitmachen-card reveal reveal-delay-2">
+          <div class="mitmachen-icon">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 000-7.78z"
+                fill="none" stroke="var(--linen)" stroke-width="2.5" />
+            </svg>
+          </div>
+          <div class="mitmachen-title">Unterstützen</div>
+          <div class="mitmachen-text">Du kannst nicht dabei sein, möchtest das Projekt aber fördern? Jede Spende hilft,
+            diese Non-Profit-Initiative zu realisieren. Steuerlich absetzbar!</div>
+          <a href="#spenden" class="btn btn-primary">Jetzt spenden</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── GALERIE ─────────────────────────────────────────────── -->
+  <section id="galerie" class="section">
+    <div class="container">
+      <p class="eyebrow reveal">Eindrücke</p>
+      <h2 class="section-title reveal">Die Region –<br /><em>Grünes Band</em> Brandenburg</h2>
+      <div class="divider reveal"></div>
+      <div class="gallery-grid reveal">
+        <div class="gallery-item">
+          <img src="https://69ef43b5abe5326bdb42135d.imgix.net/nebelwald.png?w=800&auto=format&fit=crop&q=80"
+            alt="Grünes Band Landschaft" style="height:100%;object-fit:cover;" />
+        </div>
+        <div class="gallery-item">
+          <img src="https://69ef43b5abe5326bdb42135d.imgix.net/wolf.jpeg?w=600&auto=format&fit=crop&q=80"
+            alt="Wolf in freier Wildbahn" style="height:100%;object-fit:cover;" />
+        </div>
+        <div class="gallery-item">
+          <img src="https://69ef43b5abe5326bdb42135d.imgix.net/wandern.png?w=600&auto=format&fit=crop&q=80"
+            alt="Wandergruppe in der Natur" style="height:100%;object-fit:cover;" />
+        </div>
+        <div class="gallery-item">
+          <img src="https://69ef43b5abe5326bdb42135d.imgix.net/turm.png?w=600&auto=format&fit=crop&q=80"
+            alt="Wald Brandenburg" style="height:100%;object-fit:cover;" />
+        </div>
+        <div class="gallery-item">
+          <img src="https://69ef43b5abe5326bdb42135d.imgix.net/img.png?w=600&auto=format&fit=crop&q=80"
+            alt="Grenzregion Polen Brandenburg" style="height:100%;object-fit:cover;" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SPENDEN ─────────────────────────────────────────────── -->
+  <section id="spenden">
+    <div class="container">
+      <div class="spenden-inner">
+        <p class="eyebrow" style="color:var(--sage); text-align:center;">Non-Profit Initiative</p>
+        <h2 class="section-title">Deine Spende<br /><em>macht's möglich</em></h2>
+        <p class="lead">Als Non-Profit-Projekt sind wir auf Unterstützung angewiesen. Spenden an die
+          Naturschutzinitiative e.V. (NI) sind steuerlich absetzbar.</p>
+
+        <div class="iban-box">
+          <div class="iban-row">
+            <div class="iban-label">Empfänger</div>
+            <div class="iban-value">
+              <img src="NI-Logo_weissraum_4k_rgb.png" alt="Naturschutzinitiative e.V. Logo" loading="lazy"
+                style="height:96px; width:auto; object-fit:contain; margin-bottom:0.5rem; display:block;" />
+              Naturschutzinitiative e.V. (NI)
+            </div>
+          </div>
+          <div class="iban-row">
+            <div class="iban-label">IBAN</div>
+            <div class="iban-value">DE83 5739 1800 0011 5018 00</div>
+          </div>
+          <div class="iban-row">
+            <div class="iban-label">Verwendungszweck (Pflicht!)</div>
+            <div class="iban-value" style="color:var(--sand)">Coexistence Walk</div>
+          </div>
+          <!-- Fix 8: Donation impact -->
+          <div
+            style="margin-top:1.25rem; padding-top:1.25rem; border-top:1px solid rgba(255,255,255,0.08); font-size:0.85rem; color:rgba(244,239,228,0.6); display:flex; flex-direction:column; gap:0.4rem;">
+            <div>Wir müssen die Referenten und Seminarräume bezahlen und würden uns deswegen über Spenden sehr freuen.
+            </div>
+          </div>
+        </div>
+
+        <a href="https://naturschutz-initiative.de/" target="_blank" class="btn btn-primary"
+          style="margin:0 auto; display:inline-flex;">
+          Zur offiziellen Website →
+        </a>
+        <p class="iban-notice">
+          Die Naturschutzinitiative e.V. (NI) unterstützt die Initiative als strategischer Partner<br />
+          bei der Verwaltung der Fördergelder. Spenden sind steuerlich absetzbar.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FAQ ────────────────────────────────────────────────── -->
+  <section id="faq" class="section" style="background:var(--cream);">
+    <div class="container">
+      <p class="eyebrow reveal">Fragen & Antworten</p>
+      <h2 class="section-title reveal">FAQ – COEXISTENCE<br /><em>WALK 2026</em></h2>
+      <div class="divider reveal"></div>
+
+      <div class="faq-grid reveal reveal-delay-1"
+        style="display:flex; flex-direction:column; gap:2rem; max-width:800px; margin:0 auto;">
+
+        <div>
+          <h3
+            style="color:var(--bark); border-bottom:1px solid rgba(45,36,22,0.1); padding-bottom:0.5rem; margin-bottom:1rem;">
+            Allgemeines zum Projekt</h3>
+          <div style="margin-bottom:1.5rem;">
+            <strong>Was ist der COEXISTENCE WALK?</strong>
+            <p style="margin-top:0.5rem;">Der COEXISTENCE WALK ist eine mehrtägige Wander- und Dialoginitiative, die zur
+              Projekteröffnung vom 29. Mai bis zum 04. Juni 2026 stattfindet. Unter dem Motto „Neue Wege auf alten
+              Pfaden“ wandern wir von Westpolen (Schwedt/Oder) nach Brandenburg (Liepe), um eine sachliche und emotional
+              ausgewogene Debatte über das Zusammenleben von Mensch und Wolf zu fördern.</p>
+          </div>
+          <div style="margin-bottom:1.5rem;">
+            <strong>Ist dies eine Demonstration gegen oder für den Wolf?</strong>
+            <p style="margin-top:0.5rem;">Nein. Wir grenzen uns bewusst von öffentlichen Protestkundgebungen oder
+              Demonstrationen ab. Der Walk ist eine Dialoginitiative. Unser Ziel ist nicht der Konflikt, sondern der
+              Aufbau von Brücken zwischen Fachleuten, Medien und der Öffentlichkeit durch deeskalierende und
+              evidenzbasierte Kommunikation. Allerdings sind wir mit der überwiegend Interessen geleiteten Art und
+              Weise, wie aktuell über den Umgang mit dem Wolf entschieden wird, nicht einverstanden! Insbesondere
+              Maßnahmen wie die Bejagung stehen vielfach im Widerspruch zu einem ausgewogenen, zukunftsfähigen Umgang
+              mit „dem Rest“ unserer natürlichen Umwelt. Wir suchen Wege zur gesicherten Koexistenz, deshalb steht die
+              eine einfache, aber entscheidende Frage im Mittelpunkt: Wie kann ein tragfähiges Zusammenleben von Mensch
+              und Wolf (und anderen Arten) zukunftssicher gelingen?</p>
+          </div>
+          <div style="margin-bottom:1.5rem;">
+            <strong>Warum findet der erste Walk ausgerechnet im Grenzgebiet Polen/Brandenburg statt?</strong>
+            <p style="margin-top:0.5rem;">Der Ort ist symbolisch gewählt. Er steht für die eigenständige Rückkehr der
+              Wölfe nach dem Fall des „Eisernen Vorhangs“. Wir nutzen das Umfeld des „Grünen Bands“, um den historischen
+              Kontext mit zukünftigen Lösungen für eine tragfähige Koexistenz zu verknüpfen.</p>
+          </div>
+        </div>
+
+        <div>
+          <h3
+            style="color:var(--bark); border-bottom:1px solid rgba(45,36,22,0.1); padding-bottom:0.5rem; margin-bottom:1rem;">
+            Teilnahme & Ablauf</h3>
+          <div style="margin-bottom:1.5rem;">
+            <strong>Kann ich als Privatperson mitwandern?</strong>
+            <p style="margin-top:0.5rem;">Ja, es bestehen konkrete Beteiligungsangebote für die Öffentlichkeit im Rahmen
+              unserer partizipativen Kampagne. Es gibt ein externes Teilnehmermanagement, über das du dich für die
+              Wandergruppe anmelden kannst (zum Kontakt-/ Anmeldeformular oder Telefon/WhatsApp +49 151 59207010).</p>
+          </div>
+          <div style="margin-bottom:1.5rem;">
+            <strong>Wie sieht ein typischer Tag beim COEXISTENCE WALK aus?</strong>
+            <p style="margin-top:0.5rem;">Der Tag ist zweigeteilt: Vormittags und nachmittags finden geführte
+              Wanderetappen (Exkursionen) auf Feld- und Waldwegen statt, bei denen es thematische Impulse gibt. Im
+              Anschluss folgen Fachveranstaltungen mit wissenschaftlichen Fakten, Erfahrungsberichten und moderierten
+              Diskussionen (siehe Verlaufs-/Programmplanung).</p>
+          </div>
+          <div style="margin-bottom:1.5rem;">
+            <strong>Was passiert bei schlechtem Wetter?</strong>
+            <p style="margin-top:0.5rem;">Keine Sorge, unsere Logistikplanung umfasst Alternativrouten und
+              Transportoptionen, falls das Wetter eine Wanderung unmöglich macht.</p>
+          </div>
+        </div>
+
+        <div>
+          <h3
+            style="color:var(--bark); border-bottom:1px solid rgba(45,36,22,0.1); padding-bottom:0.5rem; margin-bottom:1rem;">
+            Logistik & Sicherheit</h3>
+          <div style="margin-bottom:1.5rem;">
+            <strong>Wie ist die Versorgung während der Wanderung geregelt?</strong>
+            <p style="margin-top:0.5rem;">Ein Begleitfahrzeug stellt Wasser, Snacks und Erste-Hilfe-Material bereit.
+              Zudem organisieren wir die Verpflegung sowie den Gepäcktransfer zwischen den Unterkünften.</p>
+          </div>
+          <div style="margin-bottom:1.5rem;">
+            <strong>Gibt es ein Notfallmanagement?</strong>
+            <p style="margin-top:0.5rem;">Ja. Wir haben ein festes Notfallmanagement für Mensch und Hund. Wir stehen in Kontakt mit örtlichen Rettungsdiensten und Tierärzten.</p>
+          </div>
+          <div style="margin-bottom:1.5rem;">
+            <strong>Wer trägt die Kosten für das Projekt?</strong>
+            <p style="margin-top:0.5rem;">Der COEXISTENCE WALK ist ein Non-Profit-Projekt. Übernachtungs- und
+              Verpflegungskosten tragen die Teilnehmer selbst. Die Finanzierung von z.B. Tagungsräumen,
+              Referentenaufwendungen etc. erfolgt unter anderem über ein Spendenkonto, das mit Unterstützung des Vereins
+              Naturschutzinitiative e.V. (NI) eingerichtet wurde. Die Teilnahme an den Veranstaltungen ist grundsätzlich
+              kostenfrei. Für eine langfristige Finanzierung sind wir dennoch auf Spenden angewiesen.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── KONTAKT / ANMELDUNG ────────────────────────────────── -->
+  <section id="kontakt" class="section">
+    <div class="container">
+      <p class="eyebrow reveal">Anmeldung & Kontakt</p>
+      <h2 class="section-title reveal">Dabei<em>sein</em></h2>
+      <div class="divider reveal"></div>
+
+      <div class="kontakt-grid">
+        <div class="kontakt-info reveal">
+          <h3>Kontakt für Medien & Partner</h3>
+          <p>Sie sind Journalist oder möchten als Partner (innerhalb der Interessengemeinschaft / IG) Teil des Netzwerks
+            werden? Wenden Sie sich bitte an unser Medienteam (Ralf Meurer unter Telefon/WhatsApp +49 151 59207010) oder
+            die Projektleitung (Peter Nawrath unter Telefon/WhatsApp +49 179 7337535) für Hintergrundgespräche und
+            Pressematerial.</p>
+
+          <div class="kontakt-detail">
+            <div class="kontakt-detail-icon">
+              <svg viewBox="0 0 24 24">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                <line x1="16" y1="2" x2="16" y2="6" />
+                <line x1="8" y1="2" x2="8" y2="6" />
+                <line x1="3" y1="10" x2="21" y2="10" />
+              </svg>
+            </div>
+            <div class="kontakt-detail-text">
+              <strong>Zeitraum</strong>
+              29. Mai – 04. Juni 2026
+            </div>
+          </div>
+
+          <div class="kontakt-detail">
+            <div class="kontakt-detail-icon">
+              <svg viewBox="0 0 24 24">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+            </div>
+            <div class="kontakt-detail-text">
+              <strong>Region</strong>
+              Polen / Brandenburg<br />Schwedt/Oder bis Liepe
+            </div>
+          </div>
+
+          <div class="kontakt-detail">
+            <div class="kontakt-detail-icon">
+              <svg viewBox="0 0 24 24">
+                <path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71" />
+                <path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71" />
+              </svg>
+            </div>
+            <div class="kontakt-detail-text">
+              <strong>Website</strong>
+              <a href="https://www.coexistence-walk.de" target="_blank"
+                style="color:var(--fern);">www.coexistence-walk.de</a>
+            </div>
+          </div>
+
+          <div class="kontakt-detail">
+            <div class="kontakt-detail-icon">
+              <svg viewBox="0 0 24 24">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                <polyline points="22,6 12,13 2,6" />
+              </svg>
+            </div>
+            <div class="kontakt-detail-text">
+              <strong>Anmeldung</strong>
+              Ab sofort über die Website oder das nebenstehende Formular
+            </div>
+          </div>
+
+          <div style="margin-top:2.5rem;">
+            <p class="eyebrow" style="margin-bottom:0.75rem;">Folge uns</p>
+            <div class="footer-hashtags">
+              <span class="hashtag">#CoexistenceWalk</span>
+              <span class="hashtag">#Wolf</span>
+              <span class="hashtag">#Naturschutz</span>
+              <span class="hashtag">#Brandenburg</span>
+              <span class="hashtag">#Dialog</span>
+              <span class="hashtag">#MenschUndNatur</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="anmeldung-box reveal reveal-delay-1">
+          <h3>Jetzt anmelden</h3>
+          <p>Fülle das Formular aus – wir melden uns zeitnah bei dir.</p>
+
+          <form action="https://formspree.io/f/xgorblbb" method="POST">
+            <input type="hidden" name="_subject" value="Neue Anmeldung – Coexistence Walk" />
+            <input type="hidden" name="_redirect" value="https://www.coexistence-walk.de/danke.html" />
+            <input type="hidden" name="_captcha" value="false" />
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>Vorname & Nachname</label>
+                <input type="text" name="name" placeholder="Max Mustermann" required />
+              </div>
+              <div class="form-group">
+                <label>E-Mail-Adresse</label>
+                <input type="email" name="email" placeholder="deine@email.de" required />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Telefonnummer (für Notfälle vor Ort)</label>
+              <input type="tel" name="telefon" placeholder="+49 ..." required />
+            </div>
+
+            <div class="form-group">
+              <label>Ich möchte teilnehmen am:</label>
+              <div style="display:flex; flex-direction:column; gap:0.5rem; margin-top:0.5rem;">
+                <label style="font-weight:normal; display:flex; align-items:center; gap:0.5rem; cursor:pointer;">
+                  <input type="radio" name="teilnahme" value="Gesamter Zeitraum (29.05. – 04.06.2026)" required />
+                  <span>Gesamter Zeitraum (29.05. – 04.06.2026)</span>
+                </label>
+                <label style="font-weight:normal; display:flex; align-items:center; gap:0.5rem; cursor:pointer;">
+                  <input type="radio" name="teilnahme" value="Einzelne Etappen" id="einzelneEtappenRadio" required />
+                  <span>Einzelne Etappen</span>
+                </label>
+                <input type="text" name="einzelne_etappen_datum"
+                  placeholder="Bitte Datum angeben (z.B. 30.05. - 31.05.)" style="margin-top:0.25rem; display:none;"
+                  id="einzelneEtappenInput" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Logistik & Sicherheit</label>
+              <div
+                style="display:flex; flex-direction:column; gap:1rem; margin-top:0.5rem; background:rgba(255,255,255,0.4); padding:1.25rem; border-radius:6px; border:1px solid rgba(0,0,0,0.05);">
+                <div>
+                  <span style="font-size:0.9rem; color:var(--bark); font-weight:500;">Wandert ein Hund mit?</span>
+                  <div style="display:flex; gap:1.5rem; margin-top:0.5rem;">
+                    <label style="font-weight:normal; display:flex; align-items:center; gap:0.4rem; cursor:pointer;">
+                      <input type="radio" name="hund" value="Ja" required /> Ja
+                    </label>
+                    <label style="font-weight:normal; display:flex; align-items:center; gap:0.4rem; cursor:pointer;">
+                      <input type="radio" name="hund" value="Nein" required /> Nein
+                    </label>
+                  </div>
+                </div>
+                <hr style="border:none; border-top:1px solid rgba(0,0,0,0.06); margin:0;" />
+                <div>
+                  <span style="font-size:0.9rem; color:var(--bark); font-weight:500;">Benötigen Sie einen
+                    Gepäcktransfer?</span>
+                  <div style="display:flex; gap:1.5rem; margin-top:0.5rem;">
+                    <label style="font-weight:normal; display:flex; align-items:center; gap:0.4rem; cursor:pointer;">
+                      <input type="radio" name="gepaeck" value="Ja" required /> Ja
+                    </label>
+                    <label style="font-weight:normal; display:flex; align-items:center; gap:0.4rem; cursor:pointer;">
+                      <input type="radio" name="gepaeck" value="Nein" required /> Nein
+                    </label>
+                  </div>
+                </div>
+                <div
+                  style="font-size:0.85rem; color:var(--sand); margin-top:0.2rem; display:flex; align-items:center; gap:0.4rem;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="8" x2="12" y2="12"></line>
+                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                  </svg>
+                  Beachte: Selbstverpflegung!
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Rechtliches</label>
+              <div
+                style="display:flex; flex-direction:column; gap:0.8rem; margin-top:0.5rem; background:rgba(255,255,255,0.4); padding:1.25rem; border-radius:6px; border:1px solid rgba(0,0,0,0.05);">
+                <label
+                  style="font-weight:normal; display:flex; align-items:flex-start; gap:0.6rem; font-size:0.85rem; line-height:1.4; cursor:pointer;">
+                  <input type="checkbox" name="privat_exkursion" required style="margin-top:0.15rem; flex-shrink:0;" />
+                  <span>Ich habe zur Kenntnis genommen, dass es sich um eine private Exkursion (Interessengemeinschaft)
+                    und nicht um eine Demonstration handelt.</span>
+                </label>
+                <label
+                  style="font-weight:normal; display:flex; align-items:flex-start; gap:0.6rem; font-size:0.85rem; line-height:1.4; cursor:pointer;">
+                  <input type="checkbox" name="unterkunft_selbstbuchung" required
+                    style="margin-top:0.15rem; flex-shrink:0;" />
+                  <span>Mir ist bewusst, dass Hotelzimmer oder sonstige Unterkünfte selbstständig und separat nach
+                    eigenen Wünschen gebucht werden müssen.</span>
+                </label>
+                <label
+                  style="font-weight:normal; display:flex; align-items:flex-start; gap:0.6rem; font-size:0.85rem; line-height:1.4; cursor:pointer;">
+                  <input type="checkbox" name="agb" required style="margin-top:0.15rem; flex-shrink:0;" />
+                  <span>Ich akzeptiere die <a href="teilnahmebedingungen.html" target="_blank"
+                      style="color:var(--fern); text-decoration:underline; text-underline-offset:2px;">Teilnahmebedingungen</a>
+                    und den Haftungsausschluss.</span>
+                </label>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary"
+              style="width:100%; justify-content:center; margin-top:0.5rem;">Anmeldung absenden</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── TEAM ──────────────────────────────────────────── -->
+  <section id="team" class="section">
+    <div class="container">
+      <p class="eyebrow reveal">Organisation</p>
+      <h2 class="section-title reveal reveal-delay-1">Das <em>Team</em></h2>
+      <div class="divider reveal reveal-delay-2"></div>
+
+      <div class="team-grid">
+
+        <div class="team-card reveal">
+          <div class="team-card-img-wrap">
+            <img src="https://69ef43b5abe5326bdb42135d.imgix.net/Peter%20Nawrath.png?auto=format&fit=fill&w=384"
+              alt="Peter Nawrath" loading="lazy" style="object-position: center 20%;" />
+          </div>
+          <div class="team-card-name">Peter Nawrath</div>
+        </div>
+
+        <div class="team-card reveal reveal-delay-1">
+          <div class="team-card-img-wrap">
+            <img src="https://69ef43b5abe5326bdb42135d.imgix.net/Ralf%20Peter%20Meurer_.png?auto=format&fit=fill&w=384"
+              alt="Ralf Peter Meurer" loading="lazy" />
+          </div>
+          <div class="team-card-name">Ralf Peter Meurer</div>
+        </div>
+
+        <div class="team-card reveal reveal-delay-2">
+          <div class="team-card-img-wrap">
+            <img src="https://69ef43b5abe5326bdb42135d.imgix.net/Martina%20Z%C3%B6llner.png?auto=format&fit=fill&w=384"
+              alt="Martina Zöllner" loading="lazy" />
+          </div>
+          <div class="team-card-name">Martina Zöllner</div>
+        </div>
+
+        <div class="team-card reveal reveal-delay-3">
+          <div class="team-card-img-wrap">
+            <img src="https://69ef43b5abe5326bdb42135d.imgix.net/Sabine%20Beerbaum.png?auto=format&fit=fill&w=384"
+              alt="Sabine Beerbaum" loading="lazy" />
+          </div>
+          <div class="team-card-name">Sabine Beerbaum</div>
+        </div>
+
+        <div class="team-card reveal">
+          <div class="team-card-img-wrap">
+            <img src="https://69ef43b5abe5326bdb42135d.imgix.net/Kevin%20Reutemann.png?auto=format&fit=fill&w=384"
+              alt="Kevin Reutemann" loading="lazy" />
+          </div>
+          <div class="team-card-name">Kevin Reutemann</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── UNTERSTÜTZER & PARTNER ───────────────────────────────── -->
+  <section id="partner-new" class="section">
+    <div class="container">
+      <p class="eyebrow reveal" style="text-align:center;">Netzwerk</p>
+      <h2 class="section-title reveal reveal-delay-1" style="text-align:center;">Unterstützer &amp; <em>Partner</em>
+      </h2>
+      <div class="divider reveal reveal-delay-2" style="margin-left:auto; margin-right:auto;"></div>
+
+      <div class="partner-grid-new reveal reveal-delay-3">
+
+        <a href="https://naturschutz-initiative.de/" target="_blank" rel="noopener noreferrer"
+          aria-label="Naturschutzinitiative e.V. (NI)">
+          <img src="NI-Logo_weissraum_4k_rgb.png" alt="Naturschutzinitiative e.V. (NI)" loading="lazy" />
+          <span class="partner-name">Naturschutzinitiative e.V. (NI)</span>
+        </a>
+
+        <a href="https://www.gzsdw.de/" target="_blank" rel="noopener noreferrer"
+          aria-label="Gesellschaft zum Schutz der Wölfe e.V.">
+          <img
+            src="https://69ef43b5abe5326bdb42135d.imgix.net/Gesellschaft_zum_Schutz_der_Woelfe_e_V_Logo.jpeg?auto=format&fit=fill&w=384"
+            alt="Gesellschaft zum Schutz der Wölfe e.V." loading="lazy" />
+          <span class="partner-name">Ges. z. Schutz der Wölfe e.V.</span>
+        </a>
+
+        <a href="#partner-new" aria-label="Sabine's Hundeschule">
+          <img src="https://69ef43b5abe5326bdb42135d.imgix.net/Sabine_Hundeschule.jpeg?auto=format&fit=fill&w=384"
+            alt="Sabine's Hundeschule" loading="lazy" />
+          <span class="partner-name">Sabine's Hundeschule</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── FOOTER ─────────────────────────────────────────────── -->
   <footer>
     <div class="container">
       <div class="footer-top">
@@ -2315,19 +3451,19 @@
         <div class="footer-links">
           <h4>Navigation</h4>
           <ul>
-            <li><a href="coexistence-walk-2026.html#about">Über die Initiative</a></li>
-            <li><a href="coexistence-walk-2026.html#route">Route & Stationen</a></li>
-            <li><a href="coexistence-walk-2026.html#programm">Programm</a></li>
-            <li><a href="coexistence-walk-2026.html#referenten">Referent:innen</a></li>
-            <li><a href="coexistence-walk-2026.html#mitmachen">Mitmachen</a></li>
+            <li><a href="#about">Über die Initiative</a></li>
+            <li><a href="#route">Route & Stationen</a></li>
+            <li><a href="#programm">Programm</a></li>
+            <li><a href="#referenten">Referent:innen</a></li>
+            <li><a href="#mitmachen">Mitmachen</a></li>
           </ul>
         </div>
 
         <div class="footer-links">
           <h4>Unterstützen</h4>
           <ul>
-            <li><a href="coexistence-walk-2026.html#spenden">Spenden</a></li>
-            <li><a href="coexistence-walk-2026.html#kontakt">Anmeldung</a></li>
+            <li><a href="#spenden">Spenden</a></li>
+            <li><a href="#kontakt">Anmeldung</a></li>
             <li><a href="https://www.coexistence-walk.de" target="_blank">www.coexistence-walk.de</a></li>
           </ul>
           <div style="margin-top:1.5rem;">

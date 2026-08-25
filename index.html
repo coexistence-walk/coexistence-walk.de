@@ -4,37 +4,40 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>COEXISTENCE WALK 2026 – Gemeinsam Gehen für den Wolf</title>
+  <title>COEXISTENCE WALK 2027 – Coming Soon</title>
+  <meta name="description" content="Coexistence Walk 2027 – Gemeinsam Gehen für den Wolf. Das nächste Kapitel kündigt sich an. Entdecken Sie das Archiv des Coexistence Walk 2026." />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
   <link rel="manifest" href="/site.webmanifest" />
-  <!-- Fonts: lokal gehostet – keine Datenübermittlung an Google -->
+
+  <!-- Fonts: lokal gehostet – DSGVO-konform -->
   <link rel="stylesheet" href="/fonts/fonts.css" />
 
-  <!-- Netlify Identity: wird erst nach Einwilligung geladen -->
-  <!-- wird via JS nachgeladen, sofern notwendig -->
-
   <style>
-    /* ─── TOKENS ─────────────────────────────────────────────── */
+    /* ─── DESIGN TOKENS ───────────────────────────────────────── */
     :root {
+      --bg-dark: #0f130e;
+      --bg-surface: #171d14;
+      --bg-card: rgba(26, 34, 23, 0.7);
       --ink: #1a1a14;
       --bark: #2d2416;
-      --moss: #3d4c2e;
+      --moss: #334226;
       --fern: #546b3a;
       --sage: #8ea870;
       --sand: #c9b88a;
+      --gold: #d4a34b;
+      --gold-light: #f3dfa2;
       --linen: #f4efe4;
       --cream: #faf8f2;
       --parchment: #ede8dc;
-      --amber: #c08a2e;
-      --rust: #8b4a2a;
+      --border-subtle: rgba(201, 184, 138, 0.2);
+      --border-glow: rgba(212, 163, 75, 0.35);
 
       --font-display: 'Cormorant Garamond', Georgia, serif;
       --font-body: 'DM Sans', sans-serif;
 
       --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
-      --section-pad: clamp(4rem, 8vw, 8rem);
     }
 
     /* ─── RESET ───────────────────────────────────────────────── */
@@ -48,21 +51,35 @@
 
     html {
       scroll-behavior: smooth;
+      background: var(--bg-dark);
+      color: var(--linen);
     }
 
     body {
-      background: var(--cream);
-      color: var(--ink);
+      background: radial-gradient(circle at 50% 20%, #1f2a1b 0%, #12170f 60%, #0a0d08 100%);
+      min-height: 100vh;
       font-family: var(--font-body);
-      font-size: clamp(15px, 1.6vw, 17px);
-      line-height: 1.7;
+      font-size: clamp(15px, 1.5vw, 17px);
+      line-height: 1.65;
+      color: var(--linen);
       overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
     }
 
-    img {
-      display: block;
-      width: 100%;
-      object-fit: cover;
+    /* Atmospheric ambient background elements */
+    .ambient-glow {
+      position: absolute;
+      top: 15%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: clamp(320px, 70vw, 900px);
+      height: clamp(320px, 45vw, 600px);
+      background: radial-gradient(circle, rgba(142, 168, 112, 0.14) 0%, rgba(212, 163, 75, 0.08) 45%, transparent 75%);
+      filter: blur(60px);
+      pointer-events: none;
+      z-index: 0;
     }
 
     a {
@@ -70,1972 +87,682 @@
       text-decoration: none;
     }
 
-    /* ─── SCROLLBAR ───────────────────────────────────────────── */
-    ::-webkit-scrollbar {
-      width: 6px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: var(--parchment);
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: var(--fern);
-      border-radius: 3px;
-    }
-
-    /* ─── Fix 6: PROGRESS BAR ────────────────────────────────── */
-    #progressBar {
-      position: fixed;
+    /* ─── HEADER / NAVBAR ─────────────────────────────────────── */
+    header {
+      position: sticky;
       top: 0;
-      left: 0;
-      height: 3px;
-      background: linear-gradient(to right, var(--sage), var(--sand));
-      width: 0%;
-      z-index: 1001;
-      transition: width 0.1s linear;
-      box-shadow: 0 0 8px rgba(142, 168, 112, 0.6);
-    }
-
-    /* ─── UTILITY ─────────────────────────────────────────────── */
-    .container {
-      max-width: 1240px;
-      margin: 0 auto;
-      padding: 0 clamp(1.25rem, 5vw, 3rem);
-    }
-
-    .section {
-      padding: var(--section-pad) 0;
-    }
-
-    .eyebrow {
-      font-family: var(--font-body);
-      font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--fern);
-      margin-bottom: 1rem;
-    }
-
-    .display-title {
-      font-family: var(--font-display);
-      font-weight: 300;
-      font-size: clamp(2.6rem, 5.5vw, 5rem);
-      line-height: 1.1;
-      color: var(--bark);
-    }
-
-    .display-title em {
-      font-style: italic;
-      color: var(--fern);
-    }
-
-    .section-title {
-      font-family: var(--font-display);
-      font-weight: 600;
-      font-size: clamp(2rem, 3.8vw, 3.4rem);
-      line-height: 1.15;
-      color: var(--bark);
-      margin-bottom: 0.5rem;
-    }
-
-    .section-title em {
-      font-style: italic;
-      color: var(--fern);
-    }
-
-    .lead {
-      font-family: var(--font-display);
-      font-size: clamp(1.1rem, 1.8vw, 1.35rem);
-      font-weight: 300;
-      line-height: 1.65;
-      color: var(--bark);
-      max-width: 680px;
-    }
-
-    .divider {
-      width: 60px;
-      height: 2px;
-      background: var(--sand);
-      margin: 1.5rem 0 2.5rem;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      padding: 0.9rem 2.2rem;
-      font-family: var(--font-body);
-      font-size: 0.82rem;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      border: none;
-      cursor: pointer;
-      border-radius: 4px;
+      z-index: 100;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      background: rgba(15, 19, 14, 0.75);
+      border-bottom: 1px solid var(--border-subtle);
       transition: all 0.3s var(--ease-out);
     }
 
-    .btn-primary {
-      background: var(--moss);
-      color: var(--linen);
-    }
-
-    .btn-primary:hover {
-      background: var(--bark);
-      transform: translateY(-2px) scale(1.02);
-    }
-
-    .btn-outline {
-      background: transparent;
-      color: var(--moss);
-      border: 1.5px solid var(--fern);
-      border-radius: 4px;
-    }
-
-    .btn-outline:hover {
-      background: var(--fern);
-      color: var(--linen);
-      transform: translateY(-2px) scale(1.02);
-    }
-
-    /* ─── IMAGE PLACEHOLDER ───────────────────────────────────── */
-    .img-placeholder {
-      background: var(--parchment);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 0.75rem;
-      color: var(--sage);
-      font-size: 0.78rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      font-family: var(--font-body);
-      border: 1.5px dashed var(--sand);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .img-placeholder::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        repeating-linear-gradient(45deg,
-          transparent,
-          transparent 20px,
-          rgba(0, 0, 0, 0.025) 20px,
-          rgba(0, 0, 0, 0.025) 21px);
-    }
-
-    .img-placeholder svg {
-      width: 36px;
-      height: 36px;
-      opacity: 0.45;
-      position: relative;
-      z-index: 1;
-    }
-
-    .img-placeholder span {
-      position: relative;
-      z-index: 1;
-    }
-
-    /* ─── NAVBAR ──────────────────────────────────────────────── */
-    #navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 999;
-      padding: 1.1rem 0;
-      transition: all 0.4s var(--ease-out);
-    }
-
-    #navbar.scrolled {
-      background: rgba(250, 248, 242, 0.95);
-      backdrop-filter: blur(12px);
-      box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
-    }
-
-    .nav-inner {
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0.9rem 1.5rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 1.5rem;
     }
 
-    .nav-logo {
+    .brand-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.85rem;
+      transition: transform 0.25s var(--ease-out), opacity 0.25s;
+    }
+
+    .brand-logo:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+
+    .brand-logo img {
+      height: 48px;
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.4));
+    }
+
+    .brand-title {
       font-family: var(--font-display);
-      font-size: 1rem;
+      font-size: 1.25rem;
+      letter-spacing: 0.08em;
       font-weight: 600;
-      letter-spacing: 0.04em;
       color: var(--linen);
-      transition: color 0.4s;
+      text-transform: uppercase;
     }
 
-    #navbar.scrolled .nav-logo {
-      color: var(--bark);
+    .brand-title span {
+      color: var(--gold);
     }
 
-    .nav-links {
+    .header-nav {
       display: flex;
-      gap: 2.2rem;
-      list-style: none;
+      align-items: center;
+      gap: 1.2rem;
     }
 
-    .nav-links a {
-      font-size: 0.8rem;
+    .nav-btn {
+      font-family: var(--font-body);
+      font-size: 0.85rem;
       font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: rgba(244, 239, 228, 0.85);
-      transition: color 0.3s;
+      letter-spacing: 0.05em;
+      padding: 0.55rem 1.15rem;
+      border-radius: 999px;
+      transition: all 0.25s var(--ease-out);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
     }
 
-    #navbar.scrolled .nav-links a {
-      color: var(--ink);
+    .nav-btn-outline {
+      border: 1px solid var(--border-subtle);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--parchment);
     }
 
-    .nav-links a:hover {
-      color: var(--sage);
+    .nav-btn-outline:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: var(--sand);
+      color: #ffffff;
+      transform: translateY(-1px);
     }
 
-    .nav-cta {
-      background: var(--moss);
-      color: var(--linen) !important;
-      padding: 0.5rem 1.4rem;
-      font-size: 0.75rem !important;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      transition: background 0.3s !important;
+    .nav-btn-gold {
+      background: linear-gradient(135deg, rgba(212, 163, 75, 0.2) 0%, rgba(142, 168, 112, 0.2) 100%);
+      border: 1px solid var(--border-glow);
+      color: var(--gold-light);
+      box-shadow: 0 0 15px rgba(212, 163, 75, 0.15);
     }
 
-    .nav-cta:hover {
-      background: var(--bark) !important;
-      color: var(--linen) !important;
+    .nav-btn-gold:hover {
+      background: linear-gradient(135deg, rgba(212, 163, 75, 0.35) 0%, rgba(142, 168, 112, 0.35) 100%);
+      border-color: var(--gold);
+      color: #fff;
+      transform: translateY(-1px);
+      box-shadow: 0 0 20px rgba(212, 163, 75, 0.3);
     }
 
-    .hamburger {
-      display: none;
-      background: none;
-      border: none;
-      cursor: pointer;
-    }
-
-    /* ─── HERO ────────────────────────────────────────────────── */
-    #hero {
-      min-height: 100svh;
-      position: relative;
-      display: flex;
-      align-items: flex-end;
-      padding-bottom: clamp(3rem, 7vw, 6rem);
-      overflow: hidden;
-    }
-
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(160deg, #1c2414 0%, #2d3820 40%, #3a4a28 100%);
-    }
-
-    /* Photo placeholder for hero background */
-    .hero-bg-img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0.45;
-      mix-blend-mode: multiply;
-    }
-
-    .hero-bg-placeholder {
-      position: absolute;
-      inset: 0;
+    /* ─── MAIN HERO SECTION ───────────────────────────────────── */
+    main {
+      flex: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      color: rgba(255, 255, 255, 0.12);
-      font-size: 0.75rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      font-family: var(--font-body);
-      gap: 0.5rem;
-    }
-
-    .hero-bg-placeholder svg {
-      width: 48px;
-      opacity: 0.3;
-    }
-
-    .hero-grain {
-      position: absolute;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
-      background-size: 200px;
-      pointer-events: none;
-      opacity: 0.6;
-    }
-
-    .hero-vignette {
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, 0.5) 100%);
-    }
-
-    .hero-bottom {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 220px;
-      background: linear-gradient(to top, var(--cream) 0%, transparent 100%);
-    }
-
-    .hero-content {
+      padding: 3rem 1.5rem 5rem;
       position: relative;
-      z-index: 2;
-      max-width: 820px;
+      z-index: 1;
     }
 
-    .hero-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      backdrop-filter: blur(4px);
-      padding: 0.45rem 1.1rem;
-      font-size: 0.72rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: rgba(244, 239, 228, 0.9);
-      margin-bottom: 2rem;
-      font-family: var(--font-body);
-    }
-
-    .hero-tag .dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--sage);
-    }
-
-    .hero-title {
-      font-family: var(--font-display);
-      font-size: clamp(3rem, 7vw, 7rem);
-      font-weight: 300;
-      line-height: 1.0;
-      color: var(--linen);
-      margin-bottom: 0.4rem;
-    }
-
-    .hero-title strong {
-      display: block;
-      font-weight: 700;
-      font-size: 0.42em;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--sage);
-      margin-bottom: 0.2em;
-    }
-
-    .hero-subtitle {
-      font-family: var(--font-display);
-      font-style: italic;
-      font-size: clamp(1.1rem, 2vw, 1.6rem);
-      color: rgba(244, 239, 228, 0.7);
-      margin-bottom: 2.5rem;
-      font-weight: 300;
-    }
-
-    .hero-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      margin-bottom: 3rem;
-    }
-
-    .hero-meta-item {
+    .hero-container {
+      max-width: 1060px;
+      width: 100%;
+      margin: 0 auto;
       display: flex;
       flex-direction: column;
-      gap: 0.2rem;
-    }
-
-    .hero-meta-label {
-      font-size: 0.68rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--sage);
-      font-weight: 500;
-    }
-
-    .hero-meta-value {
-      font-family: var(--font-display);
-      font-size: 1.05rem;
-      color: rgba(244, 239, 228, 0.9);
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
       align-items: center;
+      text-align: center;
     }
 
-    /* ─── HERO INLINE FORM ────────────────────────────────────── */
-    .hero-form {
-      display: flex;
-      gap: 0;
-      margin-top: 1.6rem;
-      flex-wrap: wrap;
-      max-width: 500px;
-    }
-
-    .hero-form input[type="email"] {
-      flex: 1 1 220px;
-      padding: 0.85rem 1.2rem;
-      border: none;
-      background: rgba(255, 255, 255, 0.12);
-      backdrop-filter: blur(8px);
-      color: var(--linen);
-      font-family: var(--font-body);
-      font-size: 0.9rem;
-      outline: none;
-      border: 1px solid rgba(255, 255, 255, 0.22);
-      border-right: none;
-      transition: background 0.3s;
-    }
-
-    .hero-form input[type="email"]::placeholder {
-      color: rgba(244, 239, 228, 0.5);
-    }
-
-    .hero-form input[type="email"]:focus {
-      background: rgba(255, 255, 255, 0.18);
-    }
-
-    .hero-form .btn-primary {
-      flex-shrink: 0;
-      border-left: none;
-      padding: 0.85rem 1.6rem;
-      font-size: 0.78rem;
-      background: var(--sage);
-      color: var(--bark);
-      font-weight: 700;
-    }
-
-    .hero-form .btn-primary:hover {
-      background: var(--sand);
-      transform: none;
-    }
-
-    .hero-scarcity {
-      margin-top: 0.9rem;
-      font-size: 0.82rem;
-      color: rgba(255, 255, 255, 0.65);
-      display: flex;
+    /* Eyebrow badge */
+    .teaser-badge {
+      display: inline-flex;
       align-items: center;
       gap: 0.5rem;
+      padding: 0.45rem 1.25rem;
+      border-radius: 999px;
+      background: rgba(84, 107, 58, 0.25);
+      border: 1px solid rgba(142, 168, 112, 0.35);
+      color: var(--sage);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+      animation: fadeInDown 1.2s var(--ease-out) both;
     }
 
-    .hero-scarcity::before {
+    .teaser-badge::before {
       content: '';
-      width: 8px;
-      height: 8px;
+      display: inline-block;
+      width: 7px;
+      height: 7px;
       border-radius: 50%;
-      background: #e8a838;
-      flex-shrink: 0;
-      box-shadow: 0 0 0 3px rgba(232, 168, 56, 0.25);
+      background: var(--gold);
+      box-shadow: 0 0 10px var(--gold);
       animation: pulse 2s infinite;
     }
 
     @keyframes pulse {
-
-      0%,
-      100% {
-        box-shadow: 0 0 0 3px rgba(232, 168, 56, 0.25);
-      }
-
-      50% {
-        box-shadow: 0 0 0 6px rgba(232, 168, 56, 0.1);
-      }
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
     }
 
-    /* ─── STICKY CTA ──────────────────────────────────────────── */
-    .sticky-btn {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      background: var(--moss);
-      color: var(--linen);
-      padding: 0.95rem 1.6rem;
-      border-radius: 50px;
-      z-index: 998;
-      font-family: var(--font-body);
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
-      transition: all 0.3s var(--ease-out);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      opacity: 0;
-      transform: translateY(12px);
-      pointer-events: none;
-    }
-
-    .sticky-btn.show {
-      opacity: 1;
-      transform: translateY(0);
-      pointer-events: auto;
-    }
-
-    /* Hide sticky CTA while cookie banner is open so they don't overlap */
-    body.cb-open .sticky-btn {
-      opacity: 0 !important;
-      pointer-events: none !important;
-      transform: translateY(12px) !important;
-    }
-
-    .sticky-btn:hover {
-      background: var(--bark);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    }
-
-    @media (max-width: 600px) {
-      .sticky-btn {
-        bottom: 16px;
-        right: 16px;
-        padding: 0.8rem 1.3rem;
-        font-size: 0.72rem;
-      }
-    }
-
-    .hero-scroll {
-      position: absolute;
-      right: 3rem;
-      bottom: 3rem;
-      z-index: 2;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.65rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: rgba(244, 239, 228, 0.4);
-    }
-
-    .hero-scroll .scroll-line {
-      width: 1px;
-      height: 60px;
-      background: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), transparent);
-      animation: scrollPulse 2.5s ease-in-out infinite;
-    }
-
-    @keyframes scrollPulse {
-
-      0%,
-      100% {
-        opacity: 0.3;
-        transform: scaleY(1);
-      }
-
-      50% {
-        opacity: 0.8;
-        transform: scaleY(1.15);
-      }
-    }
-
-    /* ─── INTRO BAND ──────────────────────────────────────────── */
-    #intro-band {
-      background: var(--moss);
-      color: var(--linen);
-      padding: 2.5rem 0;
-    }
-
-    .band-inner {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2.5rem;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .band-fact {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .band-fact-num {
-      font-family: var(--font-display);
-      font-size: 2.8rem;
-      font-weight: 300;
-      color: var(--sand);
-      line-height: 1;
-    }
-
-    .band-fact-label {
-      font-size: 0.78rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: rgba(244, 239, 228, 0.65);
-      margin-top: 0.3rem;
-    }
-
-    .band-divider {
-      width: 1px;
-      height: 60px;
-      background: rgba(255, 255, 255, 0.15);
-    }
-
-    /* ─── INTRO VIDEO ────────────────────────────────────────── */
-    #intro-video {
-      background: var(--bark);
-      position: relative;
-      overflow: hidden;
-    }
-
-    #intro-video::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-      background-size: 200px;
-      pointer-events: none;
-      opacity: 0.5;
-    }
-
-    .video-section-inner {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-    }
-
-    .video-section-inner .eyebrow {
-      color: var(--sage);
-    }
-
-    .video-section-inner .section-title {
-      color: var(--linen);
-    }
-
-    .video-section-inner .section-title em {
-      color: var(--sage);
-    }
-
-    .video-section-inner .divider {
-      background: rgba(255, 255, 255, 0.15);
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .video-section-inner .lead {
-      color: rgba(244, 239, 228, 0.7);
-      margin-left: auto;
-      margin-right: auto;
-      text-align: center;
-    }
-
-    .video-container {
-      position: relative;
+    /* ─── VIDEO PLAYER FRAME & SLOW FADE-IN ──────────────────── */
+    .video-showcase {
+      width: 100%;
       max-width: 960px;
-      margin: 3rem auto 0;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow:
-        0 8px 60px rgba(0, 0, 0, 0.4),
-        0 0 0 1px rgba(142, 168, 112, 0.15);
+      position: relative;
+      margin-bottom: 2.75rem;
+      border-radius: 20px;
+      padding: 8px;
+      background: linear-gradient(145deg, rgba(201, 184, 138, 0.3) 0%, rgba(51, 66, 38, 0.4) 40%, rgba(15, 19, 14, 0.8) 100%);
+      box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.85),
+                  0 0 50px rgba(142, 168, 112, 0.12);
+      animation: videoEntrance 2s var(--ease-out) both;
     }
 
-    .video-container::before {
-      content: '';
-      position: absolute;
-      inset: -1px;
-      border-radius: 13px;
-      background: linear-gradient(135deg, rgba(142, 168, 112, 0.3), transparent 40%, transparent 60%, rgba(201, 184, 138, 0.2));
-      z-index: 1;
-      pointer-events: none;
-    }
-
-    .video-ratio {
+    .video-inner {
       position: relative;
       width: 100%;
-      padding-bottom: 56.25%; /* 16:9 */
-      background: #111;
+      aspect-ratio: 16 / 9;
+      background: #000;
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    .video-ratio iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
+    /* Smooth slow fade-in for the video element itself */
+    .video-element {
       width: 100%;
       height: 100%;
-      border: 0;
-    }
-
-    .video-ornament {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 1rem;
-      margin-top: 2.5rem;
-      color: rgba(244, 239, 228, 0.25);
-      font-size: 0.72rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      font-family: var(--font-body);
-    }
-
-    .video-ornament::before,
-    .video-ornament::after {
-      content: '';
-      width: 40px;
-      height: 1px;
-      background: rgba(255, 255, 255, 0.12);
-    }
-
-    @media (max-width: 768px) {
-      .video-container {
-        margin: 2rem -1rem 0;
-        border-radius: 0;
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
-      }
-
-      .video-container::before {
-        border-radius: 0;
-      }
-    }
-
-    /* ─── ABOUT ───────────────────────────────────────────────── */
-    #about {
-      background: var(--cream);
-    }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem;
-      align-items: center;
-    }
-
-    .about-img-wrap {
-      position: relative;
-    }
-
-    .about-img-wrap .main-img {
-      height: 540px;
-    }
-
-    .about-img-wrap .accent-img {
-      position: absolute;
-      right: -2.5rem;
-      bottom: -2.5rem;
-      width: 220px;
-      height: 180px;
-      border: 6px solid var(--cream);
-      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12);
-    }
-
-    .about-text p {
-      margin-bottom: 1.25rem;
-      color: #3a3a30;
-      font-size: 1rem;
-      line-height: 1.8;
-    }
-
-    .about-highlight {
-      background: var(--parchment);
-      border-left: 3px solid var(--sage);
-      padding: 1.25rem 1.5rem;
-      margin: 2rem 0;
-      font-family: var(--font-display);
-      font-style: italic;
-      font-size: 1.2rem;
-      color: var(--bark);
-      line-height: 1.55;
-    }
-
-    /* ─── ROUTE ───────────────────────────────────────────────── */
-    #route {
-      background: var(--parchment);
-    }
-
-    .route-header {
-      margin-bottom: 4rem;
-    }
-
-    .route-map {
-      height: 380px;
-      margin-bottom: 4rem;
-    }
-
-    .stages-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5px;
-      background: var(--sand);
-    }
-
-    .stage {
-      background: var(--cream);
-      padding: 2rem;
-      position: relative;
-    }
-
-    .stage-num {
-      font-family: var(--font-display);
-      font-size: 3.5rem;
-      font-weight: 300;
-      color: var(--parchment);
-      position: absolute;
-      top: 1rem;
-      right: 1.5rem;
-      line-height: 1;
-    }
-
-    .stage-date {
-      font-size: 0.7rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      font-weight: 500;
-      color: var(--fern);
-      margin-bottom: 0.5rem;
-    }
-
-    .stage-title {
-      font-family: var(--font-display);
-      font-size: 1.2rem;
-      font-weight: 600;
-      color: var(--bark);
-      margin-bottom: 0.5rem;
-    }
-
-    .stage-detail {
-      font-size: 0.88rem;
-      color: #555548;
-      line-height: 1.6;
-    }
-
-    .stage-icon {
-      width: 28px;
-      height: 28px;
-      background: var(--fern);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 1rem;
-    }
-
-    .stage-icon svg {
-      width: 14px;
-      fill: var(--linen);
-    }
-
-    /* ─── PROGRAM ─────────────────────────────────────────────── */
-    #programm {
-      background: var(--bark);
-      color: var(--linen);
-    }
-
-    #programm .eyebrow {
-      color: var(--sage);
-    }
-
-    #programm .section-title {
-      color: var(--linen);
-    }
-
-    #programm .section-title em {
-      color: var(--sage);
-    }
-
-    #programm .divider {
-      background: rgba(255, 255, 255, 0.15);
-    }
-
-    .program-grid {
-      display: grid;
-      grid-template-columns: 300px 1fr;
-      gap: 0;
-    }
-
-    .program-days {
-      border-right: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .day-tab {
-      padding: 1.2rem 2rem;
-      cursor: pointer;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-      transition: all 0.3s;
-      position: relative;
-    }
-
-    .day-tab::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 3px;
-      background: var(--sage);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.3s var(--ease-out);
-    }
-
-    .day-tab.active::before {
-      transform: scaleX(1);
-    }
-
-    .day-tab.active {
-      background: rgba(255, 255, 255, 0.05);
-    }
-
-    .day-tab-label {
-      font-size: 0.68rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--sage);
-      margin-bottom: 0.3rem;
-      font-weight: 500;
-    }
-
-    .day-tab-title {
-      font-family: var(--font-display);
-      font-size: 1.05rem;
-      color: var(--linen);
-      line-height: 1.3;
-    }
-
-    .day-tab-sub {
-      font-size: 0.78rem;
-      color: rgba(244, 239, 228, 0.45);
-      margin-top: 0.25rem;
-    }
-
-    .program-content {
-      padding: 2.5rem 3rem;
-    }
-
-    .prog-panel {
-      display: none;
-      animation: fadeIn 0.4s var(--ease-out);
-    }
-
-    .prog-panel.active {
+      object-fit: cover;
       display: block;
+      opacity: 0;
+      transform: scale(1.02);
+      transition: opacity 2.2s cubic-bezier(0.16, 1, 0.3, 1), transform 2.6s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateX(16px);
-      }
-
-      to {
-        opacity: 1;
-        transform: none;
-      }
+    .video-element.video-loaded {
+      opacity: 1;
+      transform: scale(1);
     }
 
-    .prog-location {
+    /* Video controls overlay (Sound & Playback) */
+    .video-controls-overlay {
+      position: absolute;
+      bottom: 16px;
+      right: 16px;
       display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-      background: rgba(255, 255, 255, 0.04);
-      padding: 1.25rem 1.5rem;
-      border-left: 2px solid var(--sage);
-      margin-bottom: 2rem;
+      gap: 10px;
+      z-index: 10;
+      opacity: 0;
+      transition: opacity 0.5s ease;
     }
 
-    .prog-location-icon {
-      color: var(--sage);
-      margin-top: 0.1rem;
-      flex-shrink: 0;
+    .video-showcase:hover .video-controls-overlay,
+    .video-controls-overlay.active {
+      opacity: 1;
     }
 
-    .prog-location-name {
-      font-family: var(--font-display);
-      font-size: 1.1rem;
+    .ctrl-btn {
+      background: rgba(15, 19, 14, 0.75);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
       color: var(--linen);
-      margin-bottom: 0.2rem;
-    }
-
-    .prog-location-addr {
-      font-size: 0.82rem;
-      color: rgba(244, 239, 228, 0.5);
-    }
-
-    .prog-section-title {
-      font-size: 0.7rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--sage);
-      margin-bottom: 1rem;
+      padding: 0.5rem 0.9rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
       font-weight: 500;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      transition: all 0.2s ease;
     }
 
-    .prog-item {
-      display: flex;
-      gap: 1.5rem;
-      padding: 1rem 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    .ctrl-btn:hover {
+      background: rgba(45, 36, 22, 0.9);
+      border-color: var(--gold);
+      color: var(--gold-light);
+      transform: translateY(-1px);
     }
 
-    .prog-item:last-child {
-      border-bottom: none;
+    .ctrl-btn svg {
+      width: 15px;
+      height: 15px;
     }
 
-    .prog-item-type {
-      font-size: 0.7rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
+    /* ─── TYPOGRAPHY & COMING SOON ────────────────────────────── */
+    .coming-soon-heading {
+      font-family: var(--font-display);
+      font-size: clamp(3.2rem, 8vw, 6.2rem);
+      font-weight: 400;
+      line-height: 1.05;
+      letter-spacing: 0.04em;
+      margin-bottom: 1.25rem;
+      background: linear-gradient(135deg, #ffffff 0%, var(--linen) 40%, var(--gold-light) 75%, var(--sand) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 4px 20px rgba(212, 163, 75, 0.25));
+      animation: fadeInUp 1.4s var(--ease-out) 0.4s both;
+    }
+
+    .teaser-subtext {
+      font-family: var(--font-display);
+      font-size: clamp(1.2rem, 2.3vw, 1.65rem);
+      font-style: italic;
       color: var(--sand);
-      background: rgba(201, 184, 138, 0.12);
-      padding: 0.2rem 0.6rem;
-      height: fit-content;
-      flex-shrink: 0;
-      margin-top: 0.15rem;
+      max-width: 780px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.5;
+      animation: fadeInUp 1.4s var(--ease-out) 0.6s both;
     }
 
-    .prog-item-name {
-      font-family: var(--font-display);
-      font-size: 1.05rem;
-      color: var(--linen);
-      margin-bottom: 0.2rem;
+    .teaser-desc {
+      font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+      color: rgba(244, 239, 228, 0.8);
+      max-width: 660px;
+      margin: 0 auto 3rem;
+      line-height: 1.8;
+      animation: fadeInUp 1.4s var(--ease-out) 0.75s both;
     }
 
-    .prog-item-detail {
-      font-size: 0.85rem;
-      color: rgba(244, 239, 228, 0.5);
-    }
-
-    /* ─── SPEAKERS ────────────────────────────────────────────── */
-    #referenten {
-      background: var(--linen);
-    }
-
-    .speakers-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 2rem;
-      margin-top: 3rem;
-    }
-
-    .speaker-card {
-      background: var(--cream);
-      border: 1px solid var(--parchment);
-      overflow: hidden;
-      transition: transform 0.3s var(--ease-out), box-shadow 0.3s;
-    }
-
-    .speaker-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.1);
-    }
-
-    .speaker-img {
-      height: 220px;
-    }
-
-    .speaker-info {
-      padding: 1.5rem;
-    }
-
-    .speaker-name {
-      font-family: var(--font-display);
-      font-size: 1.2rem;
-      font-weight: 600;
-      color: var(--bark);
-      margin-bottom: 0.2rem;
-    }
-
-    .speaker-role {
-      font-size: 0.78rem;
-      color: var(--fern);
-      letter-spacing: 0.06em;
-      margin-bottom: 0.8rem;
-    }
-
-    .speaker-bio {
-      font-size: 0.88rem;
-      color: #555548;
-      line-height: 1.65;
-    }
-
-    /* ─── MITMACHEN ───────────────────────────────────────────── */
-    #mitmachen {
-      background: var(--cream);
-    }
-
-    .mitmachen-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 2px;
-      background: var(--parchment);
-      margin-top: 3.5rem;
-    }
-
-    .mitmachen-card {
-      background: var(--cream);
-      padding: 3rem 2.5rem;
-      text-align: center;
+    /* ─── PROMINENT ARCHIVE CTA ───────────────────────────────── */
+    .cta-container {
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 1.25rem;
+      animation: fadeInUp 1.4s var(--ease-out) 0.9s both;
     }
 
-    .mitmachen-icon {
-      width: 64px;
-      height: 64px;
-      background: var(--moss);
-      border-radius: 50%;
-      display: flex;
+    .archive-card-btn {
+      display: inline-flex;
       align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .mitmachen-icon svg {
-      width: 28px;
-      fill: var(--linen);
-    }
-
-    .mitmachen-title {
-      font-family: var(--font-display);
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: var(--bark);
-    }
-
-    .mitmachen-text {
-      font-size: 0.9rem;
-      color: #555548;
-      line-height: 1.7;
-    }
-
-    /* ─── SPENDEN ─────────────────────────────────────────────── */
-    #spenden {
-      background: var(--moss);
+      gap: 1.2rem;
+      padding: 1.1rem 2.2rem;
+      background: linear-gradient(135deg, rgba(45, 36, 22, 0.8) 0%, rgba(51, 66, 38, 0.8) 100%);
+      border: 1.5px solid var(--gold);
+      border-radius: 14px;
       color: var(--linen);
-      padding: var(--section-pad) 0;
-      text-align: center;
-    }
-
-    .spenden-inner {
-      max-width: 680px;
-      margin: 0 auto;
-    }
-
-    #spenden .section-title {
-      color: var(--linen);
-      margin-bottom: 1rem;
-    }
-
-    #spenden .section-title em {
-      color: var(--sand);
-    }
-
-    #spenden .lead {
-      color: rgba(244, 239, 228, 0.8);
-      margin: 0 auto 3rem;
-    }
-
-    .iban-box {
-      background: rgba(0, 0, 0, 0.25);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      padding: 2rem 2.5rem;
-      margin: 0 auto 2.5rem;
-      text-align: left;
-    }
-
-    .iban-row {
-      display: flex;
-      flex-direction: column;
-      gap: 0.25rem;
-      margin-bottom: 1.25rem;
-    }
-
-    .iban-row:last-child {
-      margin-bottom: 0;
-    }
-
-    .iban-label {
-      font-size: 0.68rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--sage);
-      font-weight: 500;
-    }
-
-    .iban-value {
-      font-family: var(--font-display);
-      font-size: 1.1rem;
-      color: var(--linen);
-      word-break: break-all;
-    }
-
-    .iban-notice {
-      font-size: 0.82rem;
-      color: rgba(244, 239, 228, 0.5);
-      text-align: center;
-      margin-top: 2rem;
-    }
-
-    /* ─── GALERIE ─────────────────────────────────────────────── */
-    #galerie {
-      background: var(--parchment);
-    }
-
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
-      grid-template-rows: 260px 260px;
-      gap: 6px;
-      margin-top: 3rem;
-    }
-
-    .gallery-item:first-child {
-      grid-row: 1 / 3;
-    }
-
-    .gallery-item {
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4),
+                  0 0 30px rgba(212, 163, 75, 0.2);
+      transition: all 0.35s var(--ease-out);
+      position: relative;
       overflow: hidden;
     }
 
-    .gallery-item .img-placeholder {
+    .archive-card-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
       height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+      transition: left 0.75s ease;
     }
 
-    /* ─── KONTAKT ─────────────────────────────────────────────── */
-    #kontakt {
-      background: var(--cream);
+    .archive-card-btn:hover {
+      transform: translateY(-3px) scale(1.02);
+      border-color: #fff;
+      box-shadow: 0 16px 45px rgba(0, 0, 0, 0.6),
+                  0 0 40px rgba(212, 163, 75, 0.45);
+      background: linear-gradient(135deg, rgba(65, 52, 32, 0.9) 0%, rgba(68, 88, 51, 0.9) 100%);
     }
 
-    .kontakt-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem;
-      margin-top: 3rem;
+    .archive-card-btn:hover::before {
+      left: 100%;
     }
 
-    .kontakt-info h3 {
-      font-family: var(--font-display);
-      font-size: 1.3rem;
-      font-weight: 600;
-      color: var(--bark);
-      margin-bottom: 1.2rem;
-    }
-
-    .kontakt-info p {
-      font-size: 0.9rem;
-      color: #555548;
-      line-height: 1.8;
-    }
-
-    .kontakt-detail {
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-      margin-top: 1.5rem;
-    }
-
-    .kontakt-detail-icon {
-      width: 38px;
-      height: 38px;
-      background: var(--parchment);
-      border-radius: 50%;
+    .archive-btn-icon {
       display: flex;
       align-items: center;
       justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: rgba(212, 163, 75, 0.18);
+      border: 1px solid rgba(212, 163, 75, 0.4);
+      color: var(--gold-light);
       flex-shrink: 0;
+      transition: transform 0.3s var(--ease-out);
     }
 
-    .kontakt-detail-icon svg {
-      width: 16px;
-      fill: var(--fern);
+    .archive-card-btn:hover .archive-btn-icon {
+      transform: scale(1.1);
+      background: rgba(212, 163, 75, 0.3);
     }
 
-    .kontakt-detail-text {
-      font-size: 0.9rem;
-      color: #555548;
-      line-height: 1.6;
+    .archive-btn-text {
+      text-align: left;
     }
 
-    .kontakt-detail-text strong {
-      color: var(--bark);
-      display: block;
-      font-size: 0.78rem;
-      letter-spacing: 0.08em;
+    .archive-btn-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
+      color: var(--sage);
+      font-weight: 600;
+      display: block;
       margin-bottom: 0.2rem;
     }
 
-    .anmeldung-box {
-      background: var(--parchment);
-      padding: 3rem;
-    }
-
-    .anmeldung-box h3 {
+    .archive-btn-title {
       font-family: var(--font-display);
-      font-size: 1.5rem;
+      font-size: 1.45rem;
       font-weight: 600;
-      color: var(--bark);
-      margin-bottom: 0.5rem;
+      color: #ffffff;
+      letter-spacing: 0.02em;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
     }
 
-    .anmeldung-box p {
-      font-size: 0.9rem;
-      color: #555548;
-      margin-bottom: 1.5rem;
+    .archive-btn-arrow {
+      color: var(--gold);
+      transition: transform 0.3s ease;
     }
 
-    .form-group {
-      margin-bottom: 1.25rem;
+    .archive-card-btn:hover .archive-btn-arrow {
+      transform: translateX(4px);
     }
 
-    /* Only top-level direct label gets the uppercase style */
-    .form-group>label:first-child {
-      display: block;
-      font-size: 0.72rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--fern);
-      font-weight: 500;
-      margin-bottom: 0.5rem;
-    }
-
-    .form-group input[type="text"],
-    .form-group input[type="email"],
-    .form-group input[type="tel"],
-    .form-group select,
-    .form-group textarea {
-      width: 100%;
-      box-sizing: border-box;
-      background: var(--cream);
-      border: 1.5px solid var(--sand);
-      border-radius: 4px;
-      padding: 0.75rem 1rem;
-      font-family: var(--font-body);
-      font-size: 0.92rem;
-      color: var(--ink);
-      outline: none;
-      transition: border-color 0.3s;
-      resize: vertical;
-    }
-
-    .form-group input[type="text"]:focus,
-    .form-group input[type="email"]:focus,
-    .form-group input[type="tel"]:focus,
-    .form-group select:focus,
-    .form-group textarea:focus {
-      border-color: var(--fern);
-    }
-
-    .form-group input[type="radio"],
-    .form-group input[type="checkbox"] {
-      width: auto;
-      flex-shrink: 0;
-      margin: 0;
-      accent-color: var(--fern);
-      cursor: pointer;
-    }
-
-    .form-row {
+    /* ─── QUICK HIGHLIGHTS GRID ───────────────────────────────── */
+    .preview-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      max-width: 960px;
+      width: 100%;
+      margin-top: 4.5rem;
+      animation: fadeInUp 1.4s var(--ease-out) 1.05s both;
     }
 
-    @media (max-width: 500px) {
-      .form-row {
-        grid-template-columns: 1fr;
-      }
+    .preview-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 1.75rem 1.5rem;
+      text-align: left;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: all 0.3s var(--ease-out);
     }
 
-    /* ─── PARTNER ─────────────────────────────────────────────── */
-    #partner {
-      background: var(--bark);
-      padding: 3.5rem 0;
+    .preview-card:hover {
+      border-color: rgba(201, 184, 138, 0.45);
+      background: rgba(33, 44, 29, 0.85);
+      transform: translateY(-2px);
     }
 
-    .partner-inner {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 3rem;
+    .preview-card-icon {
+      font-size: 1.6rem;
+      margin-bottom: 0.9rem;
+      display: inline-block;
     }
 
-    .partner-label {
-      font-size: 0.7rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: rgba(244, 239, 228, 0.4);
-      white-space: nowrap;
+    .preview-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--linen);
+      margin-bottom: 0.5rem;
     }
 
-    .partner-logos {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 3rem;
-      align-items: center;
-    }
-
-    .partner-logo-placeholder {
-      height: 40px;
-      width: 120px;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px dashed rgba(255, 255, 255, 0.15);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.65rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: rgba(244, 239, 228, 0.25);
+    .preview-card p {
+      font-size: 0.88rem;
+      color: rgba(244, 239, 228, 0.7);
+      line-height: 1.6;
     }
 
     /* ─── FOOTER ──────────────────────────────────────────────── */
     footer {
-      background: var(--ink);
-      color: rgba(244, 239, 228, 0.5);
-      padding: 3rem 0 2rem;
+      border-top: 1px solid var(--border-subtle);
+      background: #0b0e0a;
+      padding: 3rem 1.5rem 2.5rem;
+      position: relative;
+      z-index: 10;
     }
 
-    .footer-top {
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .footer-main {
       display: flex;
       justify-content: space-between;
+      align-items: center;
       flex-wrap: wrap;
-      gap: 2rem;
-      padding-bottom: 2.5rem;
+      gap: 1.5rem;
+      padding-bottom: 2rem;
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
 
-    .footer-brand .nav-logo {
-      color: var(--linen);
-      font-size: 1.1rem;
-    }
-
-    .footer-brand p {
-      font-size: 0.82rem;
-      margin-top: 0.75rem;
-      max-width: 260px;
-      line-height: 1.7;
-    }
-
-    .footer-links h4 {
-      font-size: 0.7rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--sage);
-      margin-bottom: 1rem;
-      font-weight: 500;
-    }
-
-    .footer-links ul {
-      list-style: none;
-    }
-
-    .footer-links li {
-      margin-bottom: 0.6rem;
-    }
-
-    .footer-links a {
-      font-size: 0.88rem;
-      transition: color 0.2s;
-    }
-
-    .footer-links a:hover {
-      color: var(--linen);
-    }
-
-    .footer-hashtags {
+    .footer-brand {
       display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: 0.75rem;
+      align-items: center;
+      gap: 1rem;
     }
 
-    .hashtag {
-      font-size: 0.75rem;
-      color: var(--sage);
-      background: rgba(142, 168, 112, 0.12);
-      padding: 0.2rem 0.6rem;
-      border: 1px solid rgba(142, 168, 112, 0.25);
+    .footer-brand img {
+      height: 44px;
+      width: auto;
+    }
+
+    .footer-tagline {
+      font-size: 0.85rem;
+      color: rgba(244, 239, 228, 0.65);
+    }
+
+    .footer-links-group {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-social-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      color: var(--sand);
+      transition: color 0.25s;
+    }
+
+    .footer-social-link:hover {
+      color: #1877F2;
     }
 
     .footer-bottom {
-      padding-top: 2rem;
       display: flex;
       justify-content: space-between;
+      align-items: center;
       flex-wrap: wrap;
-      gap: 1rem;
-      font-size: 0.78rem;
+      gap: 1.2rem;
+      font-size: 0.8rem;
+      color: rgba(244, 239, 228, 0.55);
+    }
+
+    .footer-legal-links {
+      display: flex;
+      gap: 1.4rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-legal-links a {
+      color: rgba(244, 239, 228, 0.65);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: color 0.2s;
+    }
+
+    .footer-legal-links a:hover {
+      color: var(--sage);
     }
 
     /* ─── ANIMATIONS ──────────────────────────────────────────── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+    @keyframes videoEntrance {
+      0% {
+        opacity: 0;
+        transform: translateY(24px) scale(0.98);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
     }
 
-    .reveal.visible {
-      opacity: 1;
-      transform: none;
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
-    .reveal-delay-1 {
-      transition-delay: 0.1s;
+    @keyframes fadeInDown {
+      0% {
+        opacity: 0;
+        transform: translateY(-15px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
-    .reveal-delay-2 {
-      transition-delay: 0.2s;
-    }
-
-    .reveal-delay-3 {
-      transition-delay: 0.3s;
-    }
-
-    /* ─── WOLF DECO ───────────────────────────────────────────── */
-    .wolf-paw {
-      display: inline-block;
-      font-size: 1.2em;
-    }
-
-    /* ─── RESPONSIVE ──────────────────────────────────────────── */
-    @media (max-width: 900px) {
-
-      .about-grid,
-      .kontakt-grid {
-        grid-template-columns: 1fr;
-        gap: 3rem;
+    /* ─── RESPONSIVE DESIGN ───────────────────────────────────── */
+    @media (max-width: 768px) {
+      .header-inner {
+        padding: 0.75rem 1rem;
       }
-
-      .about-img-wrap .accent-img {
-        display: none;
+      .brand-title {
+        font-size: 1.05rem;
       }
-
-      .about-img-wrap .main-img {
-        height: 400px;
+      .brand-logo img {
+        height: 38px;
       }
-
-      .stages-grid {
-        grid-template-columns: 1fr;
-        gap: 2px;
+      .nav-btn {
+        padding: 0.45rem 0.85rem;
+        font-size: 0.78rem;
       }
-
-      .program-grid {
-        grid-template-columns: 1fr;
+      .video-showcase {
+        padding: 4px;
+        border-radius: 14px;
+        margin-bottom: 2rem;
       }
-
-      .program-days {
-        border-right: none;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        display: flex;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
+      .video-inner {
+        border-radius: 10px;
       }
-
-      .program-days::-webkit-scrollbar {
-        display: none;
+      .video-controls-overlay {
+        opacity: 1; /* Always visible on mobile devices */
+        bottom: 10px;
+        right: 10px;
       }
-
-      .day-tab {
-        min-width: 140px;
-        padding: 1rem;
-        border-bottom: none;
-        border-right: 1px solid rgba(255, 255, 255, 0.07);
-        flex: 1;
-        text-align: center;
-      }
-
-      .day-tab::before {
-        bottom: 0;
-        top: auto;
-        left: 0;
-        right: 0;
+      .archive-card-btn {
         width: 100%;
-        height: 3px;
-        transform: scaleY(0);
-        transform-origin: bottom;
+        padding: 1rem 1.4rem;
+        justify-content: flex-start;
       }
-
-      .mitmachen-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .gallery-grid {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto;
-        gap: 6px;
-      }
-
-      .gallery-item:first-child {
-        grid-row: auto;
-        grid-column: 1;
-      }
-
-      .nav-links {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background: rgba(250, 248, 242, 0.98);
-        padding: 2rem;
-        gap: 1.5rem;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-        backdrop-filter: blur(12px);
-      }
-
-      .nav-links.nav-open {
-        display: flex;
-        animation: slideDown 0.3s var(--ease-out);
-      }
-
-      @keyframes slideDown {
-        from {
-          opacity: 0;
-          transform: translateY(-10px);
-        }
-
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      .nav-links a {
-        color: var(--ink) !important;
-        font-size: 1rem;
-        width: 100%;
-        text-align: center;
-        padding: 0.5rem 0;
-      }
-
-      .hamburger {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: var(--linen);
-        transition: color 0.3s;
-      }
-
-      #navbar.scrolled .hamburger {
-        color: var(--ink);
-      }
-
-      .hero-title {
-        font-size: clamp(2.5rem, 10vw, 4rem);
-      }
-
-      .hero-form {
-        flex-direction: column;
-        width: 100%;
-      }
-
-      .hero-form input[type="email"] {
-        border-right: 1px solid rgba(255, 255, 255, 0.22);
-        border-bottom: none;
-        border-radius: 4px 4px 0 0;
-      }
-
-      .hero-form .btn-primary {
-        border-left: 1px solid rgba(255, 255, 255, 0.22);
-        border-radius: 0 0 4px 4px;
-        width: 100%;
-        justify-content: center;
-      }
-
-      .partner-grid-new {
-        gap: 2rem;
-      }
-    }
-
-    @media (max-width: 600px) {
-
-      .hero-scroll,
-      .band-divider {
-        display: none;
-      }
-
-      .form-row {
-        grid-template-columns: 1fr;
-      }
-
-      .band-inner {
+      .footer-main,
+      .footer-bottom {
         flex-direction: column;
         align-items: flex-start;
-        gap: 1.5rem;
-      }
-
-      .stage {
-        padding: 1.5rem;
-      }
-
-      .stage-num {
-        font-size: 2.5rem;
-      }
-
-      .iban-box {
-        padding: 1.5rem;
-      }
-
-      .iban-value {
-        font-size: 0.95rem;
-      }
-
-      .sticky-btn {
-        width: calc(100% - 32px);
-        justify-content: center;
-        font-size: 0.85rem;
-        padding: 1rem;
-      }
-
-      .footer-top {
-        flex-direction: column;
-        gap: 2.5rem;
       }
     }
 
-    /* ─── TEAM ────────────────────────────────────────────────── */
-    #team {
-      background: var(--cream);
-    }
-
-    .team-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 2rem;
-      margin-top: 3rem;
-    }
-
-    .team-card {
-      text-align: center;
-      background: var(--linen);
-      border: 1px solid var(--parchment);
-      border-radius: 8px;
-      overflow: hidden;
-      transition: transform 0.3s var(--ease-out), box-shadow 0.3s;
-    }
-
-    .team-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.12);
-    }
-
-    .team-card-img-wrap {
-      width: 100%;
-      aspect-ratio: 3 / 4;
-      overflow: hidden;
-    }
-
-    .team-card-img-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
-      display: block;
-      transition: transform 0.5s var(--ease-out);
-    }
-
-    .team-card:hover .team-card-img-wrap img {
-      transform: scale(1.04);
-    }
-
-    .team-card-name {
-      font-family: var(--font-display);
-      font-size: 1.05rem;
-      font-weight: 600;
-      color: var(--bark);
-      line-height: 1.3;
-      padding: 1rem 1rem 1.2rem;
-    }
-
-    /* ─── PARTNER NEW ─────────────────────────────────────────── */
-    #partner-new {
-      background: var(--linen);
-    }
-
-    .partner-grid-new {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 3rem;
-      justify-content: center;
-      align-items: center;
-      margin-top: 3rem;
-    }
-
-    .partner-grid-new a {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.75rem;
-      text-decoration: none;
-      transition: transform 0.3s var(--ease-out);
-    }
-
-    .partner-grid-new a:hover {
-      transform: translateY(-4px);
-    }
-
-    .partner-grid-new img {
-      max-height: 120px;
-      width: auto;
-      opacity: 1;
-      transition: all 0.3s var(--ease-out);
-    }
-
-    .partner-grid-new .partner-name {
-      font-size: 0.72rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--fern);
-      font-weight: 500;
-      text-align: center;
-      transition: color 0.3s;
-    }
-
-    .partner-grid-new a:hover .partner-name {
-      color: var(--moss);
-    }
-
-    /* ─── COOKIE BANNER ───────────────────────────────────────── */
+    /* ─── COOKIE BANNER STYLES (DSGVO-KONFORM) ─────────────────── */
     #cookie-banner {
       position: fixed;
       bottom: 0;
       left: 0;
       right: 0;
-      z-index: 10000;
-      padding: 0 clamp(0rem, 3vw, 1.5rem);
-      display: flex;
-      justify-content: center;
-      align-items: flex-end;
-      pointer-events: none;
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.4s var(--ease-out), transform 0.4s var(--ease-out);
+      z-index: 9999;
+      background: rgba(10, 13, 9, 0.96);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-top: 1px solid rgba(201, 184, 138, 0.25);
+      padding: 1.5rem;
+      display: none;
+      box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.7);
     }
 
     #cookie-banner.cb-visible {
-      pointer-events: auto;
-      opacity: 1;
-      transform: translateY(0);
+      display: block;
+      animation: slideUp 0.35s var(--ease-out);
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(100%); }
+      to { transform: translateY(0); }
     }
 
     .cb-inner {
-      background: var(--bark);
-      color: var(--linen);
-      border-radius: 16px 16px 0 0;
-      padding: clamp(1.2rem, 4vw, 2.5rem) clamp(1.2rem, 4vw, 2.5rem) clamp(1rem, 3vw, 2rem);
-      width: 100%;
       max-width: 820px;
-      max-height: 92svh;
-      overflow-y: auto;
-      box-shadow:
-        0 -8px 40px rgba(0,0,0,0.35),
-        0 0 0 1px rgba(142,168,112,0.12);
-      border-top: 2px solid var(--fern);
-      position: relative;
+      margin: 0 auto;
     }
 
     .cb-header {
       display: flex;
       align-items: center;
       gap: 0.75rem;
-      margin-bottom: 0.9rem;
+      margin-bottom: 0.75rem;
     }
 
     .cb-icon {
-      flex-shrink: 0;
-      color: var(--sage);
+      color: var(--gold);
     }
 
     .cb-title {
       font-family: var(--font-display);
-      font-weight: 600;
-      font-size: 1.25rem;
+      font-size: 1.3rem;
       color: var(--linen);
     }
 
     .cb-text {
-      font-family: var(--font-body);
-      font-size: 0.88rem;
+      font-size: 0.85rem;
+      color: rgba(244, 239, 228, 0.75);
       line-height: 1.6;
-      color: rgba(244,239,228,0.72);
-      margin-bottom: 1.4rem;
+      margin-bottom: 1.25rem;
     }
 
     .cb-options {
-      display: flex;
-      flex-direction: column;
-      gap: 0.7rem;
-      margin-bottom: 1.6rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
     }
 
     .cb-option {
       display: flex;
-      align-items: center;
-      gap: 1rem;
-      cursor: pointer;
-      padding: 0.7rem 1rem;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.75rem;
       border-radius: 8px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.08);
-      transition: background 0.2s;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 0.8rem;
     }
 
-    .cb-option:hover {
-      background: rgba(255,255,255,0.09);
-    }
-
-    .cb-option--disabled {
-      cursor: default;
-      opacity: 0.65;
-    }
-
-    .cb-option-info {
-      display: flex;
-      flex-direction: column;
-      gap: 0.15rem;
-    }
-
-    .cb-option-info strong {
-      font-family: var(--font-body);
-      font-size: 0.88rem;
-      font-weight: 500;
-      color: var(--linen);
-    }
-
-    .cb-option-info span {
-      font-size: 0.78rem;
-      color: rgba(244,239,228,0.55);
-    }
-
-    /* Toggle switch */
     .cb-toggle {
+      width: 36px;
+      height: 20px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.15);
       position: relative;
-      flex-shrink: 0;
-      width: 42px;
-      height: 24px;
-      background: rgba(255,255,255,0.15);
-      border-radius: 12px;
-      transition: background 0.25s;
       cursor: pointer;
+      flex-shrink: 0;
+      transition: background 0.25s;
     }
 
     .cb-toggle--active {
@@ -2044,18 +771,17 @@
 
     .cb-toggle-knob {
       position: absolute;
-      top: 3px;
-      left: 3px;
-      width: 18px;
-      height: 18px;
+      top: 2px;
+      left: 2px;
+      width: 16px;
+      height: 16px;
       border-radius: 50%;
       background: #fff;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.25);
-      transition: transform 0.25s var(--ease-out);
+      transition: transform 0.25s;
     }
 
     .cb-toggle--active .cb-toggle-knob {
-      transform: translateX(18px);
+      transform: translateX(16px);
     }
 
     .cb-actions {
@@ -2067,1709 +793,345 @@
 
     .cb-btn {
       flex: 1 1 auto;
-      padding: 0.75rem 1.5rem;
-      font-family: var(--font-body);
-      font-size: 0.82rem;
-      font-weight: 500;
-      letter-spacing: 0.08em;
+      padding: 0.7rem 1.25rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
       text-transform: uppercase;
-      border: none;
       border-radius: 6px;
       cursor: pointer;
-      transition: all 0.25s var(--ease-out);
+      transition: all 0.2s;
     }
 
     .cb-btn--primary {
       background: var(--fern);
-      color: var(--linen);
+      border: none;
+      color: #fff;
     }
-
     .cb-btn--primary:hover {
       background: var(--moss);
-      transform: translateY(-1px);
     }
 
     .cb-btn--outline {
       background: transparent;
-      color: rgba(244,239,228,0.75);
-      border: 1.5px solid rgba(255,255,255,0.2);
-    }
-
-    .cb-btn--outline:hover {
-      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
       color: var(--linen);
+    }
+    .cb-btn--outline:hover {
+      background: rgba(255, 255, 255, 0.08);
     }
 
     .cb-btn--reject {
       background: transparent;
-      color: rgba(244,239,228,0.55);
-      border: 1.5px solid rgba(255,255,255,0.12);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(244, 239, 228, 0.6);
     }
-
     .cb-btn--reject:hover {
-      background: rgba(255,255,255,0.06);
-      color: var(--linen);
-      border-color: rgba(255,255,255,0.25);
+      background: rgba(255, 255, 255, 0.05);
+      color: #fff;
     }
 
     .cb-footer-links {
       display: flex;
-      gap: 1.5rem;
+      gap: 1.25rem;
       justify-content: center;
-      pointer-events: auto;
-      position: relative;
-      z-index: 100;
+      font-size: 0.75rem;
     }
 
     .cb-footer-links a {
-      font-size: 0.75rem;
-      color: rgba(244,239,228,0.45);
+      color: rgba(244, 239, 228, 0.45);
       text-decoration: underline;
-      text-underline-offset: 2px;
-      transition: color 0.2s;
     }
-
     .cb-footer-links a:hover {
       color: var(--sage);
-    }
-
-    /* ─── EMBED CONSENT PLACEHOLDERS ──────────────────────────── */
-    .embed-consent-placeholder {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 0.9rem;
-      background: linear-gradient(145deg, var(--bark) 0%, #1a1a0e 100%);
-      text-align: center;
-      padding: 2rem;
-    }
-
-    .embed-consent-placeholder--maps {
-      border-radius: 8px;
-    }
-
-    .embed-consent-icon {
-      color: var(--sage);
-      opacity: 0.7;
-    }
-
-    .embed-consent-text {
-      font-family: var(--font-body);
-      font-size: 0.9rem;
-      color: rgba(244,239,228,0.72);
-      line-height: 1.6;
-      max-width: 380px;
-    }
-
-    .embed-consent-text strong {
-      color: var(--linen);
-    }
-
-    .embed-consent-btn {
-      padding: 0.65rem 1.6rem;
-      background: var(--fern);
-      color: var(--linen);
-      border: none;
-      border-radius: 6px;
-      font-family: var(--font-body);
-      font-size: 0.82rem;
-      font-weight: 500;
-      letter-spacing: 0.06em;
-      cursor: pointer;
-      transition: background 0.25s, transform 0.2s;
-    }
-
-    .embed-consent-btn:hover {
-      background: var(--moss);
-      transform: translateY(-1px);
-    }
-
-    .embed-consent-settings {
-      font-size: 0.75rem;
-      color: rgba(244,239,228,0.4);
-      text-decoration: underline;
-      text-underline-offset: 2px;
-      transition: color 0.2s;
-    }
-
-    .embed-consent-settings:hover {
-      color: var(--sage);
-    }
-
-    @media (max-width: 600px) {
-      /* Banner fills the full bottom on small phones */
-      #cookie-banner {
-        padding: 0;
-      }
-      .cb-inner {
-        border-radius: 14px 14px 0 0;
-        max-height: 88svh;
-      }
-      .cb-options {
-        gap: 0.5rem;
-        margin-bottom: 1.2rem;
-      }
-      .cb-option {
-        padding: 0.6rem 0.75rem;
-      }
-      .cb-actions {
-        flex-direction: column;
-        gap: 0.6rem;
-      }
-      .cb-btn {
-        text-align: center;
-        padding: 0.85rem 1.2rem;
-        font-size: 0.85rem;
-      }
-      .cb-text {
-        margin-bottom: 1rem;
-        font-size: 0.85rem;
-      }
-      .cb-footer-links {
-        gap: 1rem;
-        margin-top: 0.5rem;
-      }
     }
   </style>
 </head>
 
 <body>
 
-  <!-- Fix 6: Scroll Progress Bar -->
-  <div id="progressBar"></div>
+  <div class="ambient-glow"></div>
 
-  <!-- ─── NAVBAR ────────────────────────────────────────────── -->
-  <nav id="navbar">
-    <div class="container">
-      <div class="nav-inner">
-        <a class="nav-logo" href="#">
-          <img src="wolf_druck.png" alt="Coexistence Walk Logo"
-            style="height:48px; width:auto; display:inline-block; object-fit:contain; vertical-align:middle;" />
-        </a>
-        <ul class="nav-links">
-          <li><a href="#about">Initiative</a></li>
-          <li><a href="#route">Route</a></li>
-          <li><a href="#programm">Programm</a></li>
-          <li><a href="#referenten">Referenten</a></li>
-          <li><a href="#mitmachen">Mitmachen</a></li>
-          <li><a href="blog.html">Blog</a></li>
-          <li><a href="#spenden" class="nav-cta">Spenden</a></li>
-        </ul>
-        <button class="hamburger" id="hambBtn" aria-label="Menü">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <line x1="3" y1="6" x2="21" y2="6" />
-            <line x1="3" y1="12" x2="21" y2="12" />
-            <line x1="3" y1="18" x2="21" y2="18" />
+  <!-- ─── HEADER / NAVBAR ─────────────────────────────────────── -->
+  <header>
+    <div class="header-inner">
+      <a class="brand-logo" href="index.html">
+        <img src="wolf_druck.png" alt="Coexistence Walk Logo" />
+        <span class="brand-title">Coexistence <span>Walk</span></span>
+      </a>
+
+      <nav class="header-nav">
+        <a href="coexistence-walk-2026.html" class="nav-btn nav-btn-gold">
+          <span>Coexistence Walk 2026</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
           </svg>
-        </button>
-      </div>
-    </div>
-  </nav>
-
-  <!-- ─── HERO ──────────────────────────────────────────────── -->
-  <section id="hero">
-    <div class="hero-bg">
-      <img class="hero-bg-img" src="https://i.imgur.com/p0XRn1t.jpg" loading="eager" fetchpriority="high"
-        alt="Coexistence Walk – Natur Hintergrundbild" />
-    </div>
-    <div class="hero-grain"></div>
-    <div class="hero-vignette"></div>
-    <div class="hero-bottom"></div>
-
-    <div class="container">
-      <div class="hero-content">
-        <div class="hero-tag">
-          <span class="dot"></span>
-          29. Mai – 04. Juni 2026 &nbsp;·&nbsp; Brandenburg / Polen
-        </div>
-        <div style="margin-bottom:1.5rem;">
-          <img src="wolf_druck.png" alt="Coexistence Walk Logo" loading="eager"
-            style="height:160px; width:auto; object-fit:contain; filter:drop-shadow(0 4px 20px rgba(0,0,0,0.6));" />
-        </div>
-        <h1 class="hero-title">
-          <strong>Gemeinsam Gehen <br>für den Wolf</strong>
-          Coexistence<br />Walk
-        </h1>
-        <p class="hero-subtitle">„Neue Wege auf alten Pfaden"</p>
-        <div class="hero-meta">
-          <div class="hero-meta-item">
-            <span class="hero-meta-label">Region</span>
-            <span class="hero-meta-value">Schwedt/Oder → Liepe</span>
-          </div>
-          <div class="hero-meta-item">
-            <span class="hero-meta-label">Format</span>
-            <span class="hero-meta-value">Wandern + Fachevents</span>
-          </div>
-          <div class="hero-meta-item">
-            <span class="hero-meta-label">Träger</span>
-            <span class="hero-meta-value">Non-Profit Initiative</span>
-          </div>
-        </div>
-        <div class="hero-actions">
-          <a href="#kontakt" class="btn btn-primary">Jetzt anmelden</a>
-          <a href="#about" class="btn btn-outline" style="color:var(--linen);border-color:rgba(244,239,228,0.4)">Mehr
-            erfahren</a>
-        </div>
-
-        <!-- Fix 1A+B: Hero Form mit Formspree hidden fields -->
-        <form class="hero-form" action="https://formspree.io/f/mlgakpzb" method="POST">
-          <input type="hidden" name="_subject" value="Neue Anmeldung – Coexistence Walk" />
-          <input type="hidden" name="_redirect" value="https://www.coexistence-walk.de/danke.html" />
-          <input type="hidden" name="_captcha" value="false" />
-          <input type="email" name="email" placeholder="E-Mail für Updates &amp; Anmeldung" required />
-          <button type="submit" class="btn btn-primary">Platz reservieren →</button>
-        </form>
-
-        <!-- Fix 4B: konkrete Knappheit -->
-
-        <!-- Fix 1C: Vertrauenssignale -->
-        <div
-          style="margin-top:0.6rem; font-size:0.75rem; color:rgba(244,239,228,0.45); display:flex; gap:1rem; flex-wrap:wrap;">
-          <span>✔ Keine Werbung</span>
-          <span>✔ Nur Event-Infos</span>
-          <span>✔ Jederzeit abmeldbar</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="hero-scroll">
-      <div class="scroll-line"></div>
-      <span>Scroll</span>
-    </div>
-  </section>
-
-  <!-- ─── INTRO BAND ─────────────────────────────────────────── -->
-  <div id="intro-band">
-    <div class="container">
-      <div class="band-inner">
-        <div class="band-fact">
-          <div class="band-fact-num">7</div>
-          <div class="band-fact-label">Tage gemeinsam wandern</div>
-        </div>
-        <div class="band-divider"></div>
-        <div class="band-fact">
-          <div class="band-fact-num">~3</div>
-          <div class="band-fact-label">Etappen entlang dem Grünen Band</div>
-        </div>
-        <div class="band-divider"></div>
-        <div class="band-fact">
-          <div class="band-fact-num">100+</div>
-          <div class="band-fact-label">Wolfsrudel in Deutschland</div>
-        </div>
-        <div class="band-divider"></div>
-        <div class="band-fact">
-          <div class="band-fact-num">2026</div>
-          <div class="band-fact-label">1. COEXISTENCE WALK</div>
-        </div>
-        <a href="#kontakt" class="btn btn-outline"
-          style="color:var(--linen);border-color:rgba(244,239,228,0.35);white-space:nowrap;flex-shrink:0">
-          Dabei sein →
         </a>
-      </div>
-      <!-- Fix 4A: Social Proof -->
-      <div
-        style="margin-top:1.5rem; padding-top:1.5rem; border-top:1px solid rgba(255,255,255,0.1); font-size:0.85rem; color:rgba(244,239,228,0.55); display:flex; align-items:center; gap:0.75rem; flex-wrap:wrap;">
-        <span style="display:inline-flex;">
-          <span
-            style="width:28px;height:28px;border-radius:50%;background:var(--fern);border:2px solid var(--moss);display:inline-flex;align-items:center;justify-content:center;font-size:0.65rem;color:var(--linen);">DE</span>
-          <span
-            style="width:28px;height:28px;border-radius:50%;background:var(--sage);border:2px solid var(--moss);display:inline-flex;align-items:center;justify-content:center;font-size:0.65rem;color:var(--bark);margin-left:-8px;">PL</span>
-          <span
-            style="width:28px;height:28px;border-radius:50%;background:var(--sand);border:2px solid var(--moss);display:inline-flex;align-items:center;justify-content:center;font-size:0.65rem;color:var(--bark);margin-left:-8px;">AT</span>
-        </span>
-        Bereits Interesse von Teilnehmenden aus Deutschland, Polen &amp; Österreich
-      </div>
+        <a href="blog.html" class="nav-btn nav-btn-outline">Blog</a>
+      </nav>
     </div>
-  </div>
+  </header>
 
-  <!-- ─── INTRO VIDEO ────────────────────────────────────────── -->
-  <section id="intro-video" class="section">
-    <div class="container">
-      <div class="video-section-inner">
-        <p class="eyebrow reveal">Video</p>
-        <h2 class="section-title reveal">Entdecke den <em>Coexistence Walk</em></h2>
-        <div class="divider reveal"></div>
-        <p class="lead reveal">
-          Ein kurzer Einblick in unsere Vision – gemeinsam gehen, gemeinsam verstehen, gemeinsam handeln.
-        </p>
+  <!-- ─── HERO CONTENT ────────────────────────────────────────── -->
+  <main>
+    <div class="hero-container">
 
-        <div class="video-container reveal">
-          <div class="video-ratio" id="yt-wrapper">
-            <!-- Consent placeholder – replaced by iframe after marketing consent -->
-            <div id="yt-placeholder" class="embed-consent-placeholder">
-              <div class="embed-consent-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="40" height="40"><circle cx="12" cy="12" r="10"/><polygon points="10,8 16,12 10,16" fill="currentColor" stroke="none"/></svg>
-              </div>
-              <p class="embed-consent-text">Dieses Video wird von <strong>YouTube</strong> bereitgestellt.<br>Um es abzuspielen, akzeptiere bitte Marketing-Cookies.</p>
-              <button class="embed-consent-btn" onclick="acceptMarketingAndLoadEmbeds()">Einwilligen &amp; Video laden</button>
-              <a class="embed-consent-settings" href="#" onclick="showCookieBanner(); return false;">Cookie-Einstellungen</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="video-ornament">
-          <span>▶ Introvideo</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── ABOUT ──────────────────────────────────────────────── -->
-  <section id="about" class="section">
-    <div class="container">
-      <div class="about-grid">
-        <div class="about-img-wrap reveal">
-          <!-- Wanderer / Natur Foto -->
-          <img class="main-img"
-            src="https://69ef43b5abe5326bdb42135d.imgix.net/ChatGPT%20Image%2027.%20Apr.%202026,%2013_17_59.png?w=900&auto=format&fit=crop&q=80"
-            loading="lazy" alt="Wandergruppe in der Natur" style="height:520px;" />
-        </div>
-        <div class="about-text reveal reveal-delay-1">
-          <p class="eyebrow">Über die Initiative</p>
-          <h2 class="section-title">Herzlich Willkommen<br /><em>beim Projekt</em></h2>
-          <div class="divider"></div>
-          <div class="about-highlight">
-            COEXISTENCE WALK – Gemeinsam Gehen für den Wolf! Neue Wege beginnen mit einem Gespräch.
-          </div>
-          <p>Der Umgang mit dem Wolf wirft Fragen auf, die viele Menschen bewegen. Unser Anliegen ist es,
-            unterschiedliche Sichtweisen zusammenzuführen und über Ansätze für ein langfristiges, naturnahes Miteinander
-            zu sprechen. Bei unserer Veranstaltung stehen die aktuellen Entwicklungen im „Wolfsmanagement“ im
-            Mittelpunkt. Ziel dieses Fachaustauschs ist es, verschiedene Ansätze für ein Nebeneinander von Mensch und
-            Wolf sachlich zu erörtern. Der gemeinsame Austausch dient dazu, bestehende Konzepte zu reflektieren und
-            zukunftsfähige Strategien für den Umgang mit Wildtieren in unserer Kulturlandschaft zu besprechen.</p>
-          <p>Dieses Projekt eröffnet bewusst einen anderen Raum: einen Raum für Dialog statt Konfrontation, für
-            Verständnis statt Polarisierung und für gemeinsame Lösungen, statt vorschneller Entscheidungen.</p>
-          <p>Der „COEXISTENCE WALK – Gemeinsam Gehen für den Wolf“ lädt dazu ein, neue Wege auf alten Pfaden zu gehen.
-            Über mehrere Tage verbinden wir Unterwegssein in der Natur mit Austausch, Wissen und Begegnung.
-            Wissenschaftliche Erkenntnisse, praktische Erfahrungen und unterschiedliche Sichtweisen kommen zusammen –
-            nicht, um Gegensätze zu verhärten, sondern um Brücken zu bauen.</p>
-          <p>Im Mittelpunkt steht eine einfache, aber entscheidende Frage:<br /><strong>Wie kann ein tragfähiges
-              Zusammenleben von Mensch und Wolf gelingen?</strong><br />Wir suchen erweiterte Möglichkeiten zur
-            gesicherten Koexistenz. Darum lebt dieser Weg von den Menschen, die ihn mitgehen. Von Neugierigen,
-            Fachleuten, Interessierten – und auch von kritischen Stimmen, die bereit sind, sich auf einen offenen Dialog
-            einzulassen.</p>
-          <p>Schauen Sie genauer hin. Gehen Sie ein Stück mit uns. Und werden Sie Teil eines Dialogs, der etwas
-            verändern kann.</p>
-          <div style="margin-top:2.5rem; display:flex; gap:1rem; flex-wrap:wrap;">
-            <a href="#programm" class="btn btn-primary">Programm ansehen</a>
-            <a href="#mitmachen" class="btn btn-outline">Mitmachen</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── ROUTE ──────────────────────────────────────────────── -->
-  <section id="route" class="section">
-    <div class="container">
-      <div class="route-header reveal">
-        <p class="eyebrow">Die Route</p>
-        <h2 class="section-title">Entlang dem<br /><em>Grünen Band</em></h2>
-        <div class="divider"></div>
-        <p class="lead">Von Schwedt/Oder nach Liepe – wir folgen den historischen Rückkehrrouten der Wölfe durch die
-          Brandenburg-polnische Grenzregion.</p>
+      <!-- Teaser Tag -->
+      <div class="teaser-badge">
+        <span>Coexistence Walk 2027</span>
       </div>
 
-      <!-- Fix 7: Google Maps – consent gated -->
-      <div style="position:relative; margin-bottom:4rem;" class="reveal reveal-delay-1">
-        <div id="maps-wrapper" style="width:100%;height:380px;position:relative;">
-          <div id="maps-placeholder" class="embed-consent-placeholder embed-consent-placeholder--maps">
-            <div class="embed-consent-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="40" height="40"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="currentColor" stroke="none"/></svg>
-            </div>
-            <p class="embed-consent-text">Diese Karte wird von <strong>Google Maps</strong> bereitgestellt.<br>Um sie anzuzeigen, akzeptiere bitte Marketing-Cookies.</p>
-            <button class="embed-consent-btn" onclick="acceptMarketingAndLoadEmbeds()">Einwilligen &amp; Karte laden</button>
-            <a class="embed-consent-settings" href="#" onclick="showCookieBanner(); return false;">Cookie-Einstellungen</a>
-          </div>
-        </div>
-        <div
-          style="position:absolute;inset:0;background:linear-gradient(to right,rgba(45,36,22,0.55) 0%,transparent 50%);display:flex;align-items:flex-end;padding:2rem;pointer-events:none;">
-          <div>
-            <div
-              style="font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--sage);margin-bottom:0.4rem;">
-              Route</div>
-            <div style="font-family:var(--font-display);font-size:1.4rem;color:var(--linen);">Schwedt/Oder →
-              Lunow-Stolzenhagen → Liepe</div>
-            <div style="font-size:0.82rem;color:rgba(244,239,228,0.6);margin-top:0.3rem;">Entlang dem Grünen Band</div>
+      <!-- Video Showcase with slow fade-in -->
+      <div class="video-showcase">
+        <div class="video-inner">
+          <video
+            id="introVideo"
+            class="video-element"
+            src="videos/coexistence-walk_2027_into.mp4"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="auto"
+            title="Coexistence Walk 2027 Intro"></video>
+
+          <!-- Interactive Controls Overlay -->
+          <div class="video-controls-overlay" id="videoControls">
+            <button class="ctrl-btn" id="audioToggleBtn" title="Ton umschalten" aria-label="Ton einschalten">
+              <svg id="soundMutedIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M11 5L6 9H2v6h4l5 4V5z"/>
+                <line x1="23" y1="9" x2="17" y2="15"/>
+                <line x1="17" y1="9" x2="23" y2="15"/>
+              </svg>
+              <svg id="soundActiveIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+              </svg>
+              <span id="audioStatusText">Ton an</span>
+            </button>
+
+            <button class="ctrl-btn" id="playToggleBtn" title="Pause / Abspielen" aria-label="Pause oder Abspielen">
+              <svg id="pauseIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="6" y="4" width="4" height="16"></rect>
+                <rect x="14" y="4" width="4" height="16"></rect>
+              </svg>
+              <svg id="playIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+              </svg>
+            </button>
           </div>
         </div>
       </div>
 
-      <div class="stages-grid">
-        <div class="stage reveal">
-          <div class="stage-num">01</div>
-          <div class="stage-icon"><svg viewBox="0 0 24 24">
-              <path d="M12 22s-8-5.5-8-11a8 8 0 0116 0c0 5.5-8 11-8 11z" />
-              <circle cx="12" cy="11" r="3" fill="var(--linen)" />
-            </svg></div>
-          <div class="stage-date">Fr. 29. – Sa. 30. Mai</div>
-          <div class="stage-title">Schwedt/Oder</div>
-          <div class="stage-detail">Startpunkt. Ankunft, Vorstellungsrunde und erste moderierte Fachdiskussion im
-            Turmhotel. Samstag: Tagesprogramm vor Ort mit grenzübergreifenden Perspektiven.</div>
-        </div>
-        <div class="stage reveal reveal-delay-1">
-          <div class="stage-num">02</div>
-          <div class="stage-icon"><svg viewBox="0 0 24 24">
-              <path d="M3 18l9-14 9 14H3z" fill="var(--linen)" />
-            </svg></div>
-          <div class="stage-date">So. 31. Mai – Mo. 01. Jun</div>
-          <div class="stage-title">Lunow-Stolzenhagen</div>
-          <div class="stage-detail">Wanderung ab Schwedt mit Unterkunft im Speicher-Gästehaus auf dem Gut Stolzenhagen. Themen: Luchse, Wisente &amp; Wölfe in Polen, operativer Artenschutz (Taskforce Artenschutz e.V.), medialer Umgang mit dem Wolf.</div>
-        </div>
-        <div class="stage reveal reveal-delay-2">
-          <div class="stage-num">03</div>
-          <div class="stage-icon"><svg viewBox="0 0 24 24">
-              <circle cx="12" cy="12" r="8" fill="none" stroke="var(--linen)" stroke-width="2.5" />
-              <path d="M12 8v4l3 3" stroke="var(--linen)" stroke-width="2.5" />
-            </svg></div>
-          <div class="stage-date">Di. 02. – Do. 04. Jun</div>
-          <div class="stage-title">Liepe</div>
-          <div class="stage-detail">Wanderung nach Liepe. Landhof Liepe als Abschlussquartier. Themen: Wege zur Koexistenz,
-            Herdenschutz, gemeinsames Fazit. Abreisetag 04. Juni (Fronleichnam).</div>
-        </div>
-      </div>
-
-      <div
-        style="margin-top:2rem; background:var(--cream); padding:1.25rem 2rem; border-left:3px solid var(--sand); font-size:0.88rem; color:#555548;">
-        <strong style="color:var(--bark);">ℹ️ Praktisches:</strong> Die Tageswanderstrecken werden etwa ±15 km betragen. Kosten für Übernachtungen/Verpflegung übernimmt jeder Exkursionsteilnehmer selbst. Es können auch andere Hotels/Pensionen im Umfeld der Veranstaltungsorte genutzt werden. Der 04. Juni 2026 ist Feiertag (Fronleichnam) in NRW, Baden-Württemberg, Bayern, Hessen, Rheinland-Pfalz und im Saarland (regionale Regelungen in Sachsen/Thüringen).
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── PROGRAMM ───────────────────────────────────────────── -->
-  <section id="programm" class="section">
-    <div class="container">
-      <p class="eyebrow reveal">Das Programm</p>
-      <h2 class="section-title reveal">Sieben Tage –<br /><em>Ein Ziel</em></h2>
-      <div class="divider reveal"></div>
-      <p class="lead reveal" style="color:rgba(244,239,228,0.7); margin-bottom:3rem;">Moderierte Fachdiskussionen,
-        Feldexkursionen und inspirierende Begegnungen mit Expertinnen und Experten aus Deutschland, Polen, Österreich
-        und der Slowakei. (Programm aktuell in Abstimmung)</p>
-
-      <div class="program-grid reveal">
-        <div class="program-days" id="programDays">
-
-          <div class="day-tab active" data-panel="day1">
-            <div class="day-tab-label">Tag 1 · Fr. 29.05.</div>
-            <div class="day-tab-title">Ankunft & Auftakt</div>
-            <div class="day-tab-sub">Schwedt/Oder</div>
-          </div>
-
-          <div class="day-tab" data-panel="day2">
-            <div class="day-tab-label">Tag 2 · Sa. 30.05.</div>
-            <div class="day-tab-title">Grenzübergreifend</div>
-            <div class="day-tab-sub">Schwedt/Oder</div>
-          </div>
-
-          <div class="day-tab" data-panel="day3">
-            <div class="day-tab-label">Tag 3 · So. 31.05.</div>
-            <div class="day-tab-title">Wanderung &amp; Artenschutz</div>
-            <div class="day-tab-sub">→ Lunow-Stolzenhagen</div>
-          </div>
-
-          <div class="day-tab" data-panel="day4">
-            <div class="day-tab-label">Tag 4 · Mo. 01.06.</div>
-            <div class="day-tab-title">Medien &amp; Diskurs</div>
-            <div class="day-tab-sub">Lunow-Stolzenhagen</div>
-          </div>
-
-          <div class="day-tab" data-panel="day5">
-            <div class="day-tab-label">Tag 5 · Di. 02.06.</div>
-            <div class="day-tab-title">Wanderung &amp; Koexistenz</div>
-            <div class="day-tab-sub">→ Liepe</div>
-          </div>
-
-          <div class="day-tab" data-panel="day6">
-            <div class="day-tab-label">Tag 6 · Mi. 03.06.</div>
-            <div class="day-tab-title">Herdenschutz &amp; Fazit</div>
-            <div class="day-tab-sub">Liepe</div>
-          </div>
-
-          <div class="day-tab" data-panel="day7">
-            <div class="day-tab-label">Tag 7 · Do. 04.06.</div>
-            <div class="day-tab-title">Abreise</div>
-            <div class="day-tab-sub">Liepe (Fronleichnam)</div>
-          </div>
-        </div>
-
-        <div class="program-content">
-
-          <div class="prog-panel active" id="day1">
-            <div class="prog-location">
-              <div class="prog-location-icon">📍</div>
-              <div>
-                <div class="prog-location-name">Turmhotel Schwedt/Oder</div>
-                <div class="prog-location-addr">Heinersdorfer Damm 1, 16303 Schwedt/Oder · www.turmhotel-schwedt-oder.de</div>
-              </div>
-            </div>
-            <div class="prog-section-title">Tagesablauf</div>
-            <div class="prog-item">
-              <div class="prog-item-type">Bis 17:30 Uhr</div>
-              <div>
-                <div class="prog-item-name">Ankunft der Projektteilnehmer*innen im Turmhotel</div>
-                <div class="prog-item-detail">1. Übernachtung</div>
-              </div>
-            </div>
-            <div class="prog-item">
-              <div class="prog-item-type">20:00 Uhr</div>
-              <div>
-                <div class="prog-item-name">Moderierte Fachdiskussion</div>
-                <div class="prog-item-detail">Vorstellungsrunde, Projektinhalt und – ziele, aktueller Sachstand in Bund/Ländern, Erfahrungs-austausch</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="prog-panel" id="day2">
-            <div class="prog-location">
-              <div class="prog-location-icon">📍</div>
-              <div>
-                <div class="prog-location-name">Turmhotel Schwedt/Oder</div>
-                <div class="prog-location-addr">Heinersdorfer Damm 1, 16303 Schwedt/Oder · Verbleib im Turmhotel / Tagesprogramm vor Ort · Pavillon/Lagerfeuer (2. Übernachtung)</div>
-              </div>
-            </div>
-            <div class="prog-section-title">Moderierte Fachdiskussion und Tagesprogramm</div>
-            <div class="prog-item">
-              <div class="prog-item-type">10:30 Uhr</div>
-              <div>
-                <div class="prog-item-name">Gabriele Neumann (NI)</div>
-                <div class="prog-item-detail">„Rückkehrer mit Heimatrecht – Wolfsarbeit der Naturschutzinitiative e.V. (NI)“</div>
-              </div>
-            </div>
-            <div class="prog-section-title" style="margin-top: 1.5rem;">Grenzübergreifende Betrachtungen: „Wie machen es die anderen?“ Präsentationen und Gespräche:</div>
-            <div class="prog-item">
-              <div class="prog-item-type">15:00 Uhr</div>
-              <div>
-                <div class="prog-item-name">Dr. Aleksandra Kraśkiewicz (Dzika Zagroda)</div>
-                <div class="prog-item-detail">Erfahrungen aus der Arbeit mit freilebenden Luchsen, Wisenten und Wölfen in Polen</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="prog-panel" id="day3">
-            <div class="prog-location">
-              <div class="prog-location-icon">🥾</div>
-              <div>
-                <div class="prog-location-name">Seminarhaus Speicher Gästehaus</div>
-                <div class="prog-location-addr">Gutshof 3, 16248 Stolzenhagen · www.seminarhausbrandenburg.de · Pavillon/Lagerfeuer (3. Übernachtung)</div>
-              </div>
-            </div>
-            <div class="prog-section-title">Tagesablauf &amp; Programm</div>
-            <div class="prog-item">
-              <div class="prog-item-type">Morgens</div>
-              <div>
-                <div class="prog-item-name">Wanderung ab Schwedt/Oder nach Lunow-Stolzenhagen</div>
-                <div class="prog-item-detail">Ziel Seminarhaus Taubenblau · unterwegs: Impulse</div>
-              </div>
-            </div>
-
-            <div class="prog-item">
-              <div class="prog-item-type">20:00 Uhr</div>
-              <div>
-                <div class="prog-item-name">Maximilian Hempel (Taskforce Artenschutz e.V.)</div>
-                <div class="prog-item-detail">Einblick in den operativen Artenschutz · anschl.: Diskussion</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="prog-panel" id="day4">
-            <div class="prog-location">
-              <div class="prog-location-icon">📍</div>
-              <div>
-                <div class="prog-location-name">Seminarhaus Speicher Gästehaus</div>
-                <div class="prog-location-addr">Gutshof 3, 16248 Stolzenhagen · www.seminarhausbrandenburg.de · Verbleib Seminarhaus Taubenblau / Tagesprogramm vor Ort · Pavillon/Lagerfeuer (4. Übernachtung)</div>
-              </div>
-            </div>
-            <div class="prog-section-title">Moderierte Fachdiskussion und Tagesprogramm</div>
-            <div class="prog-item">
-              <div class="prog-item-type">10:30 Uhr</div>
-              <div>
-                <div class="prog-item-name">Sabine Sebald</div>
-                <div class="prog-item-detail">Der Wolfspodcast – Medialer Umgang</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="prog-panel" id="day5">
-            <div class="prog-location">
-              <div class="prog-location-icon">🥾</div>
-              <div>
-                <div class="prog-location-name">Wanderung → Landhof Liepe</div>
-                <div class="prog-location-addr">Gutshof 1, 16248 Liepe · www.landhof-liepe.de</div>
-              </div>
-            </div>
-            <div class="prog-section-title">Tagesablauf &amp; Programm</div>
-            <div class="prog-item">
-              <div class="prog-item-type">Morgens</div>
-              <div>
-                <div class="prog-item-name">Wanderung ab Lunow-Stolzenhagen nach Liepe</div>
-                <div class="prog-item-detail">Ankunft im Landhof Liepe (5. Übernachtung)</div>
-              </div>
-            </div>
-            <div class="prog-item">
-              <div class="prog-item-type">15:00 Uhr</div>
-              <div>
-                <div class="prog-item-name">Joep v.d. Vlasakker</div>
-                <div class="prog-item-detail">Wege zur Koexistenz mit dem Thema Wolf</div>
-              </div>
-            </div>
-            <div class="prog-item">
-              <div class="prog-item-type">20:00 Uhr</div>
-              <div>
-                <div class="prog-item-name">Moderierte Fachdiskussion</div>
-                <div class="prog-item-detail">Vertreter Jagdverband / ÖJV Brandenburg (aktuell in Abstimmung)</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="prog-panel" id="day6">
-            <div class="prog-location">
-              <div class="prog-location-icon">📍</div>
-              <div>
-                <div class="prog-location-name">Landhof Liepe · Tagesprogramm vor Ort</div>
-                <div class="prog-location-addr">Gutshof 1, 16248 Liepe · Pavillon / Lagerfeuer (6. Übernachtung)</div>
-              </div>
-            </div>
-            <div class="prog-section-title">Moderierte Fachdiskussion &amp; Tagesprogramm (Tagesthema Herdenschutz)</div>
-            <div class="prog-item">
-              <div class="prog-item-type">10:30 Uhr</div>
-              <div>
-                <div class="prog-item-name">Joep v.d. Vlasakker</div>
-              </div>
-            </div>
-            <div class="prog-item">
-              <div class="prog-item-type">15:00 Uhr</div>
-              <div>
-                <div class="prog-item-name">Michael Eichhorn</div>
-                <div class="prog-item-detail">Erfahrungen aus der Arbeit mit Wölfen in der Slowakei und Österreich</div>
-              </div>
-            </div>
-            <div class="prog-item">
-              <div class="prog-item-type">Abschluss</div>
-              <div>
-                <div class="prog-item-name">Gemeinsames Fazit / Abschlusserklärung</div>
-                <div class="prog-item-detail">Zusammenfassung der Ergebnisse · Ausblick · Vernetzung</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="prog-panel" id="day7">
-            <div class="prog-location">
-              <div class="prog-location-icon">👋</div>
-              <div>
-                <div class="prog-location-name">Abreisetag – Landhof Liepe</div>
-                <div class="prog-location-addr">Gutshof 1, 16248 Liepe · Fronleichnam (Feiertag in NRW, BW, BY, HE, RP,
-                  SL)</div>
-              </div>
-            </div>
-            <div class="prog-section-title">Verabschiedung</div>
-            <div class="prog-item">
-              <div class="prog-item-type">Ganztags</div>
-              <div>
-                <div class="prog-item-name">Individuelle Abreise</div>
-                <div class="prog-item-detail">Offizieller Abschluss des COEXISTENCE WALK 2026. Hinweis: 04. Juni ist
-                  Fronleichnam-Feiertag in mehreren Bundesländern.</div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── REFERENTEN ─────────────────────────────────────────── -->
-  <section id="referenten" class="section">
-    <div class="container">
-      <p class="eyebrow reveal">Referentinnen & Referenten</p>
-      <h2 class="section-title reveal">Expert<em>innen</em> im Dialog</h2>
-      <div class="divider reveal"></div>
-      <p class="lead reveal">
-        Ein interdisziplinäres Team aus Wissenschaft, Naturschutz, Recht und Medien beleuchtet das
-        Thema Wolf aus allen Blickwinkeln.
+      <!-- Typography -->
+      <h1 class="coming-soon-heading">Coming soon</h1>
+      <p class="teaser-subtext">Gemeinsam Gehen für den Wolf – Die nächste Etappe kündigt sich an.</p>
+      <p class="teaser-desc">
+        Wir bereiten den nächsten <strong>COEXISTENCE WALK 2027</strong> vor. Neue Routen, vertiefender Dialog und sachlicher Diskurs rund um die Koexistenz von Mensch und Wildtieren. Alle Informationen und Anmeldemöglichkeiten folgen bald.
       </p>
 
-      <div class="speakers-grid">
-
-        <!-- Aleksandra -->
-        <div class="speaker-card reveal">
-          <img
-            src="https://69ef43b5abe5326bdb42135d.imgix.net/Dr._Aleksandra_Kraszkiewicz.png?auto=format&fit=fill&w=284"
-            alt="Dr. Aleksandra Kraśkiewicz"
-            style="width:100%; height:240px; object-fit:cover; object-position:50% 20%; display:block;">
-          <div class="speaker-info">
-            <div class="speaker-name">Dr. Aleksandra Kraśkiewicz</div>
-            <div class="speaker-role">Dzika Zagroda, Polen</div>
-            <div class="speaker-bio">
-              Erfahrungsaustausch über die Arbeit mit freilebenden Luchsen, Wisenten und Wölfen in Polen.
-            </div>
-          </div>
-        </div>
-
-
-        <!-- Michael -->
-        <div class="speaker-card reveal reveal-delay-1">
-          <img src="https://69ef43b5abe5326bdb42135d.imgix.net/Michael%20Eichhorn.png?auto=format&fit=fill&w=384"
-            alt="Michael Eichhorn"
-            style="width:100%; height:240px; object-fit:cover; object-position:50% 20%; display:block;">
-          <div class="speaker-info">
-            <div class="speaker-name">Michael Eichhorn</div>
-            <div class="speaker-role">Wolfsexperte · Slowakei / Österreich</div>
-            <div class="speaker-bio">
-              Langjährige Erfahrung in der Arbeit mit Wölfen in der Slowakei und Österreich.
-              Beiträge zu Herdenschutz und Koexistenz.
-            </div>
-          </div>
-        </div>
-
-        <!-- Gabriele -->
-        <div class="speaker-card reveal reveal-delay-2">
-          <img src="https://69ef43b5abe5326bdb42135d.imgix.net/Gabriele%20Neumann.jpeg?auto=format&fit=fill&w=384"
-            alt="Gabriele Neumann"
-            style="width:100%; height:240px; object-fit:cover; object-position:50% 20%; display:block;">
-          <div class="speaker-info">
-            <div class="speaker-name">Gabriele Neumann</div>
-            <div class="speaker-role">Naturschutzinitiative e.V. (NI)</div>
-            <div class="speaker-bio">
-              Zur Arbeit der Naturschutzinitiative und zur Ethologie des Wolfes – Verhalten,
-              Sozialstruktur, Mythos und Realität.
-            </div>
-          </div>
-        </div>
-
-        <!-- Sabine -->
-        <div class="speaker-card reveal">
-          <img src="https://69ef43b5abe5326bdb42135d.imgix.net/Sabine_Sebald.png?auto=format&fit=fill&w=384"
-            alt="Sabine Sebald"
-            style="width:100%; height:240px; object-fit:cover; object-position:50% 20%; display:block;">
-          <div class="speaker-info">
-            <div class="speaker-name">Sabine Sebald</div>
-            <div class="speaker-role">Medienjournalistin</div>
-            <div class="speaker-bio">
-              Medialer Umgang mit dem Thema Wolf: Wie berichten Presse und Fernsehen – und was
-              bleibt dabei oft auf der Strecke?
-            </div>
-          </div>
-        </div>
-
-        <!-- Joep -->
-        <div class="speaker-card reveal reveal-delay-1">
-          <img
-            src="https://69ef43b5abe5326bdb42135d.imgix.net/Joep%20van%20den%20Vlasakker.png?auto=format&fit=fill&w=384"
-            alt="Joep van den Vlasakker"
-            style="width:100%; height:240px; object-fit:cover; object-position:50% 20%; display:block;">
-          <div class="speaker-info">
-            <div class="speaker-name">Joep van den Vlasakker</div>
-            <div class="speaker-role">Herdenschutzexperte</div>
-            <div class="speaker-bio">
-              Internationaler Experte für Herdenschutz – praktische Ansätze zum Schutz von
-              Nutztieren im Wolfsgebiet.
-            </div>
-          </div>
-        </div>
-
-        <!-- Maximilian -->
-        <div class="speaker-card reveal reveal-delay-2">
-          <img src="https://69ef43b5abe5326bdb42135d.imgix.net/Maximilian_Hempel.png?auto=format&fit=fill&w=384"
-            alt="Maximilian Hempel"
-            style="width:100%; height:240px; object-fit:cover; object-position:50% 20%; display:block;">
-          <div class="speaker-info">
-            <div class="speaker-name">Maximilian Hempel</div>
-            <div class="speaker-role">Taskforce Artenschutz e.V.</div>
-            <div class="speaker-bio">
-              Einblick in den operativen Artenschutz
-            </div>
-          </div>
-        </div>
-
-        <!-- Weitere Gäste -->
-        <div class="speaker-card reveal"
-          style="background:var(--parchment); display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding:2rem; min-height:280px;">
-
-          <div style="font-family:var(--font-display); font-size:3rem; color:var(--sand); margin-bottom:1rem;">
-            +
-          </div>
-
-          <div class="speaker-name" style="font-size:1rem;">Weitere Gäste</div>
-          <div class="speaker-role">Programm in Abstimmung</div>
-          <div class="speaker-bio" style="margin-top:0.5rem;">
-            Vertreter aus Politik, Recht, Naturschutzverbänden und Jagd werden noch bekanntgegeben.
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── MITMACHEN ──────────────────────────────────────────── -->
-  <section id="mitmachen" class="section">
-    <div class="container">
-      <p class="eyebrow reveal">Mitmachen</p>
-      <h2 class="section-title reveal">Alles ist<br /><em>möglich</em></h2>
-      <div class="divider reveal"></div>
-      <p class="lead reveal">Mitgehen. Mitreden. Mitgestalten. – Der COEXISTENCE WALK lebt von Menschen, die bereit
-        sind, aufeinander zuzugehen.</p>
-
-      <div class="mitmachen-grid">
-        <div class="mitmachen-card reveal">
-          <div class="mitmachen-icon">
-            <svg viewBox="0 0 24 24">
-              <path d="M13 3a9 9 0 11-9 9" />
-              <path d="M13 3v6h6" />
-              <circle cx="8" cy="12" r="3" fill="var(--linen)" />
+      <!-- Prominent Archive CTA Button -->
+      <div class="cta-container">
+        <a href="coexistence-walk-2026.html" class="archive-card-btn" title="Besuche das vollständige Archiv des Coexistence Walk 2026">
+          <div class="archive-btn-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
             </svg>
           </div>
-          <div class="mitmachen-title">Mitgehen</div>
-          <div class="mitmachen-text">Wandere eine oder mehrere Etappen mit. Ein
-            Shuttle-Service ist für Gepäck und Zwischentransporte im Einsatz.</div>
-          <a href="#kontakt" class="btn btn-primary">Zur Anmeldung</a>
-        </div>
-        <div class="mitmachen-card reveal reveal-delay-1">
-          <div class="mitmachen-icon">
-            <svg viewBox="0 0 24 24">
-              <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" fill="none" stroke="var(--linen)"
-                stroke-width="2.5" />
-            </svg>
-          </div>
-          <div class="mitmachen-title">Mitreden</div>
-          <div class="mitmachen-text">Als Fachreferentin oder Fachreferent, als Vertreterin einer Organisation oder als
-            Medienschaffende bringst du deine Perspektive in die Diskussion ein.</div>
-          <a href="#kontakt" class="btn btn-outline">Kontakt aufnehmen</a>
-        </div>
-        <div class="mitmachen-card reveal reveal-delay-2">
-          <div class="mitmachen-icon">
-            <svg viewBox="0 0 24 24">
-              <path
-                d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 000-7.78z"
-                fill="none" stroke="var(--linen)" stroke-width="2.5" />
-            </svg>
-          </div>
-          <div class="mitmachen-title">Unterstützen</div>
-          <div class="mitmachen-text">Du kannst nicht dabei sein, möchtest das Projekt aber fördern? Jede Spende hilft,
-            diese Non-Profit-Initiative zu realisieren. Steuerlich absetzbar!</div>
-          <a href="#spenden" class="btn btn-primary">Jetzt spenden</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── GALERIE ─────────────────────────────────────────────── -->
-  <section id="galerie" class="section">
-    <div class="container">
-      <p class="eyebrow reveal">Eindrücke</p>
-      <h2 class="section-title reveal">Die Region –<br /><em>Grünes Band</em> Brandenburg</h2>
-      <div class="divider reveal"></div>
-      <div class="gallery-grid reveal">
-        <div class="gallery-item">
-          <img src="https://69ef43b5abe5326bdb42135d.imgix.net/nebelwald.png?w=800&auto=format&fit=crop&q=80"
-            alt="Grünes Band Landschaft" style="height:100%;object-fit:cover;" />
-        </div>
-        <div class="gallery-item">
-          <img src="https://69ef43b5abe5326bdb42135d.imgix.net/wolf.jpeg?w=600&auto=format&fit=crop&q=80"
-            alt="Wolf in freier Wildbahn" style="height:100%;object-fit:cover;" />
-        </div>
-        <div class="gallery-item">
-          <img src="https://69ef43b5abe5326bdb42135d.imgix.net/wandern.png?w=600&auto=format&fit=crop&q=80"
-            alt="Wandergruppe in der Natur" style="height:100%;object-fit:cover;" />
-        </div>
-        <div class="gallery-item">
-          <img src="https://69ef43b5abe5326bdb42135d.imgix.net/turm.png?w=600&auto=format&fit=crop&q=80"
-            alt="Wald Brandenburg" style="height:100%;object-fit:cover;" />
-        </div>
-        <div class="gallery-item">
-          <img src="https://69ef43b5abe5326bdb42135d.imgix.net/img.png?w=600&auto=format&fit=crop&q=80"
-            alt="Grenzregion Polen Brandenburg" style="height:100%;object-fit:cover;" />
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── SPENDEN ─────────────────────────────────────────────── -->
-  <section id="spenden">
-    <div class="container">
-      <div class="spenden-inner">
-        <p class="eyebrow" style="color:var(--sage); text-align:center;">Non-Profit Initiative</p>
-        <h2 class="section-title">Deine Spende<br /><em>macht's möglich</em></h2>
-        <p class="lead">Als Non-Profit-Projekt sind wir auf Unterstützung angewiesen. Spenden an die
-          Naturschutzinitiative e.V. (NI) sind steuerlich absetzbar.</p>
-
-        <div class="iban-box">
-          <div class="iban-row">
-            <div class="iban-label">Empfänger</div>
-            <div class="iban-value">
-              <img src="NI-Logo_weissraum_4k_rgb.png" alt="Naturschutzinitiative e.V. Logo" loading="lazy"
-                style="height:96px; width:auto; object-fit:contain; margin-bottom:0.5rem; display:block;" />
-              Naturschutzinitiative e.V. (NI)
+          <div class="archive-btn-text">
+            <span class="archive-btn-label">Rückblick & Archiv</span>
+            <div class="archive-btn-title">
+              <span>coexistence-walk 2026</span>
+              <span class="archive-btn-arrow">→</span>
             </div>
           </div>
-          <div class="iban-row">
-            <div class="iban-label">IBAN</div>
-            <div class="iban-value">DE83 5739 1800 0011 5018 00</div>
-          </div>
-          <div class="iban-row">
-            <div class="iban-label">Verwendungszweck (Pflicht!)</div>
-            <div class="iban-value" style="color:var(--sand)">Coexistence Walk</div>
-          </div>
-          <!-- Fix 8: Donation impact -->
-          <div
-            style="margin-top:1.25rem; padding-top:1.25rem; border-top:1px solid rgba(255,255,255,0.08); font-size:0.85rem; color:rgba(244,239,228,0.6); display:flex; flex-direction:column; gap:0.4rem;">
-            <div>Wir müssen die Referenten und Seminarräume bezahlen und würden uns deswegen über Spenden sehr freuen.
-            </div>
-          </div>
-        </div>
-
-        <a href="https://naturschutz-initiative.de/" target="_blank" class="btn btn-primary"
-          style="margin:0 auto; display:inline-flex;">
-          Zur offiziellen Website →
         </a>
-        <p class="iban-notice">
-          Die Naturschutzinitiative e.V. (NI) unterstützt die Initiative als strategischer Partner<br />
-          bei der Verwaltung der Fördergelder. Spenden sind steuerlich absetzbar.
-        </p>
       </div>
-    </div>
-  </section>
 
-  <!-- ─── FAQ ────────────────────────────────────────────────── -->
-  <section id="faq" class="section" style="background:var(--cream);">
-    <div class="container">
-      <p class="eyebrow reveal">Fragen & Antworten</p>
-      <h2 class="section-title reveal">FAQ – COEXISTENCE<br /><em>WALK 2026</em></h2>
-      <div class="divider reveal"></div>
-
-      <div class="faq-grid reveal reveal-delay-1"
-        style="display:flex; flex-direction:column; gap:2rem; max-width:800px; margin:0 auto;">
-
-        <div>
-          <h3
-            style="color:var(--bark); border-bottom:1px solid rgba(45,36,22,0.1); padding-bottom:0.5rem; margin-bottom:1rem;">
-            Allgemeines zum Projekt</h3>
-          <div style="margin-bottom:1.5rem;">
-            <strong>Was ist der COEXISTENCE WALK?</strong>
-            <p style="margin-top:0.5rem;">Der COEXISTENCE WALK ist eine mehrtägige Wander- und Dialoginitiative, die zur
-              Projekteröffnung vom 29. Mai bis zum 04. Juni 2026 stattfindet. Unter dem Motto „Neue Wege auf alten
-              Pfaden“ wandern wir von Westpolen (Schwedt/Oder) nach Brandenburg (Liepe), um eine sachliche und emotional
-              ausgewogene Debatte über das Zusammenleben von Mensch und Wolf zu fördern.</p>
-          </div>
-          <div style="margin-bottom:1.5rem;">
-            <strong>Ist dies eine Demonstration gegen oder für den Wolf?</strong>
-            <p style="margin-top:0.5rem;">Nein. Wir grenzen uns bewusst von öffentlichen Protestkundgebungen oder
-              Demonstrationen ab. Der Walk ist eine Dialoginitiative. Unser Ziel ist nicht der Konflikt, sondern der
-              Aufbau von Brücken zwischen Fachleuten, Medien und der Öffentlichkeit durch deeskalierende und
-              evidenzbasierte Kommunikation. Allerdings sind wir mit der überwiegend Interessen geleiteten Art und
-              Weise, wie aktuell über den Umgang mit dem Wolf entschieden wird, nicht einverstanden! Insbesondere
-              Maßnahmen wie die Bejagung stehen vielfach im Widerspruch zu einem ausgewogenen, zukunftsfähigen Umgang
-              mit „dem Rest“ unserer natürlichen Umwelt. Wir suchen Wege zur gesicherten Koexistenz, deshalb steht die
-              eine einfache, aber entscheidende Frage im Mittelpunkt: Wie kann ein tragfähiges Zusammenleben von Mensch
-              und Wolf (und anderen Arten) zukunftssicher gelingen?</p>
-          </div>
-          <div style="margin-bottom:1.5rem;">
-            <strong>Warum findet der erste Walk ausgerechnet im Grenzgebiet Polen/Brandenburg statt?</strong>
-            <p style="margin-top:0.5rem;">Der Ort ist symbolisch gewählt. Er steht für die eigenständige Rückkehr der
-              Wölfe nach dem Fall des „Eisernen Vorhangs“. Wir nutzen das Umfeld des „Grünen Bands“, um den historischen
-              Kontext mit zukünftigen Lösungen für eine tragfähige Koexistenz zu verknüpfen.</p>
-          </div>
+      <!-- Teaser Cards -->
+      <div class="preview-grid">
+        <div class="preview-card">
+          <span class="preview-card-icon">🐺</span>
+          <h3>Dialog im Fokus</h3>
+          <p>Lösungen finden durch sachlichen Diskurs, Fakten und den direkten Austausch zwischen Befürwortern, Kritikern und Fachleuten.</p>
         </div>
-
-        <div>
-          <h3
-            style="color:var(--bark); border-bottom:1px solid rgba(45,36,22,0.1); padding-bottom:0.5rem; margin-bottom:1rem;">
-            Teilnahme & Ablauf</h3>
-          <div style="margin-bottom:1.5rem;">
-            <strong>Kann ich als Privatperson mitwandern?</strong>
-            <p style="margin-top:0.5rem;">Ja, es bestehen konkrete Beteiligungsangebote für die Öffentlichkeit im Rahmen
-              unserer partizipativen Kampagne. Es gibt ein externes Teilnehmermanagement, über das du dich für die
-              Wandergruppe anmelden kannst (zum Kontakt-/ Anmeldeformular oder Telefon/WhatsApp +49 151 59207010).</p>
-          </div>
-          <div style="margin-bottom:1.5rem;">
-            <strong>Wie sieht ein typischer Tag beim COEXISTENCE WALK aus?</strong>
-            <p style="margin-top:0.5rem;">Der Tag ist zweigeteilt: Vormittags und nachmittags finden geführte
-              Wanderetappen (Exkursionen) auf Feld- und Waldwegen statt, bei denen es thematische Impulse gibt. Im
-              Anschluss folgen Fachveranstaltungen mit wissenschaftlichen Fakten, Erfahrungsberichten und moderierten
-              Diskussionen (siehe Verlaufs-/Programmplanung).</p>
-          </div>
-          <div style="margin-bottom:1.5rem;">
-            <strong>Was passiert bei schlechtem Wetter?</strong>
-            <p style="margin-top:0.5rem;">Keine Sorge, unsere Logistikplanung umfasst Alternativrouten und
-              Transportoptionen, falls das Wetter eine Wanderung unmöglich macht.</p>
-          </div>
+        <div class="preview-card">
+          <span class="preview-card-icon">🌲</span>
+          <h3>Natur & Bewegung</h3>
+          <p>Gemeinsam unterwegs durch symbolträchtige Landschaften im Umfeld des Grünen Bandes – Schritt für Schritt für ein tragfähiges Miteinander.</p>
         </div>
-
-        <div>
-          <h3
-            style="color:var(--bark); border-bottom:1px solid rgba(45,36,22,0.1); padding-bottom:0.5rem; margin-bottom:1rem;">
-            Logistik & Sicherheit</h3>
-          <div style="margin-bottom:1.5rem;">
-            <strong>Wie ist die Versorgung während der Wanderung geregelt?</strong>
-            <p style="margin-top:0.5rem;">Ein Begleitfahrzeug stellt Wasser, Snacks und Erste-Hilfe-Material bereit.
-              Zudem organisieren wir die Verpflegung sowie den Gepäcktransfer zwischen den Unterkünften.</p>
-          </div>
-          <div style="margin-bottom:1.5rem;">
-            <strong>Gibt es ein Notfallmanagement?</strong>
-            <p style="margin-top:0.5rem;">Ja. Wir haben ein festes Notfallmanagement für Mensch und Hund. Wir stehen in Kontakt mit örtlichen Rettungsdiensten und Tierärzten.</p>
-          </div>
-          <div style="margin-bottom:1.5rem;">
-            <strong>Wer trägt die Kosten für das Projekt?</strong>
-            <p style="margin-top:0.5rem;">Der COEXISTENCE WALK ist ein Non-Profit-Projekt. Übernachtungs- und
-              Verpflegungskosten tragen die Teilnehmer selbst. Die Finanzierung von z.B. Tagungsräumen,
-              Referentenaufwendungen etc. erfolgt unter anderem über ein Spendenkonto, das mit Unterstützung des Vereins
-              Naturschutzinitiative e.V. (NI) eingerichtet wurde. Die Teilnahme an den Veranstaltungen ist grundsätzlich
-              kostenfrei. Für eine langfristige Finanzierung sind wir dennoch auf Spenden angewiesen.</p>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── KONTAKT / ANMELDUNG ────────────────────────────────── -->
-  <section id="kontakt" class="section">
-    <div class="container">
-      <p class="eyebrow reveal">Anmeldung & Kontakt</p>
-      <h2 class="section-title reveal">Dabei<em>sein</em></h2>
-      <div class="divider reveal"></div>
-
-      <div class="kontakt-grid">
-        <div class="kontakt-info reveal">
-          <h3>Kontakt für Medien & Partner</h3>
-          <p>Sie sind Journalist oder möchten als Partner (innerhalb der Interessengemeinschaft / IG) Teil des Netzwerks
-            werden? Wenden Sie sich bitte an unser Medienteam (Ralf Meurer unter Telefon/WhatsApp +49 151 59207010) oder
-            die Projektleitung (Peter Nawrath unter Telefon/WhatsApp +49 179 7337535) für Hintergrundgespräche und
-            Pressematerial.</p>
-
-          <div class="kontakt-detail">
-            <div class="kontakt-detail-icon">
-              <svg viewBox="0 0 24 24">
-                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-                <line x1="16" y1="2" x2="16" y2="6" />
-                <line x1="8" y1="2" x2="8" y2="6" />
-                <line x1="3" y1="10" x2="21" y2="10" />
-              </svg>
-            </div>
-            <div class="kontakt-detail-text">
-              <strong>Zeitraum</strong>
-              29. Mai – 04. Juni 2026
-            </div>
-          </div>
-
-          <div class="kontakt-detail">
-            <div class="kontakt-detail-icon">
-              <svg viewBox="0 0 24 24">
-                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
-                <circle cx="12" cy="10" r="3" />
-              </svg>
-            </div>
-            <div class="kontakt-detail-text">
-              <strong>Region</strong>
-              Polen / Brandenburg<br />Schwedt/Oder bis Liepe
-            </div>
-          </div>
-
-          <div class="kontakt-detail">
-            <div class="kontakt-detail-icon">
-              <svg viewBox="0 0 24 24">
-                <path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71" />
-                <path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71" />
-              </svg>
-            </div>
-            <div class="kontakt-detail-text">
-              <strong>Website</strong>
-              <a href="https://www.coexistence-walk.de" target="_blank"
-                style="color:var(--fern);">www.coexistence-walk.de</a>
-            </div>
-          </div>
-
-          <div class="kontakt-detail">
-            <div class="kontakt-detail-icon">
-              <svg viewBox="0 0 24 24">
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                <polyline points="22,6 12,13 2,6" />
-              </svg>
-            </div>
-            <div class="kontakt-detail-text">
-              <strong>Anmeldung</strong>
-              Ab sofort über die Website oder das nebenstehende Formular
-            </div>
-          </div>
-
-          <div style="margin-top:2.5rem;">
-            <p class="eyebrow" style="margin-bottom:0.75rem;">Folge uns</p>
-            <div class="footer-hashtags">
-              <span class="hashtag">#CoexistenceWalk</span>
-              <span class="hashtag">#Wolf</span>
-              <span class="hashtag">#Naturschutz</span>
-              <span class="hashtag">#Brandenburg</span>
-              <span class="hashtag">#Dialog</span>
-              <span class="hashtag">#MenschUndNatur</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="anmeldung-box reveal reveal-delay-1">
-          <h3>Jetzt anmelden</h3>
-          <p>Fülle das Formular aus – wir melden uns zeitnah bei dir.</p>
-
-          <form action="https://formspree.io/f/xgorblbb" method="POST">
-            <input type="hidden" name="_subject" value="Neue Anmeldung – Coexistence Walk" />
-            <input type="hidden" name="_redirect" value="https://www.coexistence-walk.de/danke.html" />
-            <input type="hidden" name="_captcha" value="false" />
-
-            <div class="form-row">
-              <div class="form-group">
-                <label>Vorname & Nachname</label>
-                <input type="text" name="name" placeholder="Max Mustermann" required />
-              </div>
-              <div class="form-group">
-                <label>E-Mail-Adresse</label>
-                <input type="email" name="email" placeholder="deine@email.de" required />
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label>Telefonnummer (für Notfälle vor Ort)</label>
-              <input type="tel" name="telefon" placeholder="+49 ..." required />
-            </div>
-
-            <div class="form-group">
-              <label>Ich möchte teilnehmen am:</label>
-              <div style="display:flex; flex-direction:column; gap:0.5rem; margin-top:0.5rem;">
-                <label style="font-weight:normal; display:flex; align-items:center; gap:0.5rem; cursor:pointer;">
-                  <input type="radio" name="teilnahme" value="Gesamter Zeitraum (29.05. – 04.06.2026)" required />
-                  <span>Gesamter Zeitraum (29.05. – 04.06.2026)</span>
-                </label>
-                <label style="font-weight:normal; display:flex; align-items:center; gap:0.5rem; cursor:pointer;">
-                  <input type="radio" name="teilnahme" value="Einzelne Etappen" id="einzelneEtappenRadio" required />
-                  <span>Einzelne Etappen</span>
-                </label>
-                <input type="text" name="einzelne_etappen_datum"
-                  placeholder="Bitte Datum angeben (z.B. 30.05. - 31.05.)" style="margin-top:0.25rem; display:none;"
-                  id="einzelneEtappenInput" />
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label>Logistik & Sicherheit</label>
-              <div
-                style="display:flex; flex-direction:column; gap:1rem; margin-top:0.5rem; background:rgba(255,255,255,0.4); padding:1.25rem; border-radius:6px; border:1px solid rgba(0,0,0,0.05);">
-                <div>
-                  <span style="font-size:0.9rem; color:var(--bark); font-weight:500;">Wandert ein Hund mit?</span>
-                  <div style="display:flex; gap:1.5rem; margin-top:0.5rem;">
-                    <label style="font-weight:normal; display:flex; align-items:center; gap:0.4rem; cursor:pointer;">
-                      <input type="radio" name="hund" value="Ja" required /> Ja
-                    </label>
-                    <label style="font-weight:normal; display:flex; align-items:center; gap:0.4rem; cursor:pointer;">
-                      <input type="radio" name="hund" value="Nein" required /> Nein
-                    </label>
-                  </div>
-                </div>
-                <hr style="border:none; border-top:1px solid rgba(0,0,0,0.06); margin:0;" />
-                <div>
-                  <span style="font-size:0.9rem; color:var(--bark); font-weight:500;">Benötigen Sie einen
-                    Gepäcktransfer?</span>
-                  <div style="display:flex; gap:1.5rem; margin-top:0.5rem;">
-                    <label style="font-weight:normal; display:flex; align-items:center; gap:0.4rem; cursor:pointer;">
-                      <input type="radio" name="gepaeck" value="Ja" required /> Ja
-                    </label>
-                    <label style="font-weight:normal; display:flex; align-items:center; gap:0.4rem; cursor:pointer;">
-                      <input type="radio" name="gepaeck" value="Nein" required /> Nein
-                    </label>
-                  </div>
-                </div>
-                <div
-                  style="font-size:0.85rem; color:var(--sand); margin-top:0.2rem; display:flex; align-items:center; gap:0.4rem;">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <line x1="12" y1="8" x2="12" y2="12"></line>
-                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
-                  </svg>
-                  Beachte: Selbstverpflegung!
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label>Rechtliches</label>
-              <div
-                style="display:flex; flex-direction:column; gap:0.8rem; margin-top:0.5rem; background:rgba(255,255,255,0.4); padding:1.25rem; border-radius:6px; border:1px solid rgba(0,0,0,0.05);">
-                <label
-                  style="font-weight:normal; display:flex; align-items:flex-start; gap:0.6rem; font-size:0.85rem; line-height:1.4; cursor:pointer;">
-                  <input type="checkbox" name="privat_exkursion" required style="margin-top:0.15rem; flex-shrink:0;" />
-                  <span>Ich habe zur Kenntnis genommen, dass es sich um eine private Exkursion (Interessengemeinschaft)
-                    und nicht um eine Demonstration handelt.</span>
-                </label>
-                <label
-                  style="font-weight:normal; display:flex; align-items:flex-start; gap:0.6rem; font-size:0.85rem; line-height:1.4; cursor:pointer;">
-                  <input type="checkbox" name="unterkunft_selbstbuchung" required
-                    style="margin-top:0.15rem; flex-shrink:0;" />
-                  <span>Mir ist bewusst, dass Hotelzimmer oder sonstige Unterkünfte selbstständig und separat nach
-                    eigenen Wünschen gebucht werden müssen.</span>
-                </label>
-                <label
-                  style="font-weight:normal; display:flex; align-items:flex-start; gap:0.6rem; font-size:0.85rem; line-height:1.4; cursor:pointer;">
-                  <input type="checkbox" name="agb" required style="margin-top:0.15rem; flex-shrink:0;" />
-                  <span>Ich akzeptiere die <a href="teilnahmebedingungen.html" target="_blank"
-                      style="color:var(--fern); text-decoration:underline; text-underline-offset:2px;">Teilnahmebedingungen</a>
-                    und den Haftungsausschluss.</span>
-                </label>
-              </div>
-            </div>
-
-            <button type="submit" class="btn btn-primary"
-              style="width:100%; justify-content:center; margin-top:0.5rem;">Anmeldung absenden</button>
-          </form>
+        <div class="preview-card">
+          <span class="preview-card-icon">📁</span>
+          <h3>Archiv & Rückblick</h3>
+          <p>Entdecken Sie alle Vorträge, Experten, Etappen und Fotos des vergangenen Walks auf unserer Archivseite 2026.</p>
         </div>
       </div>
+
     </div>
-  </section>
+  </main>
 
-  <!-- ─── TEAM ──────────────────────────────────────────── -->
-  <section id="team" class="section">
-    <div class="container">
-      <p class="eyebrow reveal">Organisation</p>
-      <h2 class="section-title reveal reveal-delay-1">Das <em>Team</em></h2>
-      <div class="divider reveal reveal-delay-2"></div>
-
-      <div class="team-grid">
-
-        <div class="team-card reveal">
-          <div class="team-card-img-wrap">
-            <img src="https://69ef43b5abe5326bdb42135d.imgix.net/Peter%20Nawrath.png?auto=format&fit=fill&w=384"
-              alt="Peter Nawrath" loading="lazy" style="object-position: center 20%;" />
-          </div>
-          <div class="team-card-name">Peter Nawrath</div>
-        </div>
-
-        <div class="team-card reveal reveal-delay-1">
-          <div class="team-card-img-wrap">
-            <img src="https://69ef43b5abe5326bdb42135d.imgix.net/Ralf%20Peter%20Meurer_.png?auto=format&fit=fill&w=384"
-              alt="Ralf Peter Meurer" loading="lazy" />
-          </div>
-          <div class="team-card-name">Ralf Peter Meurer</div>
-        </div>
-
-        <div class="team-card reveal reveal-delay-2">
-          <div class="team-card-img-wrap">
-            <img src="https://69ef43b5abe5326bdb42135d.imgix.net/Martina%20Z%C3%B6llner.png?auto=format&fit=fill&w=384"
-              alt="Martina Zöllner" loading="lazy" />
-          </div>
-          <div class="team-card-name">Martina Zöllner</div>
-        </div>
-
-        <div class="team-card reveal reveal-delay-3">
-          <div class="team-card-img-wrap">
-            <img src="https://69ef43b5abe5326bdb42135d.imgix.net/Sabine%20Beerbaum.png?auto=format&fit=fill&w=384"
-              alt="Sabine Beerbaum" loading="lazy" />
-          </div>
-          <div class="team-card-name">Sabine Beerbaum</div>
-        </div>
-
-        <div class="team-card reveal">
-          <div class="team-card-img-wrap">
-            <img src="https://69ef43b5abe5326bdb42135d.imgix.net/Kevin%20Reutemann.png?auto=format&fit=fill&w=384"
-              alt="Kevin Reutemann" loading="lazy" />
-          </div>
-          <div class="team-card-name">Kevin Reutemann</div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── UNTERSTÜTZER & PARTNER ───────────────────────────────── -->
-  <section id="partner-new" class="section">
-    <div class="container">
-      <p class="eyebrow reveal" style="text-align:center;">Netzwerk</p>
-      <h2 class="section-title reveal reveal-delay-1" style="text-align:center;">Unterstützer &amp; <em>Partner</em>
-      </h2>
-      <div class="divider reveal reveal-delay-2" style="margin-left:auto; margin-right:auto;"></div>
-
-      <div class="partner-grid-new reveal reveal-delay-3">
-
-        <a href="https://naturschutz-initiative.de/" target="_blank" rel="noopener noreferrer"
-          aria-label="Naturschutzinitiative e.V. (NI)">
-          <img src="NI-Logo_weissraum_4k_rgb.png" alt="Naturschutzinitiative e.V. (NI)" loading="lazy" />
-          <span class="partner-name">Naturschutzinitiative e.V. (NI)</span>
-        </a>
-
-        <a href="https://www.gzsdw.de/" target="_blank" rel="noopener noreferrer"
-          aria-label="Gesellschaft zum Schutz der Wölfe e.V.">
-          <img
-            src="https://69ef43b5abe5326bdb42135d.imgix.net/Gesellschaft_zum_Schutz_der_Woelfe_e_V_Logo.jpeg?auto=format&fit=fill&w=384"
-            alt="Gesellschaft zum Schutz der Wölfe e.V." loading="lazy" />
-          <span class="partner-name">Ges. z. Schutz der Wölfe e.V.</span>
-        </a>
-
-        <a href="#partner-new" aria-label="Sabine's Hundeschule">
-          <img src="https://69ef43b5abe5326bdb42135d.imgix.net/Sabine_Hundeschule.jpeg?auto=format&fit=fill&w=384"
-            alt="Sabine's Hundeschule" loading="lazy" />
-          <span class="partner-name">Sabine's Hundeschule</span>
-        </a>
-
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ─── FOOTER ─────────────────────────────────────────────── -->
+  <!-- ─── FOOTER ──────────────────────────────────────────────── -->
   <footer>
-    <div class="container">
-      <div class="footer-top">
+    <div class="footer-inner">
+      <div class="footer-main">
         <div class="footer-brand">
-          <div class="nav-logo">
-            <img src="wolf_druck.png" alt="Coexistence Walk Logo"
-              style="height:152px; width:auto; object-fit:contain;" />
-          </div>
-          <p>Gemeinsam Gehen für den Wolf. Eine Non-Profit-Initiative im deutsch-polnischen Grenzgebiet, 29. Mai – 04.
-            Juni 2026.</p>
-          <div class="footer-hashtags" style="margin-top:1rem;">
-            <span class="hashtag">#CoexistenceWalk</span>
-            <span class="hashtag">#Wolf</span>
-            <span class="hashtag">#Brandenburg</span>
-          </div>
-          <div style="margin-top:0.8rem;">
-            <a href="https://www.facebook.com/coexistencewalk/" target="_blank" rel="noopener noreferrer"
-              class="hashtag"
-              style="text-decoration:none; display:inline-flex; align-items:center; gap:0.4rem; transition:color 0.3s;"
-              onmouseover="this.style.color='#1877F2'" onmouseout="this.style.color=''">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
-              </svg>
-              @coexistencewalk
-            </a>
+          <img src="wolf_druck.png" alt="Coexistence Walk Logo" />
+          <div>
+            <strong style="display:block; color:var(--linen); font-family:var(--font-display); font-size:1.1rem;">COEXISTENCE WALK</strong>
+            <p class="footer-tagline">Gemeinsam Gehen für den Wolf. Eine Non-Profit-Initiative.</p>
           </div>
         </div>
 
-        <div class="footer-links">
-          <h4>Navigation</h4>
-          <ul>
-            <li><a href="#about">Über die Initiative</a></li>
-            <li><a href="#route">Route & Stationen</a></li>
-            <li><a href="#programm">Programm</a></li>
-            <li><a href="#referenten">Referent:innen</a></li>
-            <li><a href="#mitmachen">Mitmachen</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-links">
-          <h4>Unterstützen</h4>
-          <ul>
-            <li><a href="#spenden">Spenden</a></li>
-            <li><a href="#kontakt">Anmeldung</a></li>
-            <li><a href="https://www.coexistence-walk.de" target="_blank">www.coexistence-walk.de</a></li>
-          </ul>
-          <div style="margin-top:1.5rem;">
-            <h4>Spendenkonto</h4>
-            <p style="font-size:0.8rem; margin-top:0.5rem; line-height:1.8;">
-              Naturschutzinitiative e.V.<br />
-              IBAN: DE83 5739 1800 0011 5018 00<br />
-              Stichwort: <em style="color:var(--sage);">Coexistence Walk</em>
-            </p>
-          </div>
+        <div class="footer-links-group">
+          <a href="https://www.facebook.com/coexistencewalk/" target="_blank" rel="noopener noreferrer" class="footer-social-link">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+            </svg>
+            Facebook: coexistencewalk
+          </a>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <span>© 2026 COEXISTENCE WALK – Interessengemeinschaft</span>
-        <div style="display:flex; gap:1.5rem; flex-wrap:wrap; justify-content:flex-end;">
-          <a href="impressum.html" style="text-decoration: underline; color: rgba(244, 239, 228, 0.7);">Impressum</a>
-          <a href="datenschutz.html"
-            style="text-decoration: underline; color: rgba(244, 239, 228, 0.7);">Datenschutzerklärung</a>
-          <a href="teilnahmebedingungen.html"
-            style="text-decoration: underline; color: rgba(244, 239, 228, 0.7);">Teilnahmebedingungen</a>
-          <a href="#" onclick="openCookieSettings(); return false;"
-            style="text-decoration: underline; color: rgba(142, 168, 112, 0.8);" id="footer-cookie-settings">Cookie-Einstellungen</a>
+        <span>© 2026/2027 COEXISTENCE WALK – Interessengemeinschaft</span>
+        <div class="footer-legal-links">
+          <a href="coexistence-walk-2026.html">Archiv 2026</a>
+          <a href="blog.html">Blog</a>
+          <a href="impressum.html">Impressum</a>
+          <a href="datenschutz.html">Datenschutzerklärung</a>
+          <a href="teilnahmebedingungen.html">Teilnahmebedingungen</a>
+          <a href="#" onclick="openCookieSettings(); return false;" id="footer-cookie-settings" style="color:var(--sage);">Cookie-Einstellungen</a>
         </div>
       </div>
     </div>
   </footer>
 
-  <!-- ─── Fix 3: STICKY CTA ─────────────────────────────────── -->
-  <a href="#kontakt" class="sticky-btn" id="stickyBtn">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-      <path d="M5 12h14M12 5l7 7-7 7" />
-    </svg>
-    Platz reservieren →
-  </a>
-
-  <!-- ─── COOKIE BANNER ───────────────────────────────────────── -->
+  <!-- ─── COOKIE BANNER (DSGVO) ───────────────────────────────── -->
   <div id="cookie-banner" aria-label="Cookie-Einstellungen" role="dialog" aria-modal="true" aria-live="polite">
     <div class="cb-inner">
       <div class="cb-header">
         <div class="cb-icon">
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8">
+            <circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/>
+          </svg>
         </div>
         <h3 class="cb-title">Privatsphäre &amp; Cookies</h3>
       </div>
-      <p class="cb-text">Diese Website verwendet ausschließlich technisch notwendige Cookies. Eingebettete Inhalte von Drittanbietern (YouTube, Google Maps) werden erst nach deiner Einwilligung geladen und übertragen dabei Daten an den jeweiligen Anbieter.</p>
+      <p class="cb-text">Diese Website verwendet ausschließlich technisch notwendige Cookies. Externe Medien oder Drittanbieter-Inhalte werden erst nach deiner Einwilligung geladen.</p>
       <div class="cb-options">
-        <label class="cb-option cb-option--disabled">
+        <label class="cb-option">
           <span class="cb-toggle cb-toggle--active" aria-checked="true" role="checkbox">
             <span class="cb-toggle-knob"></span>
           </span>
-          <span class="cb-option-info">
-            <strong>Notwendig</strong>
-            <span>Immer aktiv – für den Betrieb der Website erforderlich (kein Tracking)</span>
-          </span>
-        </label>
-        <label class="cb-option" for="cb-marketing">
-          <span class="cb-toggle" id="cb-marketing-toggle" role="checkbox" aria-checked="false" tabindex="0">
-            <span class="cb-toggle-knob"></span>
-          </span>
-          <input type="checkbox" id="cb-marketing" style="display:none;">
-          <span class="cb-option-info">
-            <strong>Externe Medien</strong>
-            <span>YouTube &amp; Google Maps – Daten werden an Google LLC (USA) übertragen</span>
-          </span>
+          <div>
+            <strong>Notwendig</strong><br />
+            <span style="color:rgba(244,239,228,0.6);">Für den sicheren Betrieb der Website erforderlich (kein Tracking).</span>
+          </div>
         </label>
       </div>
       <div class="cb-actions">
-        <button class="cb-btn cb-btn--reject" id="cb-reject-btn">Alle ablehnen</button>
-        <button class="cb-btn cb-btn--outline" id="cb-save-btn">Auswahl speichern</button>
-        <button class="cb-btn cb-btn--primary" id="cb-accept-btn">Alle akzeptieren</button>
+        <button class="cb-btn cb-btn--primary" id="cb-accept-btn">Verstanden</button>
       </div>
       <div class="cb-footer-links">
-        <a href="datenschutz.html" target="_blank" rel="noopener noreferrer">Datenschutzerklärung</a>
-        <a href="impressum.html" target="_blank" rel="noopener noreferrer">Impressum</a>
+        <a href="datenschutz.html">Datenschutzerklärung</a>
+        <a href="impressum.html">Impressum</a>
       </div>
     </div>
   </div>
 
-  <!-- ─── SCRIPTS ────────────────────────────────────────────── -->
+  <!-- ─── INTERACTIVE SCRIPTS ─────────────────────────────────── -->
   <script>
-    // Navbar scroll effect + Sticky CTA + Progress Bar
-    const navbar = document.getElementById('navbar');
-    const stickyBtn = document.getElementById('stickyBtn');
-    const progressBar = document.getElementById('progressBar');
-    window.addEventListener('scroll', () => {
-      const scrollY = window.scrollY;
-      navbar.classList.toggle('scrolled', scrollY > 60);
-      stickyBtn.classList.toggle('show', scrollY > window.innerHeight * 0.6);
-      // Fix 6: progress bar
-      const height = document.body.scrollHeight - window.innerHeight;
-      progressBar.style.width = ((scrollY / height) * 100) + '%';
-    }, { passive: true });
+    document.addEventListener('DOMContentLoaded', () => {
+      const video = document.getElementById('introVideo');
+      const audioToggleBtn = document.getElementById('audioToggleBtn');
+      const soundMutedIcon = document.getElementById('soundMutedIcon');
+      const soundActiveIcon = document.getElementById('soundActiveIcon');
+      const audioStatusText = document.getElementById('audioStatusText');
+      const playToggleBtn = document.getElementById('playToggleBtn');
+      const pauseIcon = document.getElementById('pauseIcon');
+      const playIcon = document.getElementById('playIcon');
 
-    // Program day tabs
-    document.getElementById('programDays').addEventListener('click', e => {
-      const tab = e.target.closest('.day-tab');
-      if (!tab) return;
-      document.querySelectorAll('.day-tab').forEach(t => t.classList.remove('active'));
-      document.querySelectorAll('.prog-panel').forEach(p => p.classList.remove('active'));
-      tab.classList.add('active');
-      document.getElementById(tab.dataset.panel).classList.add('active');
-    });
-
-    // Scroll reveal
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-    // Mobile nav
-    document.getElementById('hambBtn').addEventListener('click', () => {
-      document.querySelector('.nav-links').classList.toggle('nav-open');
-    });
-    // Anmeldeformular Einzelne Etappen Toggle
-    const radioEinzeln = document.getElementById('einzelneEtappenRadio');
-    const inputEinzeln = document.getElementById('einzelneEtappenInput');
-    const radioGesamt = document.querySelector('input[name="teilnahme"][value="Gesamter Zeitraum (29.05. – 04.06.2026)"]');
-    if (radioEinzeln && radioGesamt && inputEinzeln) {
-      radioEinzeln.addEventListener('change', () => { if (radioEinzeln.checked) inputEinzeln.style.display = 'block'; });
-      radioGesamt.addEventListener('change', () => { if (radioGesamt.checked) inputEinzeln.style.display = 'none'; });
-    }
-
-    if (window.netlifyIdentity) {
-      window.netlifyIdentity.on("init", user => {
-        if (!user) {
-          window.netlifyIdentity.on("login", () => {
-            document.location.href = "/admin/";
-          });
-        }
-      });
-    }
-  </script>
-
-  <!-- ─── COOKIE CONSENT LOGIC ─────────────────────────────── -->
-  <script>
-    // ════════════════════════════════════════════════════════════
-    // CMP – Consent Management (DSGVO-konform)
-    // Blockierungs-Modus: Drittanbieter-Inhalte werden erst nach
-    // aktiver Einwilligung geladen.
-    // ════════════════════════════════════════════════════════════
-
-    const CONSENT_KEY = 'cmp_consent_v2';
-
-    function setConsent(consent) {
-      consent.timestamp = new Date().toISOString();
-      consent.version = '2';
-      localStorage.setItem(CONSENT_KEY, JSON.stringify(consent));
-    }
-
-    function getConsent() {
-      const raw = localStorage.getItem(CONSENT_KEY);
-      // Migrate old key
-      if (!raw) {
-        const old = localStorage.getItem('cookieConsent');
-        if (old) {
-          const parsed = JSON.parse(old);
-          setConsent(parsed);
-          localStorage.removeItem('cookieConsent');
-          return parsed;
-        }
-        return null;
+      // Slow fade-in effect for the video
+      function triggerFadeIn() {
+        setTimeout(() => {
+          video.classList.add('video-loaded');
+        }, 150);
       }
-      return JSON.parse(raw);
-    }
 
-    // ── Toggle UI ───────────────────────────────────────────────
-    function initToggle(toggleEl, inputEl) {
-      function toggle() {
-        inputEl.checked = !inputEl.checked;
-        const active = inputEl.checked;
-        toggleEl.classList.toggle('cb-toggle--active', active);
-        toggleEl.setAttribute('aria-checked', String(active));
-      }
-      toggleEl.addEventListener('click', toggle);
-      toggleEl.addEventListener('keydown', (e) => {
-        if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); toggle(); }
-      });
-    }
-    initToggle(document.getElementById('cb-marketing-toggle'), document.getElementById('cb-marketing'));
-
-    // ── Drittanbieter-Blockierung (Blocking Mode) ───────────────
-    // Externe Skripte & Embeds werden erst nach Consent geladen.
-    // Netlify Identity: nur bei Bedarf (Admin-Bereich)
-    function loadNetlifyIdentity() {
-      if (window.netlifyIdentityLoaded) return;
-      window.netlifyIdentityLoaded = true;
-      const s = document.createElement('script');
-      s.src = 'https://identity.netlify.com/v1/netlify-identity-widget.js';
-      s.onload = () => {
-        if (window.netlifyIdentity) {
-          window.netlifyIdentity.on('init', user => {
-            if (!user) {
-              window.netlifyIdentity.on('login', () => { document.location.href = '/admin/'; });
-            }
-          });
-        }
-      };
-      document.head.appendChild(s);
-    }
-
-    // YouTube & Google Maps Embeds
-    function loadEmbeds() {
-      // YouTube
-      const ytPlaceholder = document.getElementById('yt-placeholder');
-      if (ytPlaceholder) {
-        const wrapper = document.getElementById('yt-wrapper');
-        wrapper.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/MQ13fP1Js8s?rel=0&modestbranding=1" title="Coexistence Walk – Introvideo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;"></iframe>';
-      }
-      // Google Maps
-      const mapsPlaceholder = document.getElementById('maps-placeholder');
-      if (mapsPlaceholder) {
-        const mapsWrapper = document.getElementById('maps-wrapper');
-        mapsWrapper.innerHTML = '<iframe src="https://www.google.com/maps/d/u/0/embed?mid=1cdY2sush3cqZQHjYv3aYtqN90N5G7vY&ehbc=2E312F&noprof=1" style="width:100%;height:380px;border:0;display:block;" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" title="Route Coexistence Walk 2026"></iframe>';
-      }
-    }
-
-    // ── Banner ein-/ausblenden ──────────────────────────────────
-    function showCookieBanner() {
-      document.getElementById('cookie-banner').classList.add('cb-visible');
-      document.body.classList.add('cb-open');
-      // Fokus ins Banner setzen (Barrierefreiheit)
-      setTimeout(() => {
-        const firstBtn = document.querySelector('#cookie-banner .cb-btn');
-        if (firstBtn) firstBtn.focus();
-      }, 100);
-    }
-
-    function hideCookieBanner() {
-      document.getElementById('cookie-banner').classList.remove('cb-visible');
-      document.body.classList.remove('cb-open');
-    }
-
-    // ── Button: Alle ablehnen ───────────────────────────────────
-    document.getElementById('cb-reject-btn').addEventListener('click', () => {
-      const consent = { necessary: true, analytics: false, marketing: false };
-      setConsent(consent);
-      document.getElementById('cb-marketing').checked = false;
-      document.getElementById('cb-marketing-toggle').classList.remove('cb-toggle--active');
-      hideCookieBanner();
-    });
-
-    // ── Button: Auswahl speichern ───────────────────────────────
-    document.getElementById('cb-save-btn').addEventListener('click', () => {
-      const consent = {
-        necessary: true,
-        analytics: false, // kein Analytics eingebunden
-        marketing: document.getElementById('cb-marketing').checked
-      };
-      setConsent(consent);
-      hideCookieBanner();
-      if (consent.marketing) loadEmbeds();
-    });
-
-    // ── Button: Alle akzeptieren ────────────────────────────────
-    document.getElementById('cb-accept-btn').addEventListener('click', () => {
-      const consent = { necessary: true, analytics: true, marketing: true };
-      setConsent(consent);
-      // Toggle-UI aktualisieren
-      document.getElementById('cb-marketing').checked = true;
-      document.getElementById('cb-marketing-toggle').classList.add('cb-toggle--active');
-      hideCookieBanner();
-      loadEmbeds();
-    });
-
-    // ── Inline-Einwilligung (von Embed-Platzhaltern) ────────────
-    function acceptMarketingAndLoadEmbeds() {
-      const existing = getConsent() || { necessary: true, analytics: false };
-      existing.marketing = true;
-      setConsent(existing);
-      document.getElementById('cb-marketing').checked = true;
-      document.getElementById('cb-marketing-toggle').classList.add('cb-toggle--active');
-      hideCookieBanner();
-      loadEmbeds();
-    }
-
-    // ── Beim Laden der Seite ────────────────────────────────────
-    window.addEventListener('DOMContentLoaded', () => {
-      const consent = getConsent();
-
-      if (!consent) {
-        // Erstbesuch – Banner anzeigen (ohne Verzögerung für DSGVO)
-        setTimeout(() => showCookieBanner(), 600);
+      if (video.readyState >= 2) {
+        triggerFadeIn();
       } else {
-        // Wiederkehrender Besucher – gespeicherten Consent anwenden
-        if (consent.marketing) loadEmbeds();
+        video.addEventListener('loadeddata', triggerFadeIn);
+        video.addEventListener('canplay', triggerFadeIn);
+        // Fallback in case events fired before listener attached
+        setTimeout(triggerFadeIn, 500);
       }
 
-      // Netlify Identity nur laden wenn User auf Admin-Seite will
-      // (wird durch Hash-Link ausgelöst, nicht automatisch)
-      if (window.location.hash === '#netlify-identity') {
-        loadNetlifyIdentity();
+      // Ensure autoplay starts
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // Autoplay was prevented; video will wait for interaction
+        });
       }
+
+      // Audio Toggle (Mute / Unmute)
+      audioToggleBtn.addEventListener('click', () => {
+        video.muted = !video.muted;
+        if (video.muted) {
+          soundMutedIcon.style.display = 'block';
+          soundActiveIcon.style.display = 'none';
+          audioStatusText.textContent = 'Ton an';
+          audioToggleBtn.setAttribute('aria-label', 'Ton einschalten');
+        } else {
+          soundMutedIcon.style.display = 'none';
+          soundActiveIcon.style.display = 'block';
+          audioStatusText.textContent = 'Stumm';
+          audioToggleBtn.setAttribute('aria-label', 'Stummschalten');
+        }
+      });
+
+      // Play / Pause Toggle
+      playToggleBtn.addEventListener('click', () => {
+        if (video.paused) {
+          video.play();
+          pauseIcon.style.display = 'block';
+          playIcon.style.display = 'none';
+        } else {
+          video.pause();
+          pauseIcon.style.display = 'none';
+          playIcon.style.display = 'block';
+        }
+      });
+
+      // Cookie banner management
+      const CONSENT_KEY = 'cmp_consent_v2';
+      function getConsent() {
+        return localStorage.getItem(CONSENT_KEY);
+      }
+      function setConsent() {
+        localStorage.setItem(CONSENT_KEY, JSON.stringify({ necessary: true, timestamp: new Date().toISOString() }));
+      }
+
+      const cookieBanner = document.getElementById('cookie-banner');
+      const acceptBtn = document.getElementById('cb-accept-btn');
+
+      if (!getConsent()) {
+        setTimeout(() => {
+          cookieBanner.classList.add('cb-visible');
+        }, 800);
+      }
+
+      acceptBtn.addEventListener('click', () => {
+        setConsent();
+        cookieBanner.classList.remove('cb-visible');
+      });
+
+      window.openCookieSettings = function() {
+        cookieBanner.classList.add('cb-visible');
+      };
     });
-
-    // Globale Funktion für Footer-Link "Cookie-Einstellungen"
-    window.openCookieSettings = function() {
-      const consent = getConsent();
-      if (consent && consent.marketing) {
-        document.getElementById('cb-marketing').checked = true;
-        document.getElementById('cb-marketing-toggle').classList.add('cb-toggle--active');
-        document.getElementById('cb-marketing-toggle').setAttribute('aria-checked', 'true');
-      }
-      showCookieBanner();
-      return false;
-    };
   </script>
 </body>
 
